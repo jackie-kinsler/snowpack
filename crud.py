@@ -4,6 +4,7 @@ from model import db, User, Movie, Rating, connect_to_db
 from datetime import datetime 
 
 
+def create_trail(name, desc, long, lat, kml, length, ascent, descent, difficulty, location, url, img)
 # def create_user(email, password):
 #     """Create and return a new user."""
 
