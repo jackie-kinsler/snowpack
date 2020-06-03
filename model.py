@@ -6,7 +6,7 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-def connect_to_db(flask_app, db_uri='postgresql:///ratings', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///mapping', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     # flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -30,10 +30,12 @@ class Trail(db.Model):
     length = db.Column(db.Float, nullable = False)
     ascent = db.Column(db.Integer)
     descent = db.Column(db.Integer)
-    difficult = db.Column(db.String)
+    difficulty = db.Column(db.String)
     location = db.Column(db.String)
     url = db.Column(db.String)
     img = db.Column(db.String)
+
+    # favorites = a list of Favorite objects
 
     def __repr__(self):
         return f'<Trail trail_id={self.trail_id} name={self.name}>'
@@ -47,9 +49,10 @@ class User(db.Model):
                         autoincrement = True,
                         primary_key = True,
                         )
-    email = db.Column(db.String, unique = True)
-    password = db.Column(db.String)
+    email = db.Column(db.String, unique = True, nullable = False)
+    password = db.Column(db.String, nullable = False)
     
+    # favorites = a list of Favorite objects
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
 
@@ -59,35 +62,15 @@ class Favorite(db.Model):
     __tablename__ = 'favorites'
 
     favorite_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = False)
+    trail_id = db.Column(db.Integer, db.ForeignKey('trails.trail_id'), nullable = False)
 
-    trail = db.relationship('Trail', backref = 'trails')
-    user = db.relationship('User', backref = 'users')
+    trail = db.relationship('Trail', backref = 'favorites')
+    user = db.relationship('User', backref = 'favorites')
 
     def __repr__(self):
-        return f'<Favorite favorite_id={self.favorite_id}>'
+        return f'<Favorite favorite_id={self.favorite_id}.>'
 
-# class Rating(db.Model):
-#     """A movie rating."""
-
-#     __tablename__ = 'ratings'
-
-#     rating_id = db.Column(db.Integer, 
-#                           autoincrement = True, 
-#                           primary_key = True,
-#                           )
-#     score = db.Column(db.Integer)
-#     movie_id = db.Column(db.Integer, 
-#                          db.ForeignKey('movies.movie_id'),
-#                          )
-#     user_id = db.Column(db.Integer,
-#                         db.ForeignKey('users.user_id'),
-#                         )
-
-#     movie = db.relationship('Movie', backref = 'ratings')
-#     user = db.relationship('User', backref = 'ratings')
-    
-#     def __repr__(self):
-#         return f'<Rating rating_id={self.rating_id} score={self.score}>'
 
 if __name__ == '__main__':
     from server import app

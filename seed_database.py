@@ -22,7 +22,7 @@ with open('data/trails.json') as f:
 # Create trails, store them in list
 
 trails_in_db = []
-for trail in trail_data:
+for trail in trail_data['trails']:
     name = trail.get('name')
     desc = trail.get('summary')
     long = trail.get('longitude')
@@ -37,14 +37,15 @@ for trail in trail_data:
     img = trail.get('imgMedium')
     
     
-    trail = crud.create_movie(title, overview, release_date, poster_path)
+    trail = crud.create_trail(name, desc, long, lat, kml, length, ascent, descent, difficulty, location, url, img)
 
     trails_in_db.append(trail)
  
-# for n in range(10):
-#     email = f'user{n}@test.com'
-#     password = 'test'
-#     user = crud.create_user(email, password)
+for n in range(10):
+    email = f'user{n}@test.com'
+    password = 'test'
+    user = crud.create_user(email, password)
     
-#     for _ in range(10):
-#         crud.create_rating(user, choice(movies_in_db), randint(1,5))
+
+    for _ in range(10):
+        crud.create_favorite(user, choice(trails_in_db))

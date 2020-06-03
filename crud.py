@@ -1,34 +1,42 @@
 """CRUD operations"""
 
-from model import db, User, Movie, Rating, connect_to_db
+from model import db, User, Trail, Favorite, connect_to_db
 from datetime import datetime 
 
 
-def create_trail(name, desc, long, lat, kml, length, ascent, descent, difficulty, location, url, img)
-# def create_user(email, password):
-#     """Create and return a new user."""
+def create_trail(name, desc, long, lat, kml, length, ascent, descent, 
+                 difficulty, location, url, img):
+    """Create and return a new trail."""
 
-#     user = User(email = email, password = password)
+    trail = Trail(name = name, desc = desc, long = long, lat = lat, kml = kml, 
+                  length = length, ascent = ascent, descent = descent, 
+                  difficulty = difficulty, location = location, 
+                  url = url, img = img)
 
-#     db.session.add(user)
-#     db.session.commit()
+    db.session.add(trail)
+    db.session.commit()
+    
+    return trail
+    
+def create_user(email, password):
+    """Create and return a new user."""
 
-#     return user
+    user = User(email = email, password = password)
 
-# def create_movie(title = None, overview = None, release_date = None, poster_path = None):
-#     """Create and return a new movie"""
+    db.session.add(user)
+    db.session.commit()
 
-#     movie = Movie(title = title, 
-#                   overview = overview, 
-#                   release_date = release_date, 
-#                   poster_path = poster_path)
+    return user
 
-#     db.session.add(movie)
-#     db.session.commit()
+def create_favorite(user, trail):
+    """Create and return a favorited trail."""
 
-#     return movie
+    favorite = Favorite(user = user, trail = trail)
 
+    db.session.add(favorite)
+    db.session.commit()
 
+    return favorite
 
 if __name__ == '__main__':
     from server import app
