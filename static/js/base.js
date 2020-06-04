@@ -1,10 +1,21 @@
-$(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    date_input.datepicker({
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-    })
-})
+console.log('base.js has been loaded')
+
+
+$( document ).ready(function() {
+    
+    $('#date-form').on('submit', (evt) => {
+        evt.preventDefault();
+        
+        const date = $('#calendar').val();
+        const year = date.slice(0,4);
+        const month = date.slice(5,7);
+        const day = date.slice(8);
+
+    
+        console.log('date:' + date.slice(8));
+
+        initMap()
+    });
+});
+
+
