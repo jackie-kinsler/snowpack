@@ -1,12 +1,42 @@
 {% extends 'base.html' %}
+
+{% block head %}
+<script src="/static/js/img_coord.js"></script>
+<script src="/static/js/map.js"></script>
+<script 
+    async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3so1-1VBMOPQRvXX6joKPeYN-3FmoedQ&callback=initMap">
+</script>
+
+<style>
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+{% endblock %}
 {% block title %}FlakeMap{% endblock %}
 
 {% block body %}
-  <h1>FLAKE MAP</h1>
 
-  <h2>Navigation</h2>
+ 
+
+
+<!-- <h1>FLAKE MAP</h1> -->
+
+  <div id="map"></div>
+
+  <!-- <h2>Navigation</h2>
   <ul>
-    <li><a href="/movies">View all movies</a></li>
+    <li><a href="/movies">View all trails</a></li>
     <li><a href="/users">View all users</a></li>
   </ul>
 
@@ -38,6 +68,12 @@
     <p>
       <input type="submit">
     </p>
-  </form>
+  </form> -->
+
+  
+
+<!-- Replace the value of the key parameter with your own API key. -->
+
+
 
 {% endblock %}

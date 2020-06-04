@@ -17,19 +17,14 @@
         padding: 0;
       }
     </style>
-    <!-- CHECK IF THIS IS THE RIGHT WAY TO DO THIS -->
-    <script src="/images_coordinates.js"></script> 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3so1-1VBMOPQRvXX6joKPeYN-3FmoedQ"></script>
     <script>
-      // This example creates a custom overlay called USGSOverlay, containing
-      // a U.S. Geological Survey (USGS) image of the relevant area on the map.
+    
+      // The keys of this dictionary represent the region key used for a NOHRSC picture. 
+      // The values are a list of 2 tuples. Each tuple is a (lat,long) pair. 
+      // The first tuple is the bottom left corner of where the image should be mounted on the map. 
+      // The 2nd tuple is the upper right corner of where the image should be mounted on the map. 
 
-      // Set the custom overlay object's prototype to a new instance
-      // of OverlayView. In effect, this will subclass the overlay class therefore
-      // it's simpler to load the API synchronously, using
-      // google.maps.event.addDomListener().
-      // Note that we set the prototype to an instance, rather than the
-      // parent class itself, because we do not wish to modify the parent class.
       var img_coord = {
         'R001C001' : [[49.6999999999999, -126.249999999999], [53.9666666666664, -121.983333333333]],
         'R001C002' : [[49.6999999999999, -121.983333333332], [53.9666666666664, -117.716666666666]],
@@ -112,9 +107,19 @@
         'R007C007' : [[24.0999999999999, -100.649999999999], [28.3666666666664, -96.3833333333331]],
         'R007C011' : [[24.0999999999999, -83.5833333333329], [28.3666666666664, -79.3166666666664]]
       }
-    
+      
+      // This example creates a custom overlay called NOAAOverlay, containing
+      // NOAA / NOHRSC images of snow depth information.
+
+      // Set the custom overlay object's prototype to a new instance
+      // of OverlayView. In effect, this will subclass the overlay class therefore
+      // it's simpler to load the API synchronously, using
+      // google.maps.event.addDomListener().
+      // Note that we set the prototype to an instance, rather than the
+      // parent class itself, because we do not wish to modify the parent class.
+
       var overlay;
-      USGSOverlay.prototype = new google.maps.OverlayView();
+      NOAAOverlay.prototype = new google.maps.OverlayView();
 
       // Initialize the map and the custom overlay.
 
@@ -125,42 +130,30 @@
           mapTypeId: 'satellite'
         });
 
-        // var bounds = new google.maps.LatLngBounds(
-        //     new google.maps.LatLng(49.7, -126.25),
-        //     new google.maps.LatLng(53.966667, -121.983333));
-
-        // // The photograph from NOAA/SNHRSC snow model 
-        // var srcImage = 'https://www.nohrsc.noaa.gov/snow_model/GE/20200522/nsm_depth/nsm_depth_2020052205_R001C001_us.png';
-
-        // var bounds2 = new google.maps.LatLngBounds(
-        //     new google.maps.LatLng(49.7, -121.9833333),
-        //     new google.maps.LatLng(53.96666667, -117.7166667));
-
-        // // The photograph from NOAA/SNHRSC snow model 
-        // var srcImage2 = 'https://www.nohrsc.noaa.gov/snow_model/GE/20200522/nsm_depth/nsm_depth_2020052205_R001C002_us.png';
-
-
+        // here, we are looping over all entries in the img_coord dictionary
         for (var [img_key, coords] of Object.entries(img_coord)) {
+
+          // bounds represents the lower left corner and upper right corner 
+          // that the image will be stretch ed to 
           var bounds = new google.maps.LatLngBounds(
             new google.maps.LatLng(coords[0][0], coords[0][1]),
             new google.maps.LatLng(coords[1][0], coords[1][1])
           );
 
+          // the srcImage comes from the NOAA/NOHRSC website, where the img_key
+          // directs to the appropriate image to populate 
+          // WILL NEED TO ACCOUNT FOR DATE AS WELL 
           var srcImage = `https://www.nohrsc.noaa.gov/snow_model/GE/20200522/nsm_depth/nsm_depth_2020052205_${img_key}_us.png`;
           
-          // The custom USGSOverlay object contains the USGS image,
+          // The custom NOAAOverlay object contains the NOAA image,
           // the bounds of the image, and a reference to the map.
-          overlay = new USGSOverlay(bounds, srcImage, map);
-          
+          overlay = new NOAAOverlay(bounds, srcImage, map);
 
         }
-        
-        // overlay2 = new USGSOverlay(bounds2, srcImage2, map);
-
       }
 
       /** @constructor */
-      function USGSOverlay(bounds, image, map) {
+      function NOAAOverlay(bounds, image, map) {
 
         // Initialize all properties.
         this.bounds_ = bounds;
@@ -180,7 +173,7 @@
        * onAdd is called when the map's panes are ready and the overlay has been
        * added to the map.
        */
-      USGSOverlay.prototype.onAdd = function() {
+      NOAAOverlay.prototype.onAdd = function() {
 
         var div = document.createElement('div');
         div.style.borderStyle = 'none';
@@ -203,7 +196,7 @@
         panes.overlayLayer.appendChild(div);
       };
 
-      USGSOverlay.prototype.draw = function() {
+      NOAAOverlay.prototype.draw = function() {
 
         // We use the south-west and north-east
         // coordinates of the overlay to peg it to the correct position and size.
@@ -226,7 +219,7 @@
 
       // The onRemove() method will be called automatically from the API if
       // we ever set the overlay's map property to 'null'.
-      USGSOverlay.prototype.onRemove = function() {
+      NOAAOverlay.prototype.onRemove = function() {
         this.div_.parentNode.removeChild(this.div_);
         this.div_ = null;
       };
