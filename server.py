@@ -76,9 +76,33 @@ def filtered_trail():
                             'trail_location' : trail.location,
 
                            })
-
-
     return jsonify(trail_list)
+
+@app.route('/add-to-favorites')
+def add_to_favorites():
+    """Add a trail to favorites based after pressing favorite button on /trails page."""
+
+    # The trail_id comes from the client (attached to the favorite button)
+    trail_id = request.args.get('trail_id')
+
+    # the user id comes from the session (if they logged in)
+    user_id = session.get('user_id')
+    print(session)
+
+    if not user_id: 
+        return ("Please log in to favorite trails.")
+
+    user = crud.get_user_by_id(user_id)
+
+    trail = crud.get_trail_by_id(trail_id)
+    
+    if crud.check_favorite_exists(user, trail):
+        return ("You must really like that trail :) You already favorited it!")
+    
+    # create a new favorite in the database 
+    crud.create_favorite(user, trail)
+
+    return (trail.name + " added to favorites!")
 
 if __name__ == '__main__':
     connect_to_db(app)

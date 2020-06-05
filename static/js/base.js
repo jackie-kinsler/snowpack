@@ -51,7 +51,22 @@ $( document ).ready(function() {
                 }
                 $('.favorite-button').on('click', () => {
                     console.log('favorite-button clicked');
-            
+                    
+                    var trailId = $(event.target).attr("id");
+                    
+                    formInputs = {
+                        'trail_id' : trailId,
+                    }
+                    
+                    $.get('/add-to-favorites', formInputs, (res) => {
+                        alert(res);
+                    });
+                    // get the trail id (is the id of the button)
+                    // pass the user id and trail id to the server 
+                    // have the server add the trail to the user's favorites 
+                    // (make a crud function for this) 
+                    // have a success alert appear on the page 
+                    // $.get('/add-to-favorites')
                 });
 
             } else { 

@@ -69,7 +69,7 @@ class Favorite(db.Model):
     user = db.relationship('User', backref = 'favorites')
 
     def __repr__(self):
-        return f'<Favorite favorite_id={self.favorite_id}.>'
+        return f'<Favorite favorite_id={self.favorite_id} user_id={self.user_id} trail_id={self.trail_id}>'
 
 
 if __name__ == '__main__':

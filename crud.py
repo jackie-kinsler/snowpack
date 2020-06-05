@@ -31,7 +31,8 @@ def trails_by_distance(min_dist, max_dist):
     return db.session.query(Trail).filter(Trail.length<max_dist, 
                                           Trail.length>min_dist).all()
 
-
+def get_trail_by_id(trail_id):
+    return db.session.query(Trail).get(trail_id)
 # *******************
 # USER CRUD FUNCTIONS:
 # *******************
@@ -76,6 +77,10 @@ def create_favorite(user, trail):
     db.session.commit()
 
     return favorite
+def check_favorite_exists(user, trail):
+    return db.session.query(Favorite).filter(Favorite.user == user, Favorite.trail == trail).first()
+
+
 
 if __name__ == '__main__':
     from server import app
