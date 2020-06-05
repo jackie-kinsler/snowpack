@@ -21,15 +21,14 @@ $( document ).ready(function() {
 
 
     $("#distance-form").on('submit', (evt) => {
+        
         evt.preventDefault();
 
         formInputs = {
             'min_dist' : $('#min-dist').val(),
             'max_dist' : $('#max-dist').val()
-        };
-        console.log(formInputs);
+        };        
         
-
         $.get('/filtered-trails', formInputs, (res) => {
             console.log(res);
                         
@@ -37,23 +36,30 @@ $( document ).ready(function() {
 
                 $("#filtered-trails").empty();
                 $("#filtered-trails").text("Trails filtered by distance:");
-            
+                $("#trail-table").empty();
+                $("#trail-table").append("<tr><th>Trail Name</th><th>Length</th><th>Location</th><th>Favorite Trail</th></tr>");
+                
                 for (var trail of res) {
                         $("#trail-table").append(`
                             <tr>
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
                                 <td>${trail['trail_location']}</td>
+                                <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
                             </tr>`
                         );
                 }
+                $('.favorite-button').on('click', () => {
+                    console.log('favorite-button clicked');
+            
+                });
+
             } else { 
-                console.log('response empty');
+                console.log('response empty');                
                 alert('No trails found with that filtering criteria.'); 
             }
-
         });
-    });
+    }); 
 });
 
 

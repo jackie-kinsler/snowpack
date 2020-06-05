@@ -48,7 +48,7 @@ def create_account():
     
     return redirect('/')
 
-    
+
 @app.route('/trails')
 def trail_page():
     """Show a trail page that has a list of trails and a map"""
@@ -69,7 +69,8 @@ def filtered_trail():
     trail_list = []
 
     for trail in trails: 
-         trail_list.append({'trail_name' : trail.name,
+         trail_list.append({'trail_id' : trail.trail_id,
+                            'trail_name' : trail.name,
                             'trail_url' : trail.url, 
                             'trail_distance' : trail.length,
                             'trail_location' : trail.location,
