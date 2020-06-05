@@ -18,6 +18,37 @@ def homepage():
 
     return render_template('homepage.html', today = datetime.date(datetime.now()))
 
+@app.route('/log-in')
+def log_in():
+    email = request.args.get('email')
+    password = request.args.get('password')
+
+    if crud.get_password_by_email(email) == password: 
+        flash('Logged In!')
+        session['user_id'] = crud.get_user_id_by_email(email)
+        print(session)
+        return redirect('/')
+    else:
+        flash('Log-in Failed')
+        return redirect('/')
+    
+@app.route('/users', methods = ['POST'])
+def create_account():
+    """Create a new user"""
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if crud.get_user_by_email(email):
+        flash('That email is already assigned to a registered account.')
+
+    else: 
+        crud.create_user(email, password)
+        flash('User successfully registered')
+    
+    return redirect('/')
+
+    
 @app.route('/trails')
 def trail_page():
     """Show a trail page that has a list of trails and a map"""
@@ -42,7 +73,7 @@ def filtered_trail():
                             'trail_url' : trail.url, 
                             'trail_distance' : trail.length,
                             'trail_location' : trail.location,
-                            
+
                            })
 
 

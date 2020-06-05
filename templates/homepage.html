@@ -18,14 +18,10 @@
   <li><a href="/trails">Trails</a></li>
 </ul>
 
-<form id="date-form">
-  <label for="date">Select a date to view historical snow information:</label>
-  <input type="date" id="calendar" min="2012-03-01" max={{today}} required pattern="\d{4}-\d{2}-\d{2}">
-  <input type="submit">
-  
-</form>
 
-<!-- <form action="/log-in">
+
+<h3>Log In:</h3>
+<form action="/log-in">
   <p>
     Email <input type="text" name="email">
   </p>
@@ -37,12 +33,31 @@
   <p>
     <input type="submit">
   </p>
-</form> -->
+</form>
 
-  <div id="map"></div>
+<h3>Not on FlakeMap? Create an account!</h3>
+<form action="/users" method="POST">
+  <p>
+    Email <input type="text" name="email">
+  </p>
+
+  <p>
+    Password <input type="password" name="password">
+  </p>
+
+  <p>
+    <input type="submit">
+  </p>
+</form>
+
+<form id="date-form">
+  <label for="date">Select a date to view historical snow information:</label>
+  <input type="date" id="calendar" min="2012-03-01" max={{today}} required pattern="\d{4}-\d{2}-\d{2}">
+  <input type="submit">
   
+</form>
 
-   
+<div id="map"></div>
 
 
 {% endblock %}

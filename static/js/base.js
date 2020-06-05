@@ -32,13 +32,12 @@ $( document ).ready(function() {
 
         $.get('/filtered-trails', formInputs, (res) => {
             console.log(res);
-            $("#filtered-trails").empty();
-            $("#filtered-trails").text("Trails filtered by distance:");
-            
-            // $("#trail-table").empty();
-            
+                        
             if (res.length !== 0) {
-                console.log('response not empty');
+
+                $("#filtered-trails").empty();
+                $("#filtered-trails").text("Trails filtered by distance:");
+            
                 for (var trail of res) {
                         $("#trail-table").append(`
                             <tr>

@@ -3,6 +3,9 @@
 from model import db, User, Trail, Favorite, connect_to_db
 from datetime import datetime 
 
+# *******************
+# TRAIL CRUD FUNCTIONS:
+# *******************
 
 def create_trail(name, desc, long, lat, kml, length, ascent, descent, 
                  difficulty, location, url, img):
@@ -17,26 +20,7 @@ def create_trail(name, desc, long, lat, kml, length, ascent, descent,
     db.session.commit()
     
     return trail
-    
-def create_user(email, password):
-    """Create and return a new user."""
-
-    user = User(email = email, password = password)
-
-    db.session.add(user)
-    db.session.commit()
-
-    return user
-
-def create_favorite(user, trail):
-    """Create and return a favorited trail."""
-
-    favorite = Favorite(user = user, trail = trail)
-
-    db.session.add(favorite)
-    db.session.commit()
-
-    return favorite
+  
 
 def all_trails():
     """Return all trails in db."""
@@ -48,6 +32,50 @@ def trails_by_distance(min_dist, max_dist):
                                           Trail.length>min_dist).all()
 
 
+# *******************
+# USER CRUD FUNCTIONS:
+# *******************
+
+  
+def create_user(email, password):
+    """Create and return a new user."""
+
+    user = User(email = email, password = password)
+
+    db.session.add(user)
+    db.session.commit()
+
+    return user
+
+
+def get_user_by_id(user_id):
+    return db.session.query(User).get(user_id)
+
+def get_user_by_email(user_email):
+    return db.session.query(User).filter(User.email == user_email).first()
+
+def get_password_by_email(user_email):
+    if get_user_by_email(user_email):
+        return (db.session.query(User.password).filter(User.email == user_email).first())[0]
+    else:
+        return None
+
+def get_user_id_by_email(user_email):
+    return (db.session.query(User.user_id).filter(User.email == user_email).first())[0]
+
+# *******************
+# FAVORITE CRUD FUNCTIONS:
+# *******************
+
+def create_favorite(user, trail):
+    """Create and return a favorited trail."""
+
+    favorite = Favorite(user = user, trail = trail)
+
+    db.session.add(favorite)
+    db.session.commit()
+
+    return favorite
 
 if __name__ == '__main__':
     from server import app
