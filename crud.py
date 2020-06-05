@@ -38,6 +38,19 @@ def create_favorite(user, trail):
 
     return favorite
 
+def all_trails():
+    """Return all trails in db."""
+
+    return db.session.query(Trail).all()
+
+def trails_dist_ascent(max_dist, max_asc, min_dist = 0, min_asc=0):
+    return db.session.query(Trail).filter(Trail.length<max_dist, 
+                                          Trail.length>min_dist,
+                                          Trail.ascent<max_asc, 
+                                          Trail.ascent>min_asc).all()
+
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

@@ -1,6 +1,8 @@
 console.log('map.js has been loaded');
 
-var NOAAOverlay;
+var day = '11'
+var month = '12'
+var year = '2015'
 
 function initMap() {
     // assign a variable called map and assign it to a new google object
@@ -16,8 +18,8 @@ function initMap() {
         mapTypeId: 'hybrid'
     });
     
+    var NOAAOverlay;
     
-
     var overlayOpts = {
         opacity : 0.5
     }
@@ -32,11 +34,17 @@ function initMap() {
           };
     
           NOAAOverlay = new google.maps.GroundOverlay(
-            `https://www.nohrsc.noaa.gov/snow_model/GE/20200522/nsm_depth/nsm_depth_2020052205_${img_key}_us.png`, 
+            `https://www.nohrsc.noaa.gov/snow_model/GE/${year}${month}${day}/nsm_depth/nsm_depth_${year}${month}${day}05_${img_key}_us.png`, 
               imageBounds, 
               overlayOpts
           );
 
           NOAAOverlay.setMap(map)
     }
+
+    google.maps.event.addListener(map, 'bounds_changed', () => {
+        window.setTimeout( () => {
+            console.log('change!')
+        }, 3000);
+    });
 }

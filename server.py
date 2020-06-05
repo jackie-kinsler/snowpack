@@ -18,11 +18,15 @@ def homepage():
 
     return render_template('homepage.html', today = datetime.date(datetime.now()))
 
-@app.route('/date')
-def date():
-    """Return a dictionary with date values."""
+@app.route('/trails')
+def trail_page():
+    """Show a trail page that has a list of trails and a map"""
 
-    return redirect('/')
+    trails = crud.all_trails()
+
+    trails = crud.trails_dist_ascent(dist, ascent)
+
+    return render_template('trailpage.html', trails = trails)
 
 if __name__ == '__main__':
     connect_to_db(app)
