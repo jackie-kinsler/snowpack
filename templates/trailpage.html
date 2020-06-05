@@ -20,17 +20,21 @@
 
 <div id="map"></div>
 
-<form action="/trails">
-    Max length: (0-50):<input id="length" type="range" min="0", max="50" value="10">
-    Max ascent (0-10000):<input id="ascent" type="range" min="0", max="50" value="10000">
-    <button type="submit">Show me trails!</button>
+<form action="/trails" id="distance-form">
+    Min length: (0-50):<input name="min-dist" id="min-dist" type="text">
+    Max length: (0-50):<input name="max-dist" id="max-dist" type="text">
+
+    <!-- Max length: (0-50):<input name="distance" type="range" min="0", max="50" value="10">
+    Max ascent (0-10000):<input name="ascent" type="range" min="0", max="50" value="10000"> -->
+    <input type="submit">
+    
 </form>
 <div>
-    <ul>Trails in map area:</ul>
-        {% for trail in trails %}
+    <!-- <ul>Trails in map area:
+        {% for trail in filtered_trails %}
             <li><a href="{{ trail.url }}">{{ trail.name }}</a></li>    
         {% endfor %}
-
+    </ul> -->
 
 </div>
 

@@ -22,11 +22,14 @@ def homepage():
 def trail_page():
     """Show a trail page that has a list of trails and a map"""
 
-    trails = crud.all_trails()
 
-    trails = crud.trails_dist_ascent(dist, ascent)
+    return render_template('trailpage.html')
 
-    return render_template('trailpage.html', trails = trails)
+@app.route('/filtered-trails')
+def filtered_trail(): 
+    """Return a list of trails filtered on distance"""
+    
+    return 'hey'
 
 if __name__ == '__main__':
     connect_to_db(app)

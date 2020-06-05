@@ -1,3 +1,5 @@
+// potentially create an initMap functiona and a calendarMap function 
+
 console.log('base.js has been loaded')
 
 
@@ -14,8 +16,24 @@ $( document ).ready(function() {
     
         console.log('date:' + date.slice(8));
 
-        initMap()
+        calendarMap(day, month, year);
+    });
+
+
+    $("#distance-form").on('submit', (evt) => {
+        evt.preventDefault();
+
+        formInputs = {
+            'min_dist' : $('#min-dist').val(),
+            'max_dist' : $('#max-dist').val()
+        };
+        console.log(formInputs);
+
+        $.get('/filtered-trails', formInputs, (res) => {
+            alert(res);
+        })
     });
 });
+
 
 

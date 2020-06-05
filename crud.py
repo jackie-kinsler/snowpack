@@ -43,11 +43,9 @@ def all_trails():
 
     return db.session.query(Trail).all()
 
-def trails_dist_ascent(max_dist, max_asc, min_dist = 0, min_asc=0):
+def trails_by_distance(min_dist, max_dist):
     return db.session.query(Trail).filter(Trail.length<max_dist, 
-                                          Trail.length>min_dist,
-                                          Trail.ascent<max_asc, 
-                                          Trail.ascent>min_asc).all()
+                                          Trail.length>min_dist).all()
 
 
 

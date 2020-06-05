@@ -1,16 +1,11 @@
 console.log('map.js has been loaded');
 
-var day = '11'
-var month = '12'
-var year = '2015'
+// use helper functions?
 
-function initMap() {
-    // assign a variable called map and assign it to a new google object
-    // google maps objects are coming from the googleapis script linked
-    // first parameter is the element the map should be dumped in 
-    // 2nd parameter is the options 
+function calendarMap(day, month, year) {
+    
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 5,
+        zoom: 6,
         // map is centered on Mt. Hood summit
         center: {lat: 45.373, lng: -121.686},
 
@@ -31,15 +26,15 @@ function initMap() {
             south: coords[0][0],
             east: coords[1][1],
             west: coords[0][1]
-          };
+            };
     
-          NOAAOverlay = new google.maps.GroundOverlay(
+            NOAAOverlay = new google.maps.GroundOverlay(
             `https://www.nohrsc.noaa.gov/snow_model/GE/${year}${month}${day}/nsm_depth/nsm_depth_${year}${month}${day}05_${img_key}_us.png`, 
-              imageBounds, 
-              overlayOpts
-          );
+                imageBounds, 
+                overlayOpts
+            );
 
-          NOAAOverlay.setMap(map)
+            NOAAOverlay.setMap(map)
     }
 
     google.maps.event.addListener(map, 'bounds_changed', () => {
@@ -48,3 +43,20 @@ function initMap() {
         }, 3000);
     });
 }
+
+
+
+function initMap() {
+
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var year = today.getFullYear();
+    
+    // var day = '07'
+    // var month = '07'
+    // var year = '2020'
+
+    calendarMap(day, month, year);
+}
+
