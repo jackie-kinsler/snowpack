@@ -35,10 +35,25 @@ $( document ).ready(function() {
             $("#filtered-trails").empty();
             $("#filtered-trails").text("Trails filtered by distance:");
             
-            for (var trail of res) {
-                $("#filtered-trails").append(`<li><a href=${trail['trail_url']}>${trail['trail_name']}</a></li>`);
+            // $("#trail-table").empty();
+            
+            if (res.length !== 0) {
+                console.log('response not empty');
+                for (var trail of res) {
+                        $("#trail-table").append(`
+                            <tr>
+                                <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
+                                <td>${trail['trail_distance']}</td>
+                                <td>${trail['trail_location']}</td>
+                            </tr>`
+                        );
+                }
+            } else { 
+                console.log('response empty');
+                alert('No trails found with that filtering criteria.'); 
             }
-        })
+
+        });
     });
 });
 

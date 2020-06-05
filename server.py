@@ -40,6 +40,9 @@ def filtered_trail():
     for trail in trails: 
          trail_list.append({'trail_name' : trail.name,
                             'trail_url' : trail.url, 
+                            'trail_distance' : trail.length,
+                            'trail_location' : trail.location,
+                            
                            })
 
 
