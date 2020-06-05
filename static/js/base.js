@@ -28,9 +28,16 @@ $( document ).ready(function() {
             'max_dist' : $('#max-dist').val()
         };
         console.log(formInputs);
+        
 
         $.get('/filtered-trails', formInputs, (res) => {
-            alert(res);
+            console.log(res);
+            $("#filtered-trails").empty();
+            $("#filtered-trails").text("Trails filtered by distance:");
+            
+            for (var trail of res) {
+                $("#filtered-trails").append(`<li><a href=${trail['trail_url']}>${trail['trail_name']}</a></li>`);
+            }
         })
     });
 });

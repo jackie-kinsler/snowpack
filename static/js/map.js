@@ -5,12 +5,12 @@ console.log('map.js has been loaded');
 function calendarMap(day, month, year) {
     
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
+        zoom: 7,
         // map is centered on Mt. Hood summit
         center: {lat: 45.373, lng: -121.686},
 
         // hybrid map type has satellite with roads/labels
-        mapTypeId: 'hybrid'
+        mapTypeId: 'terrain'
     });
     
     var NOAAOverlay;
