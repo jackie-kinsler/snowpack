@@ -10,7 +10,6 @@ app = Flask(__name__)
 app.secret_key = 'dev'
 app.jinja_env.undefine = StrictUndefined
 
-
 # Replace this with routes and view functions!
 @app.route('/')
 def homepage():
@@ -26,7 +25,7 @@ def log_in():
     if crud.get_password_by_email(email) == password: 
         flash('Logged In!')
         session['user_id'] = crud.get_user_id_by_email(email)
-        print(session)
+
         return redirect('/')
     else:
         flash('Log-in Failed')
@@ -62,7 +61,6 @@ def filtered_trail():
     
     min_dist = request.args.get('min_dist')
     max_dist = request.args.get('max_dist')
-    print(min_dist + " " + max_dist)
     
     trails = crud.trails_by_distance(min_dist, max_dist)
 
@@ -87,7 +85,6 @@ def add_to_favorites():
 
     # the user id comes from the session (if they logged in)
     user_id = session.get('user_id')
-    print(session)
 
     if not user_id: 
         return ("Please log in to favorite trails.")
@@ -103,6 +100,20 @@ def add_to_favorites():
     crud.create_favorite(user, trail)
 
     return (trail.name + " added to favorites!")
+
+@app.route('/favorite-trails')
+def favorite_trail():
+    """Page to display a user's favorite trails"""
+
+    user_id = session.get('user_id')
+    if user_id:
+        favorite_trails = crud.get_favorites_by_user_id(user_id)
+        return render_template('favorite-trails.html', favorite_trails = favorite_trails)
+    else: 
+        flash('Log In to see favorite trails')
+        return redirect('/')
+
+
 
 if __name__ == '__main__':
     connect_to_db(app)

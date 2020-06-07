@@ -80,7 +80,8 @@ def create_favorite(user, trail):
 def check_favorite_exists(user, trail):
     return db.session.query(Favorite).filter(Favorite.user == user, Favorite.trail == trail).first()
 
-
+def get_favorites_by_user_id(user_id):
+    return db.session.query(Favorite).filter(Favorite.user_id == user_id).all()
 
 if __name__ == '__main__':
     from server import app
