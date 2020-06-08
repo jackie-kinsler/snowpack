@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<script src="/static/js/add_a_trail.js"></script>
 
 {% endblock %}
 
@@ -11,36 +12,36 @@
 <h3>Add a trail:</h3>
 <!-- MAKE SURE TO TURN THIS INTO A POST MEHTOD -->
 <!-- <form action="/add-a-trail" method="POST"> -->
-
-<form action="/add-a-trail" method="POST">
+<!-- must use enctype="multipart/form-data" when using forms that have file upload contol -->
+<form action="/add-a-trail" id="new-trail-form" enctype="multipart/form-data">
     <div>
-        Trail name: <input type="text" name="trail-name" placeholder="required" required>
+        Trail name: <input type="text" name="name" placeholder="required" required>
     </div>
     <div>
-        Trail description: <input type="text" name="trail-description">
+        Trail description: <input type="text" name="description">
     </div>
     <div>
-        Trailhead longitude: <input type="number" name="trail-description" pattern="-?\d+\.\d+[^e]" placeholder="required" required>
+        Trailhead longitude: <input type="number" name="long" step="any" placeholder="required" required>
     </div>
     <div>
-        Trailhead latitude: <input type="number" name="trail-description" pattern="-?\d+\.\d+[^e]" placeholder="required" required>
+        Trailhead latitude: <input type="number" name="lat" step="any" placeholder="required" required>
     </div>
     <div>
-        Length (mi/km): <input type="number" name="trail-description" placeholder="required" required>
-        <select name="unit" id="unit">
+        Length (mi/km): <input type="number" step="any" min="0" name="length" placeholder="required" required>
+        <select name="unit" id="length-unit">
             <option value="miles">mi</option>
             <option value="kilometers">km</option>
         </select>
     </div>
     <div>
-        Ascent (ft/m): <input type="number" name="ascent">
+        Ascent (ft/m): <input type="number" step="any" min="0" name="ascent">
         <select name="unit" id="ascent-unit">
             <option value="feet">ft</option>
             <option value="meters">m</option>
         </select>
     </div>
     <div>
-        Descent (ft/m): <input type="number" name="descent">
+        Descent (ft/m): <input type="number" step="any" min="0" name="descent">
         <select name="unit" id="descent-unit">
             <option value="feet">ft</option>
             <option value="meters">m</option>
@@ -58,7 +59,7 @@
         Nearest Town: <input type="text" name="location" placeholder="(City, State)">
     </div>
     <div>
-        Want to add a link to an existing trail data page? <input type="text" name="url">
+        Want to add a link to an existing trail data page? <input type="url" name="url">
     </div>
 
     <div>
