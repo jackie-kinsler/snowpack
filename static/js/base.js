@@ -84,7 +84,17 @@ $( document ).ready(function() {
 
                 $('.display-button').on('click', () => {
                     console.log('you clicked?');
+                    var url = $(event.target).attr("id");
 
+                    console.log(url);
+                    
+                    var today = new Date();
+                    var day = String(today.getDate()).padStart(2, '0');
+                    var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    var year = today.getFullYear();
+
+                    calendarMap(day, month, year, url);
+                    
 
                 });
 

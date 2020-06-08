@@ -59,8 +59,6 @@ function initMap() {
     var year = today.getFullYear();
     
 
-    var url = "/static/KML/wonderland.js"
-
-    calendarMap(day, month, year, url);
+    calendarMap(day, month, year);
 }
 

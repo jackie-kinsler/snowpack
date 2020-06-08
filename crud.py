@@ -39,6 +39,9 @@ def add_kml_by_trail_id(trail_id, kml_path):
     trail.kml = kml_path 
     db.session.commit()
 
+def get_gps_by_trail_id(trail_id):
+    return (get_trail_by_id(trail_id)).kml
+
 # *******************
 # USER CRUD FUNCTIONS:
 # *******************
