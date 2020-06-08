@@ -52,7 +52,7 @@ $( document ).ready(function() {
                             <tr>
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
-                                <td>${trail['trail_location']}</td>
+                                <td><a href=https://www.google.com/maps/dir/Current+Location/46.76641,-121.79122>${trail['trail_location']}</a></td>
                                 <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
                                 <td><button id=${trail['trail_kml']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display Trail on Map</button></td>
                             </tr>`
@@ -62,7 +62,7 @@ $( document ).ready(function() {
                             <tr>
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
-                                <td>${trail['trail_location']}</td>
+                                <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
                                 <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
                             </tr>`
                         );
@@ -98,8 +98,7 @@ $( document ).ready(function() {
                     
                     var initial_zoom = 10;
 
-                    calendarMap(day, month, year, url, initial_zoom, Number(latLong[0]), Number(latLong[1]));
-                    
+                    calendarMap(day, month, year, url, Number(latLong[0]), Number(latLong[1]), initial_zoom, Number(latLong[0]), Number(latLong[1]));
 
                 });
 

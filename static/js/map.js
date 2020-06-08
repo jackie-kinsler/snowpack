@@ -2,27 +2,31 @@ console.log('map.js has been loaded');
 
 // use helper functions?
 
-function calendarMap(day, month, year, url, initial_zoom = 7, center_lat = 45.373, center_long = -121.686) {
+function calendarMap(day, month, year, url, thLat, thLong, initial_zoom = 7, center_lat = 45.373, center_long = -121.686) {
     
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: initial_zoom,
         // map is centered on Mt. Hood summit
         center: {lat: center_lat, lng: center_long},
-
-        // hybrid map type has satellite with roads/labels
         mapTypeId: 'terrain'
     });
     
-    map.data.loadGeoJson(url)
+    map.data.loadGeoJson(url);
 
-    map.data.setStyle({strokeColor : 'blue'})
+    map.data.setStyle({strokeColor : 'blue'});
     
+    var marker = new google.maps.Marker({
+        position: {lat: thLat, lng: thLong},
+        map: map,
+        title: 'Trailhead!',
+    });
+
     var NOAAOverlay;
     
     var overlayOpts = {
         opacity : 0.5
-    }
-
+    };
+    
     for (var [img_key, coords] of Object.entries(img_coord)) {
         
         var imageBounds = {
@@ -38,14 +42,14 @@ function calendarMap(day, month, year, url, initial_zoom = 7, center_lat = 45.37
                 overlayOpts
             );
 
-            NOAAOverlay.setMap(map)
-    }
+            NOAAOverlay.setMap(map);
+    };
 
-    google.maps.event.addListener(map, 'bounds_changed', () => {
-        window.setTimeout( () => {
-            console.log('change!')
-        }, 3000);
-    });
+    // google.maps.event.addListener(map, 'bounds_changed', () => {
+    //     window.setTimeout( () => {
+    //         console.log('change!')
+    //     }, 3000);
+    // });
 }
 
 
