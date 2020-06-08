@@ -115,7 +115,17 @@ def favorite_trail():
         flash('Log In to see favorite trails')
         return redirect('/')
 
+@app.route('/add-a-trail')
+def add_trail():
+    """Page to add a trail to the db"""
 
+    return render_template("add_a_trail.html")
+
+# @app.route('/add-a-trail', methods = ['POST'])
+# def add_trail():
+#     """Page to add a trail to the db"""
+
+#     return render_template("add_a_trail.html")
 
 if __name__ == '__main__':
     connect_to_db(app)

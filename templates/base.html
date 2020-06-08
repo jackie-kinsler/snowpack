@@ -8,10 +8,10 @@
     <script src="/static/js/img_coord.js"></script>
     <script src="/static/js/map.js"></script>
     <!-- API KEY IS RESTRICED -->
-    <script 
+    <!-- <script 
         async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3so1-1VBMOPQRvXX6joKPeYN-3FmoedQ&callback=initMap">
-    </script>
+    </script> -->
     <script
       src="http://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -31,7 +31,9 @@
         <li><a href="/">Home</a></li>
         <li><a href="/trails">Trails</a></li>
         <li><a href="/favorite-trails">Favorite Trails</a></li>
+        <li><a href="/add-a-trail">Add a Trail!</a></li>
       </ul>
+
     {% for msg in get_flashed_messages() %}
     <p class="flash-msg">
       {{ msg }}

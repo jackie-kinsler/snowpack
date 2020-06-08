@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}FlakeMap - Add a Trail{% endblock %}
+
+{% block body %}
+
+<h3>Add a trail:</h3>
+<!-- MAKE SURE TO TURN THIS INTO A POST MEHTOD -->
+<!-- <form action="/add-a-trail" method="POST"> -->
+
+<form action="/add-a-trail" method="POST">
+    <div>
+        Trail name: <input type="text" name="trail-name" placeholder="required" required>
+    </div>
+    <div>
+        Trail description: <input type="text" name="trail-description">
+    </div>
+    <div>
+        Trailhead longitude: <input type="number" name="trail-description" pattern="-?\d+\.\d+" placeholder="required" required>
+    </div>
+    <div>
+        Trailhead latitude: <input type="number" name="trail-description" pattern="-?\d+\.\d+" placeholder="required" required>
+    </div>
+    <div>
+        Length (mi/km): <input type="number" name="trail-description" placeholder="required" required>
+        <select name="unit" id="unit">
+            <option value="miles">mi</option>
+            <option value="kilometers">km</option>
+        </select>
+    </div>
+    <div>
+        Ascent (ft/m): <input type="number" name="ascent">
+        <select name="unit" id="ascent-unit">
+            <option value="feet">ft</option>
+            <option value="meters">m</option>
+        </select>
+    </div>
+    <div>
+        Descent (ft/m): <input type="number" name="descent">
+        <select name="unit" id="descent-unit">
+            <option value="feet">ft</option>
+            <option value="meters">m</option>
+        </select>
+    </div>
+    <div>
+        Difficulty: 
+        <select name="difficulty" id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="moderate">Moderate</option>
+            <option value="hard">Hard</option>
+        </select>
+    </div>
+    <div>
+        Nearest Town: <input type="text" name="location" placeholder="(City, State)">
+    </div>
+    <div>
+        Want to add a link to an existing trail data page? <input type="text" name="url">
+    </div>
+
+    <div>
+        Upload GPS data here! (.kml or GeoJSON) <input type="file" name="gps-data" accept=".kml,.json,.geojson,application/json,.js">
+    </div>
+
+
+
+
+    <div>
+        <input type="submit">
+    </div>
+</form>
+
+
+
+{% endblock %}
