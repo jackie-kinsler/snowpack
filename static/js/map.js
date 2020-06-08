@@ -2,7 +2,7 @@ console.log('map.js has been loaded');
 
 // use helper functions?
 
-function calendarMap(day, month, year) {
+function calendarMap(day, month, year, url) {
     
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 7,
@@ -12,6 +12,10 @@ function calendarMap(day, month, year) {
         // hybrid map type has satellite with roads/labels
         mapTypeId: 'terrain'
     });
+    
+    map.data.loadGeoJson(url)
+
+    map.data.setStyle({strokeColor : 'blue'})
     
     var NOAAOverlay;
     
@@ -47,16 +51,16 @@ function calendarMap(day, month, year) {
 
 
 function initMap() {
-
+    // default date for map load is today's date (sometimes, snow data will
+    // not load if it hasn't been uploaded yet for the day)
     var today = new Date();
     var day = String(today.getDate()).padStart(2, '0');
     var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var year = today.getFullYear();
     
-    // var day = '07'
-    // var month = '07'
-    // var year = '2020'
 
-    calendarMap(day, month, year);
+    var url = "/static/KML/wonderland.js"
+
+    calendarMap(day, month, year, url);
 }
 

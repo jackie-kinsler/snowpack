@@ -33,6 +33,12 @@ def trails_by_distance(min_dist, max_dist):
 
 def get_trail_by_id(trail_id):
     return db.session.query(Trail).get(trail_id)
+
+def add_kml_by_trail_id(trail_id, kml_path):
+    trail = db.session.query(Trail).filter(Trail.trail_id == trail_id).first()
+    trail.kml = kml_path 
+    db.session.commit()
+
 # *******************
 # USER CRUD FUNCTIONS:
 # *******************

@@ -1,4 +1,3 @@
-// potentially create an initMap functiona and a calendarMap function 
 
 console.log('base.js has been loaded')
 
@@ -37,9 +36,28 @@ $( document ).ready(function() {
                 $("#filtered-trails").empty();
                 $("#filtered-trails").text("Trails filtered by distance:");
                 $("#trail-table").empty();
-                $("#trail-table").append("<tr><th>Trail Name</th><th>Length</th><th>Location</th><th>Favorite Trail</th></tr>");
+                $("#trail-table").append(`
+                    <tr>
+                        <th>Trail Name</th>
+                        <th>Length</th>
+                        <th>Location</th>
+                        <th>Favorite Trail</th>
+                        <th>Show On Map (only available for certain trails)</th>
+                    </tr>`
+                );
                 
                 for (var trail of res) {
+                    if (trail['trail_kml']) {
+                        $("#trail-table").append(`
+                            <tr>
+                                <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
+                                <td>${trail['trail_distance']}</td>
+                                <td>${trail['trail_location']}</td>
+                                <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
+                                <td><button id=${trail['trail_kml']} class="display-button">Display Trail on Map</button></td>
+                            </tr>`
+                        );
+                    } else {
                         $("#trail-table").append(`
                             <tr>
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
@@ -48,6 +66,7 @@ $( document ).ready(function() {
                                 <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
                             </tr>`
                         );
+                    }
                 }
                 $('.favorite-button').on('click', () => {
                     console.log('favorite-button clicked');
@@ -61,12 +80,12 @@ $( document ).ready(function() {
                     $.get('/add-to-favorites', formInputs, (res) => {
                         alert(res);
                     });
-                    // get the trail id (is the id of the button)
-                    // pass the user id and trail id to the server 
-                    // have the server add the trail to the user's favorites 
-                    // (make a crud function for this) 
-                    // have a success alert appear on the page 
-                    // $.get('/add-to-favorites')
+                });
+
+                $('.display-button').on('click', () => {
+                    console.log('you clicked?');
+
+
                 });
 
             } else { 
