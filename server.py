@@ -119,7 +119,14 @@ def favorite_trail():
 def add_trail():
     """Page to add a trail to the db"""
 
-    return render_template("add_a_trail.html")
+    user_id = session.get('user_id')
+    print(session)
+    if user_id:
+        return render_template("add_a_trail.html")
+    else: 
+        flash('Log In to add a trail')
+        return redirect('/')
+
 
 # @app.route('/add-a-trail', methods = ['POST'])
 # def add_trail():

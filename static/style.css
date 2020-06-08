@@ -11,3 +11,7 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.flash-msg{
+  background-color: red;
+}
