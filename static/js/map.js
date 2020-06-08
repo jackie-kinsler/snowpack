@@ -2,12 +2,12 @@ console.log('map.js has been loaded');
 
 // use helper functions?
 
-function calendarMap(day, month, year, url) {
+function calendarMap(day, month, year, url, initial_zoom = 7, center_lat = 45.373, center_long = -121.686) {
     
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
+        zoom: initial_zoom,
         // map is centered on Mt. Hood summit
-        center: {lat: 45.373, lng: -121.686},
+        center: {lat: center_lat, lng: center_long},
 
         // hybrid map type has satellite with roads/labels
         mapTypeId: 'terrain'

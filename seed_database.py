@@ -49,3 +49,13 @@ for n in range(10):
 
     for _ in range(10):
         crud.create_favorite(user, choice(trails_in_db))
+
+
+# ***************
+
+# Add any GPS data as needed!
+
+# ***************
+
+crud.add_kml_by_trail_id(7,'/static/KML/wonderland.js')
+

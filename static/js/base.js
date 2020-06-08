@@ -54,7 +54,7 @@ $( document ).ready(function() {
                                 <td>${trail['trail_distance']}</td>
                                 <td>${trail['trail_location']}</td>
                                 <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
-                                <td><button id=${trail['trail_kml']} class="display-button">Display Trail on Map</button></td>
+                                <td><button id=${trail['trail_kml']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display Trail on Map</button></td>
                             </tr>`
                         );
                     } else {
@@ -70,7 +70,7 @@ $( document ).ready(function() {
                 }
                 $('.favorite-button').on('click', () => {
                     console.log('favorite-button clicked');
-                    
+
                     var trailId = $(event.target).attr("id");
                     
                     formInputs = {
@@ -84,16 +84,21 @@ $( document ).ready(function() {
 
                 $('.display-button').on('click', () => {
                     console.log('you clicked?');
+
                     var url = $(event.target).attr("id");
 
-                    console.log(url);
-                    
+                    // this gets the latLong of the trailhead, then splits it
+                    // into an array of the format latLong = [latitude, longitude]
+                    var latLong = $(event.target).attr("title").split(":");
+
                     var today = new Date();
                     var day = String(today.getDate()).padStart(2, '0');
                     var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
                     var year = today.getFullYear();
+                    
+                    var initial_zoom = 10;
 
-                    calendarMap(day, month, year, url);
+                    calendarMap(day, month, year, url, initial_zoom, Number(latLong[0]), Number(latLong[1]));
                     
 
                 });

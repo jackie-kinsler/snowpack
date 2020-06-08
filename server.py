@@ -73,6 +73,8 @@ def filtered_trail():
                             'trail_distance' : trail.length,
                             'trail_location' : trail.location,
                             'trail_kml' : trail.kml,
+                            'trail_lat' : trail.lat,
+                            'trail_long' : trail.long,
                            })
     return jsonify(trail_list)
 
