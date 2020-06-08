@@ -72,7 +72,7 @@ def filtered_trail():
                             'trail_url' : trail.url, 
                             'trail_distance' : trail.length,
                             'trail_location' : trail.location,
-                            'trail_kml' : trail.kml,
+                            'trail_gps' : trail.gps,
                             'trail_lat' : trail.lat,
                             'trail_long' : trail.long,
                            })

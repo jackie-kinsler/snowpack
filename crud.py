@@ -7,11 +7,11 @@ from datetime import datetime
 # TRAIL CRUD FUNCTIONS:
 # *******************
 
-def create_trail(name, desc, long, lat, kml, length, ascent, descent, 
+def create_trail(name, desc, lat, long, gps, length, ascent, descent, 
                  difficulty, location, url, img):
     """Create and return a new trail."""
 
-    trail = Trail(name = name, desc = desc, long = long, lat = lat, kml = kml, 
+    trail = Trail(name = name, desc = desc, long = long, lat = lat, gps = gps, 
                   length = length, ascent = ascent, descent = descent, 
                   difficulty = difficulty, location = location, 
                   url = url, img = img)
@@ -34,13 +34,13 @@ def trails_by_distance(min_dist, max_dist):
 def get_trail_by_id(trail_id):
     return db.session.query(Trail).get(trail_id)
 
-def add_kml_by_trail_id(trail_id, kml_path):
+def add_gps_by_trail_id(trail_id, gps_path):
     trail = db.session.query(Trail).filter(Trail.trail_id == trail_id).first()
-    trail.kml = kml_path 
+    trail.gps = gps_path
     db.session.commit()
 
 def get_gps_by_trail_id(trail_id):
-    return (get_trail_by_id(trail_id)).kml
+    return (get_trail_by_id(trail_id)).gps
 
 # *******************
 # USER CRUD FUNCTIONS:

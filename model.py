@@ -26,7 +26,7 @@ class Trail(db.Model):
     desc = db.Column(db.Text)
     long = db.Column(db.Float, nullable = False)
     lat = db.Column(db.Float, nullable = False)
-    kml = db.Column(db.String)
+    gps = db.Column(db.String)
     length = db.Column(db.Float, nullable = False)
     ascent = db.Column(db.Integer)
     descent = db.Column(db.Integer)

@@ -25,6 +25,13 @@
     {% block head %}{% endblock %}
   </head>
   <body>
+    <h1>Flake Map</h1>
+    <h2>Navigation</h2>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/trails">Trails</a></li>
+        <li><a href="/favorite-trails">Favorite Trails</a></li>
+      </ul>
     {% for msg in get_flashed_messages() %}
     <p class="flash-msg">
       {{ msg }}

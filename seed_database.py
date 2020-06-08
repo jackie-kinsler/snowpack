@@ -27,7 +27,7 @@ for trail in trail_data['trails']:
     desc = trail.get('summary')
     long = trail.get('longitude')
     lat = trail.get('latitude')
-    kml = None 
+    gps = None 
     length = trail.get('length')
     ascent = trail.get('ascent')
     descent = trail.get('descent')
@@ -39,9 +39,9 @@ for trail in trail_data['trails']:
     
     trail = crud.create_trail(name, 
                               desc, 
+                              lat,
                               long, 
-                              lat, 
-                              kml, 
+                              gps, 
                               length, 
                               ascent, 
                               descent, 
@@ -68,7 +68,7 @@ for n in range(10):
 
 # ***************
 
-crud.add_kml_by_trail_id(7,'/static/GPS/wonderland.js')
+crud.add_gps_by_trail_id(7,'/static/GPS/wonderland.js')
 
 crud.create_trail("Middle Sister via Pole Creek Trail", 
                   "a 17.3 mile lightly trafficked out and back trail located near Sisters, Oregon that features a river and is only recommended for very experienced adventurers. The trail offers a number of activity options.",

@@ -47,14 +47,14 @@ $( document ).ready(function() {
                 );
                 
                 for (var trail of res) {
-                    if (trail['trail_kml']) {
+                    if (trail['trail_gps']) {
                         $("#trail-table").append(`
                             <tr>
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
-                                <td><a href=https://www.google.com/maps/dir/Current+Location/46.76641,-121.79122>${trail['trail_location']}</a></td>
+                                <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
                                 <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
-                                <td><button id=${trail['trail_kml']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display Trail on Map</button></td>
+                                <td><button id=${trail['trail_gps']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display Trail on Map</button></td>
                             </tr>`
                         );
                     } else {
