@@ -1,16 +1,37 @@
+import os
 from unittest import TestCase
 from server import app
-from model import connect_to_db, db
+from model import connect_to_db, db, example_data
 from flask import session
+
+
 
 class FlaskTestsBasic(TestCase):
     """Basic flask route tests."""
 
     def setUp(self):
+        """Do before running each test."""
 
         self.client = app.test_client()
-        app.config['Testing'] = True
+        app.config['TESTING'] = True
+        
+        os.system('dropdb testdb')
+        os.system('createdb testdb')
+
+        #connect to test database
+        connect_to_db(app, "postgresql:///testdb")
     
+        # create all tables and add sample data
+        db.create_all()
+        example_data()
+    
+    def tearDown(self):
+        """Do after running each test."""
+
+        db.session.remove()
+        db.drop_all()
+        db.engine.dispose()
+
     def test_index(self):
         """Test homepage."""
 
@@ -24,6 +45,22 @@ class FlaskTestsBasic(TestCase):
     #                               data = {"email" : "user0@test.com", 'password' : "test"}, 
     #                               )
     #     self.assertIn(b"Logged In", result.data)
+
+    def create_user(self):
+        """Test creating a new user."""
+
+        result = self.client.post("/users", 
+                                  data = {'email' : 'unittest@test.com', 'password' : 'test'}, 
+                                  follow_redirects = True)
+        self.assertIn(b"successfully registered", result.data)
+    
+    def user_already_registered(self):
+        """Test that an existing account won't be registered."""
+
+        result = self.client.post("/users",
+                                  data = {'email' : 'unittest@test.com', 'password' : 'test'}, 
+                                  follow_redirects = True)
+        self.assertIn(b"already assigned", result.data)
 
 class FlaskTestsLoggedIn(TestCase):
     """Flask route tests with a user logged in."""

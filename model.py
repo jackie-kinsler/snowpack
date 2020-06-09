@@ -1,7 +1,6 @@
 """Models for trail information."""
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -92,6 +91,35 @@ class Favorite(db.Model):
 
     def __repr__(self):
         return f'<Favorite favorite_id={self.favorite_id} user_id={self.user_id} trail_id={self.trail_id}>'
+
+def example_data():
+    """Create some sample data for testing."""
+
+    Favorite.query.delete()
+    Trail.query.delete()
+    User.query.delete()
+    Suggestion.query.delete()
+
+    middle = Trail(name = "Middle Sister via Pole Creek Trail", 
+                   desc = "a 17.3 mile lightly trafficked out and back trail located near Sisters, Oregon that features a river and is only recommended for very experienced adventurers. The trail offers a number of activity options.",
+                   long = 44.1876,
+                   lat = -121.70044, 
+                   gps = '/static/GPS/all_gps/middle_sister_summit_pole_creek.js', 
+                   length = 17.3, 
+                   ascent = 5282,
+                   descent = 5282,
+                   difficulty = "black", 
+                   location = "Sisters, Oregon", 
+                   url = "https://www.alltrails.com/trail/us/oregon/middle-sister-via-pole-creek-trail-4072", 
+                   img = "https://cdn-assets.alltrails.com/uploads/photo/image/16547628/extra_large_d8480e26df4f62016e928acba537d525.jpg",
+                  )
+
+    user = User(email = 'user0@test.com', 
+                password = 'test')
+    favorite = Favorite(trail = middle, user = user)
+
+    db.session.add_all([middle, user, favorite])
+    db.session.commit
 
 
 if __name__ == '__main__':
