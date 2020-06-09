@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, User, Trail, Favorite, connect_to_db
+from model import db, User, Trail, Favorite, Suggestion, connect_to_db
 from datetime import datetime 
 
 # *******************

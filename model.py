@@ -45,7 +45,7 @@ class Suggestion(db.Model):
 
     __tablename__ = 'suggestion'
     
-    trail_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
+    suggestion_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
     name = db.Column(db.String, nullable = False)
     desc = db.Column(db.Text)
     long = db.Column(db.Float, nullable = False)
@@ -60,7 +60,7 @@ class Suggestion(db.Model):
     img = db.Column(db.String)
 
     def __repr__(self):
-        return f'<Trail trail_id={self.trail_id} name={self.name}>'
+        return f'<Trail suggestion_id={self.suggestion_id} name={self.name}>'
 
 
 class User(db.Model):
@@ -103,3 +103,6 @@ if __name__ == '__main__':
     # query it executes.
 
     connect_to_db(app)
+
+
+# create_suggested_trail(name = 'New Suggestion', desc = 'winding trail', long = 43, lat = -121, gps = 'none', length = 12.5, ascent = 500, descent = 500, difficulty = 'blue', location = 'lyon, OR', url = 'none', img = 'none')
