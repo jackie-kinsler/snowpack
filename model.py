@@ -40,6 +40,29 @@ class Trail(db.Model):
     def __repr__(self):
         return f'<Trail trail_id={self.trail_id} name={self.name}>'
 
+class Suggestion(db.Model):
+    """A suggested trail from a user."""
+
+    __tablename__ = 'suggestion'
+    
+    trail_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
+    name = db.Column(db.String, nullable = False)
+    desc = db.Column(db.Text)
+    long = db.Column(db.Float, nullable = False)
+    lat = db.Column(db.Float, nullable = False)
+    gps = db.Column(db.String)
+    length = db.Column(db.Float, nullable = False)
+    ascent = db.Column(db.Integer)
+    descent = db.Column(db.Integer)
+    difficulty = db.Column(db.String)
+    location = db.Column(db.String)
+    url = db.Column(db.String)
+    img = db.Column(db.String)
+
+    def __repr__(self):
+        return f'<Trail trail_id={self.trail_id} name={self.name}>'
+
+
 class User(db.Model):
     """A user."""
 

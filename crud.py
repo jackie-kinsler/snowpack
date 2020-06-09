@@ -42,6 +42,25 @@ def add_gps_by_trail_id(trail_id, gps_path):
 def get_gps_by_trail_id(trail_id):
     return (get_trail_by_id(trail_id)).gps
 
+
+# *******************
+# SUGGESTION CRUD FUNCTIONS:
+# *******************
+
+def create_suggested_trail(name, desc, lat, long, gps, length, ascent, descent, 
+                 difficulty, location, url, img):
+    """Create and return a new suggested trail."""
+
+    trail = Suggestion(name = name, desc = desc, long = long, lat = lat, gps = gps, 
+                  length = length, ascent = ascent, descent = descent, 
+                  difficulty = difficulty, location = location, 
+                  url = url, img = img)
+
+    db.session.add(trail)
+    db.session.commit()
+    
+    return trail
+
 # *******************
 # USER CRUD FUNCTIONS:
 # *******************

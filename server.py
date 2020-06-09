@@ -128,11 +128,12 @@ def add_trail():
         return redirect('/')
 
 
-# @app.route('/add-a-trail', methods = ['POST'])
-# def add_trail():
-#     """Page to add a trail to the db"""
+@app.route('/add-to-db', methods = ['POST'])
+def add_trail_to_db():
+    """Page to add a trail to the db"""
 
-#     return render_template("add_a_trail.html")
+    
+    return ('made it to route')
 
 if __name__ == '__main__':
     connect_to_db(app)
