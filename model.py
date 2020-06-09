@@ -43,7 +43,7 @@ class Trail(db.Model):
 class Suggestion(db.Model):
     """A suggested trail from a user."""
 
-    __tablename__ = 'suggestion'
+    __tablename__ = 'suggestions'
     
     suggestion_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
     name = db.Column(db.String, nullable = False)
@@ -57,7 +57,6 @@ class Suggestion(db.Model):
     difficulty = db.Column(db.String)
     location = db.Column(db.String)
     url = db.Column(db.String)
-    img = db.Column(db.String)
 
     def __repr__(self):
         return f'<Trail suggestion_id={self.suggestion_id} name={self.name}>'
