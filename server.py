@@ -130,51 +130,6 @@ def favorite_trail():
         return redirect('/')
 
 
-# @app.route('/add-to-db', methods = ['POST'])
-# def add_trail_to_db():
-#     """Page to add a trail to the db"""
-    
-#     # name = request.form.get('trail_name')
-#     # print("*********")
-#     # print(request)
-#     # print(request.form)
-#     # print(request.form.get('trail_gps'))
-#     # print(request.form[0])
-
-#     # desc = request.form.get('trail_desc')
-#     # long = request.form.get('trail_long')
-#     # lat = request.form.get('trail_lat')
-#     # length = request.form.get('trail_length')
-#     # length_unit = request.form.get('length_unit')
-#     # # convert anyting in km to miles 
-#     # if length_unit == 'kilometers':
-#     #     length *= 0.621371
-#     # ascent = request.form.get('trail_ascent')
-#     # ascent_unit = request.form.get('ascent_unit')
-#     # # convert anything in m to ft 
-#     # if ascent_unit == 'meters':
-#     #     ascent *= 3.28084
-#     # descent = request.form.get('trail_descent')
-#     # descent_unit = request.form.get('descent_unit')
-#     # if descent_unit == 'meters': 
-#     #     descent *= 3.28084
-#     # difficulty = request.form.get('trail_difficulty')
-#     # location = request.form.get('trail_location')
-#     # url = request.form.get('trail_url')
-#     # gps = request.form.get('trail_gps')
-#     # gps_url = request.form.get('trail_gps_url')
-#     # gps = 'blank'
-#     # print("********")
-#     # print(gps)
-
-#     # RIGHT NOW USING GPS_URL INSTEAD OF THE FILE 
-#     # crud.create_suggested_trail(name, desc, lat, long, gps, length, ascent, descent, 
-#     #              difficulty, location, gps)
-    
-
-#     return ("Added to suggestions!")
-
-
 @app.route('/add-a-trail', methods=['GET', 'POST'])
 def add_a_trail():
     """Users can suggest a trail to be added to the site."""
@@ -233,7 +188,8 @@ def add_a_trail():
 
             crud.create_suggested_trail(name, desc, lat, long, gps, length, 
                                     ascent, descent, difficulty, location, url)
-            return redirect('/trails')
+            flash('Your trail has been added to suggestions! Give us some time - you\'ll see it on the trailpage soon! :)')
+            return redirect('/add-a-trail')
 
 if __name__ == '__main__':
     connect_to_db(app)
