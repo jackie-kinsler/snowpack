@@ -191,6 +191,12 @@ def add_a_trail():
             flash('Your trail has been added to suggestions! Give us some time - you\'ll see it on the trailpage soon! :)')
             return redirect('/add-a-trail')
 
+@app.route('/moderator', methods=['GET', 'POST'])
+def moderator_page():
+    """Moderators can manage the Suggestion database."""
+    
+    return render_template('moderator_page.html')
+
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True)

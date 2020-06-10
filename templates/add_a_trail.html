@@ -13,17 +13,17 @@
 
 <form method=post action="/add-a-trail" enctype=multipart/form-data>
     <div>
-        Trail name: <input type=text name="name" value='12' placeholder="required" required>
+        Trail name: <input type=text name="name" placeholder="required" required>
     </div>
     <div>
         Trail description: <input type="text" name="description">
     </div>
-        Trailhead longitude: <input type="number" name="long" value='12' step="any" placeholder="required" required>
+        Trailhead longitude: <input type="number" name="long" step="any" placeholder="required" required>
     <div>
-        Trailhead latitude: <input type="number" name="lat" value='12' step="any" placeholder="required" required>
+        Trailhead latitude: <input type="number" name="lat" step="any" placeholder="required" required>
     </div>
     <div>
-        Length (mi/km): <input type="number" step="any" min="0" name="length" value='12' placeholder="required" required>
+        Length (mi/km): <input type="number" step="any" min="0" name="length" placeholder="required" required>
         <select name="length-unit" id="length-unit">
             <option value="miles">mi</option>
             <option value="kilometers">km</option>
@@ -55,7 +55,7 @@
         Nearest Town: <input type="text" name="location" placeholder="(City, State)">
     </div>
     <div>
-        Want to add a link to an existing trail data page? <input type="url" name="url">
+        Want to add a link to an existing trail data page? <input type="url" name="url" placeholder="Trail description site">
     </div>
     <div>
         Upload GPS file (.kml or GeoJSON) <input type=file name=file accept=".kml,.json,.geojson,application/json,.js">
