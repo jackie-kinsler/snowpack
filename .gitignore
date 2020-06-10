@@ -4,3 +4,4 @@ __pycache__
 *secret*
 env
 static/GPS/all_gps/
+static/GPS/user_uploads/

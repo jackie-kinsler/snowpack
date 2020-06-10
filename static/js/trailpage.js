@@ -3,7 +3,7 @@ console.log('trailpage.js has been loaded')
 
 
 $( document ).ready(function() {
-
+    
     $("#distance-form").on('submit', (evt) => {
         
         evt.preventDefault();

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<script src="/static/js/add_a_trail.js"></script>
+<!-- <script src="/static/js/add_a_trail.js"></script> -->
 
 {% endblock %}
 
@@ -10,24 +10,20 @@
 {% block body %}
 
 <h3>Add a trail:</h3>
-<!-- MAKE SURE TO TURN THIS INTO A POST MEHTOD -->
-<!-- <form action="/add-a-trail" method="POST"> -->
-<!-- must use enctype="multipart/form-data" when using forms that have file upload contol -->
-<form action="/add-a-trail" id="new-trail-form" enctype="multipart/form-data">
+
+<form method=post action="/add-a-trail" enctype=multipart/form-data>
     <div>
-        Trail name: <input type="text" name="name" placeholder="required" required>
+        Trail name: <input type=text name="name" value='12' placeholder="required" required>
     </div>
     <div>
         Trail description: <input type="text" name="description">
     </div>
+        Trailhead longitude: <input type="number" name="long" value='12' step="any" placeholder="required" required>
     <div>
-        Trailhead longitude: <input type="number" name="long" step="any" placeholder="required" required>
+        Trailhead latitude: <input type="number" name="lat" value='12' step="any" placeholder="required" required>
     </div>
     <div>
-        Trailhead latitude: <input type="number" name="lat" step="any" placeholder="required" required>
-    </div>
-    <div>
-        Length (mi/km): <input type="number" step="any" min="0" name="length" placeholder="required" required>
+        Length (mi/km): <input type="number" step="any" min="0" name="length" value='12' placeholder="required" required>
         <select name="unit" id="length-unit">
             <option value="miles">mi</option>
             <option value="kilometers">km</option>
@@ -61,21 +57,10 @@
     <div>
         Want to add a link to an existing trail data page? <input type="url" name="url">
     </div>
-
     <div>
-        Upload GPS data here! (.kml or GeoJSON) <input type="file" name="gps-file" accept=".kml,.json,.geojson,application/json,.js">
+        Upload GPS file (.kml or GeoJSON) <input type=file name=file>
     </div>
-    <div>
-        Or, link the GPS data here: <input type="url" name="gps-link">
-    </div>
-
-
-
-    <div>
-        <input type="submit">
-    </div>
+    <input type=submit>
 </form>
-
-
 
 {% endblock %}
