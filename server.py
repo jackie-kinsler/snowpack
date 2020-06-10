@@ -129,18 +129,6 @@ def favorite_trail():
         flash('Log In to see favorite trails')
         return redirect('/')
 
-@app.route('/add-a-trail')
-def add_trail():
-    """Page to add a trail to the db"""
-
-    user_id = session.get('user_id')
-    print(session)
-    if user_id:
-        return render_template("add_a_trail.html")
-    else: 
-        flash('Log In to add a trail')
-        return redirect('/')
-
 
 # @app.route('/add-to-db', methods = ['POST'])
 # def add_trail_to_db():
@@ -188,11 +176,42 @@ def add_trail():
 
 
 @app.route('/add-a-trail', methods=['GET', 'POST'])
-def upload_file():
-    print(request)
-    print(request.files['file'])
-
+def add_a_trail():
+    """Users can suggest a trail to be added to the site."""
+    
+    if request.method == 'GET':
+        user_id = session.get('user_id')
+        print(session)
+        if user_id:
+            return render_template("add_a_trail.html")
+        else: 
+            flash('Log In to add a trail')
+            return redirect('/')
+    
     if request.method == 'POST':
+        name = request.form.get('name')
+        desc = request.form.get('description')
+        long = request.form.get('long')
+        lat = request.form.get('lat')
+        length = request.form.get('length')
+        length_unit = request.form.get('length-unit')
+        if length_unit == 'kilometers':
+            length = float(length)*0.621371
+        ascent = request.form.get('ascent')
+        ascent_unit = request.form.get('ascent-unit')
+        if ascent_unit == 'meters':
+            ascent = float(ascent) * 3.28084 
+        descent = request.form.get('descent')
+        descent_unit = request.form.get('descent-unit')
+        if descent_unit == 'meters':
+            descent = float(descent) * 3.28084
+        difficulty = request.form.get('difficulty')
+        location = request.form.get('location')
+        url = request.form.get('url')
+
+        print(name, desc, long, lat, length, length_unit, ascent, ascent_unit,
+                descent, descent_unit, difficulty, location, url)
+
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
@@ -200,26 +219,21 @@ def upload_file():
         file = request.files['file']
         # if user does not select file, browser also
         # submit an empty part without filename
-        # print(allowed_file(file.filename))
-
         if file.filename == '':
             flash('No selected file')
             return redirect('/add-a-trail')
-        print(file.filename)
+
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            print(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # gps is the name of the file path to the gps information
+            # used for building the Suggestion database
+            gps = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect('/add-a-trail')
-    return """
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    """
+
+            crud.create_suggested_trail(name, desc, lat, long, gps, length, 
+                                    ascent, descent, difficulty, location, url)
+            return redirect('/trails')
 
 if __name__ == '__main__':
     connect_to_db(app)
