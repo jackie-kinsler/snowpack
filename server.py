@@ -29,7 +29,7 @@ def allowed_file(filename):
 def homepage():
     """Render root page of website"""
 
-    return render_template('homepage.html')
+    return render_template('homepage.html', today = datetime.date(datetime.now()))
 
 @app.route('/log-in')
 def log_in():
