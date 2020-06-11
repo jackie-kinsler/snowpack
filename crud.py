@@ -67,6 +67,13 @@ def get_all_suggested():
 def get_suggestion_by_id(suggestion_id):
     return db.session.query(Suggestion).get(suggestion_id)    
 
+def delete_suggestion_by_id(suggestion_id):
+    suggestion = get_suggestion_by_id(suggestion_id)
+    db.session.delete(suggestion)
+    db.session.commit()
+
+    return "Delete successful."
+
 # *******************
 # USER CRUD FUNCTIONS:
 # *******************

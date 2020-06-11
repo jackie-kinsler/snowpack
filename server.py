@@ -221,7 +221,16 @@ def moderator_page():
 #     print(suggestion.name)
 #     return("hey")
 
+@app.route('/moderator/delete-suggestion')
+def delete_suggestion():
+    """Delete a bad suggestion."""
+    
+    suggestion_id = request.args.get('suggestion_id')
+    print(suggestion_id)
 
+    crud.delete_suggestion_by_id(suggestion_id)
+
+    return redirect('/moderator')
 
 
 

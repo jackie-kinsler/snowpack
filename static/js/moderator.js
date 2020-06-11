@@ -18,7 +18,20 @@ $( document ).ready(function() {
         }); 
     });
 
+    $(".delete-button").on('click', (evt) => {
+        evt.preventDefault();
+
+        if (window.confirm("Are you sure you want to delete this suggestion?" +
+                            " It cannot be undone!!")) {
+            var suggestionId = $(event.target).attr("id");
+
+            formInputs = {
+                'suggestion_id' : suggestionId,
+            };
     
+            $.get('/moderator/delete-suggestion', formInputs);
+        }
+    });
 });
 
 
