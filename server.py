@@ -194,8 +194,9 @@ def add_a_trail():
 @app.route('/moderator', methods=['GET', 'POST'])
 def moderator_page():
     """Moderators can manage the Suggestion database."""
-    
-    return render_template('moderator_page.html')
+    suggestions = crud.get_all_suggested()
+
+    return render_template('moderator.html', suggestions = suggestions)
 
 if __name__ == '__main__':
     connect_to_db(app)

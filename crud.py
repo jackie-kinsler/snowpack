@@ -61,6 +61,9 @@ def create_suggested_trail(name, desc, lat, long, gps, length, ascent, descent,
     
     return trail
 
+def get_all_suggested():
+    return db.session.query(Suggestion).all()
+
 # *******************
 # USER CRUD FUNCTIONS:
 # *******************

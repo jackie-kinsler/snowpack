@@ -2,6 +2,7 @@
 
 {% block head %}
 
+<script src="/static/js/moderator.js"></script>
 
 {% endblock %}
 
@@ -11,7 +12,17 @@
 
 <h3>Moderator Page</h3>
 
+<div>
+    <ul id="all-suggestions">All user suggested trails:</ul>
+    
+    <table id="trail-table">
+        {% for suggestion in suggestions %}
 
+        {% endfor %}
+
+    </table>
+</div>
+<p>END</p>
 
 
 {% endblock %}
