@@ -47,7 +47,9 @@
             <td>{{ suggestion.gps }}</td>
             <td>
                 <button class="add-to-trail-db-button" id="{{ suggestion.suggestion_id }}">ADD</button>
-                <button class="edit-button" id="{{ suggestion.suggestion_id }}">EDIT</button>
+                <form action="/moderator/{{ suggestion.suggestion_id }}">
+                    <button class="edit-button" id="{{ suggestion.suggestion_id }}">EDIT</button>
+                </form>
                 <button class="delete-button" id="{{ suggestion.suggestion_id }}">DELETE</button>
             </td>
 

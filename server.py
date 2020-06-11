@@ -197,19 +197,16 @@ def moderator_page():
 
     return render_template('moderator.html', suggestions = suggestions)
 
-@app.route('/moderator/add-suggestion-to-db')
+@app.route('/moderator/add-to-trail-db', methods = ['POST'])
 def add_suggestion_to_trail_db():
     """Adds a selected Suggestion to the db."""
 
-    suggestion_id = request.args.get('suggestion_id')
-    print(suggestion_id)
+    suggestion_id = request.form.get('suggestion_id')
 
     suggestion = crud.get_suggestion_by_id(suggestion_id)
     print("****")
     print(suggestion)
-    print(suggestion.name)
-    print(suggestion.desc)
-    print(type(suggestion.long))
+    print(suggestion_id)
     
     crud.create_trail(suggestion.name, 
                       suggestion.desc, 
@@ -226,18 +223,25 @@ def add_suggestion_to_trail_db():
                     )
     
     print(suggestion.name)
-    return("hey")
+    return("Suggestion added to trail db")
 
-@app.route('/moderator/delete-suggestion')
+@app.route('/moderator/delete-suggestion', methods = ['POST'])
 def delete_suggestion():
     """Delete a bad suggestion."""
     
-    suggestion_id = request.args.get('suggestion_id')
+    suggestion_id = request.form.get('suggestion_id')
     print(suggestion_id)
 
     crud.delete_suggestion_by_id(suggestion_id)
 
-    return render_template('/moderator')
+    return redirect('/moderator')
+
+@app.route('/moderator/<suggestion_id>')
+def edit_suggestion(suggestion_id):
+
+    suggestion = crud.get_suggestion_by_id(suggestion_id)
+
+    return render_template('edit_suggestion.html')
 
 
 if __name__ == '__main__':
