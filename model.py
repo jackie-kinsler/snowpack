@@ -72,6 +72,7 @@ class User(db.Model):
                         )
     email = db.Column(db.String, unique = True, nullable = False)
     password = db.Column(db.String, nullable = False)
+    moderator = db.Column(db.Boolean, nullable = False)
     
     # favorites = a list of Favorite objects
     def __repr__(self):

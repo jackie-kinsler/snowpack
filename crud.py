@@ -79,10 +79,10 @@ def delete_suggestion_by_id(suggestion_id):
 # *******************
 
   
-def create_user(email, password):
+def create_user(email, password, moderator = False):
     """Create and return a new user."""
 
-    user = User(email = email, password = password)
+    user = User(email = email, password = password, moderator = moderator)
 
     db.session.add(user)
     db.session.commit()

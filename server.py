@@ -56,7 +56,7 @@ def create_account():
         flash('That email is already assigned to a registered account.')
 
     else: 
-        crud.create_user(email, password)
+        crud.create_user(email = email, password = password)
         flash('User successfully registered')
     
     return redirect('/')
