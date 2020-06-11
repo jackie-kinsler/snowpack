@@ -48,18 +48,18 @@ def get_gps_by_trail_id(trail_id):
 # *******************
 
 def create_suggested_trail(name, desc, lat, long, gps, length, ascent, descent, 
-                 difficulty, location, url):
+                 difficulty, location, url, user):
     """Create and return a new suggested trail."""
 
-    trail = Suggestion(name = name, desc = desc, long = long, lat = lat, gps = gps, 
+    suggestion = Suggestion(name = name, desc = desc, long = long, lat = lat, gps = gps, 
                   length = length, ascent = ascent, descent = descent, 
                   difficulty = difficulty, location = location, 
-                  url = url)
+                  url = url, user = user)
 
-    db.session.add(trail)
+    db.session.add(suggestion)
     db.session.commit()
     
-    return trail
+    return suggestion
 
 def get_all_suggested():
     return db.session.query(Suggestion).all()

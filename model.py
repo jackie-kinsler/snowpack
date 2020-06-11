@@ -45,6 +45,7 @@ class Suggestion(db.Model):
     __tablename__ = 'suggestions'
     
     suggestion_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = False)
     name = db.Column(db.String, nullable = False)
     desc = db.Column(db.Text)
     long = db.Column(db.Float, nullable = False)
@@ -56,6 +57,8 @@ class Suggestion(db.Model):
     difficulty = db.Column(db.String)
     location = db.Column(db.String)
     url = db.Column(db.String)
+
+    user = db.relationship('User', backref = 'suggestions')
 
     def __repr__(self):
         return f'<Suggestion suggestion_id={self.suggestion_id} name={self.name}>'
@@ -92,6 +95,11 @@ class Favorite(db.Model):
 
     def __repr__(self):
         return f'<Favorite favorite_id={self.favorite_id} user_id={self.user_id} trail_id={self.trail_id}>'
+
+
+# _________
+# FOR TESTING
+# _________
 
 def example_data():
     """Create some sample data for testing."""

@@ -164,6 +164,8 @@ def add_a_trail():
         location = request.form.get('location')
         url = request.form.get('url')
         gps = ""
+        user_id = session.get('user_id')
+        user = crud.get_user_by_id(user_id)
 
 
         # check if the post request has the file part
@@ -186,7 +188,7 @@ def add_a_trail():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         crud.create_suggested_trail(name, desc, lat, long, gps, length, 
-                                    ascent, descent, difficulty, location, url)
+                                    ascent, descent, difficulty, location, url, user)
         flash('Your trail has been added to suggestions! Give us some time - you\'ll see it on the trailpage soon! :)')
         return redirect('/add-a-trail')
 
