@@ -2,7 +2,7 @@
 
 {% block head %}
 
-<script src="/static/js/trailpage.js"></script>
+<script src="/static/js/edit_suggestion.js"></script>
 
 {% endblock %}
 
@@ -10,7 +10,53 @@
 
 {% block body %}
 
+<h3>Edit Suggestion:</h3>
 
+<form method=post action="/moderator/add-edited-suggestion" enctype=multipart/form-data>
+    <div>
+        Suggestion ID: {{ suggestion.suggestion_id }}<input type="hidden" name="suggestion-id" value="{{ suggestion.suggestion_id }}">
+    </div>
+    <div>
+        Trail name: <input type=text name="name" value="{{ suggestion.name }}">
+    </div>
+    <div>
+        Trail description: <input type="text" name="description" value="{{ suggestion.desc }}">
+    </div>
+    <div>
+        Trailhead latitude: <input type="number" name="lat" step="any" value="{{ suggestion.lat }}">
+    </div>
+    <div>
+        Trailhead longitude: <input type="number" name="long" step="any" value="{{ suggestion.long }}">
+    </div>
+    
+    <div>
+        Length (MILES): <input type="number" step="any" min="0" name="length" value="{{ suggestion.length }}">
+    </div>
+    <div>
+        Ascent (FEET): <input type="number" step="any" min="0" name="ascent" value="{{ suggestion.ascent }}">
+    </div>
+    <div>
+        Descent (FEET): <input type="number" step="any" min="0" name="descent" value="{{ suggestion.descent }}">
+    </div>
+    <div>
+        Difficulty: 
+        <select name="difficulty" id="difficulty" value="{{ suggestion.difficulty }}">
+            <option value="easy">Easy</option>
+            <option value="moderate">Moderate</option>
+            <option value="hard">Hard</option>
+        </select>
+    </div>
+    <div>
+        Nearest Town: <input type="text" name="location" value="{{ suggestion.location }}">
+    </div>
+    <div>
+        Want to add a link to an existing trail data page? <input type="url" name="url" value="{{ suggestion.url }}">
+    </div>
+    <div>
+        GPS File Path: <input type="text" name="gps" value="{{ suggestion.gps }}">
+    </div>
+    <input type=submit>
+</form>
    
 
 

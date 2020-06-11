@@ -240,8 +240,35 @@ def delete_suggestion():
 def edit_suggestion(suggestion_id):
 
     suggestion = crud.get_suggestion_by_id(suggestion_id)
+    print(suggestion)
 
-    return render_template('edit_suggestion.html')
+
+    return render_template('edit_suggestion.html', suggestion = suggestion)
+
+@app.route('/moderator/add-edited-suggestion', methods = ['POST'])
+def add_edited_suggestion():
+    """Add an edited suggestion to the trail db. Delete the suggestion from Suggestion db."""
+    
+    name = request.form.get('name')
+    desc = request.form.get('description')
+    lat = float(request.form.get('lat'))
+    long = float(request.form.get('long'))
+    length = float(request.form.get('length'))
+    ascent = request.form.get('ascent')
+    descent = request.form.get('descent')
+    difficulty = request.form.get('difficulty')
+    location = request.form.get('location')
+    url = request.form.get('url')
+    gps = request.form.get('gps')
+
+    crud.create_trail(name, desc, lat, long, gps, length, ascent, descent, 
+                 difficulty, location, url, None)
+
+    suggestion_id = request.form.get('suggestion-id')
+    crud.delete_suggestion_by_id(suggestion_id)
+
+    flash("Trail has been added and suggestion has been deleted.")
+    return redirect('/moderator')
 
 
 if __name__ == '__main__':
