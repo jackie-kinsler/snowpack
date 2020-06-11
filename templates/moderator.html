@@ -28,6 +28,7 @@
             <th>Location</th>
             <th>Link</th>
             <th>GPS Data</th>
+            <th>User</th>
             <th>ACTION</th>
         </tr>
         {% for suggestion in suggestions %}
@@ -45,6 +46,7 @@
                 <a href="{{ suggestion.url }}">Visit</a>
             </td>
             <td>{{ suggestion.gps }}</td>
+            <td>{{ suggestion.user.email }}</td>
             <td>
                 <button class="add-to-trail-db-button" id="{{ suggestion.suggestion_id }}">ADD</button>
                 <form action="/moderator/{{ suggestion.suggestion_id }}">
