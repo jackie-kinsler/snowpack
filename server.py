@@ -151,15 +151,15 @@ def add_a_trail():
         length = request.form.get('length')
         length_unit = request.form.get('length-unit')
         if length_unit == 'kilometers':
-            length = float(length)*0.621371
+            length = str(float(length)*0.621371)
         ascent = request.form.get('ascent')
         ascent_unit = request.form.get('ascent-unit')
         if ascent_unit == 'meters':
-            ascent = float(ascent) * 3.28084 
+            ascent = str(float(ascent) * 3.28084) 
         descent = request.form.get('descent')
         descent_unit = request.form.get('descent-unit')
         if descent_unit == 'meters':
-            descent = float(descent) * 3.28084
+            descent = str(float(descent) * 3.28084)
         difficulty = request.form.get('difficulty')
         location = request.form.get('location')
         url = request.form.get('url')
@@ -191,12 +191,39 @@ def add_a_trail():
             flash('Your trail has been added to suggestions! Give us some time - you\'ll see it on the trailpage soon! :)')
             return redirect('/add-a-trail')
 
-@app.route('/moderator', methods=['GET', 'POST'])
+@app.route('/moderator')
 def moderator_page():
     """Moderators can manage the Suggestion database."""
     suggestions = crud.get_all_suggested()
 
     return render_template('moderator.html', suggestions = suggestions)
+
+# @app.route('/moderator/add-suggestion-to-db')
+# def add_suggestion_to_trail_db():
+#     """Adds a selected Suggestion to the db."""
+
+#     suggestion_id = request.args.get('suggestion_id')
+#     print(suggestion_id)
+
+#     suggestion = crud.get_suggestion_by_id(suggestion_id)
+#     print(suggestion)
+#     print(suggestion.name)
+#     print(suggestion.desc)
+#     print("****")
+#     print(type(suggestion.long))
+#     # crud.create_trail(name = suggestion.name,
+#     #                   desc = suggestion.desc, 
+#     #                   lat = suggestion.lat)
+#     # crud.create_trail(suggestion.name, suggestion.desc, suggestion.lat, suggestion.long,
+#     #     suggestion.gps, suggestion.length, suggestion.ascent, suggestion.descent,
+#     #     suggestion.difficulty, suggestion.location, suggestion.url, suggestion.img)
+    
+#     print(suggestion.name)
+#     return("hey")
+
+
+
+
 
 if __name__ == '__main__':
     connect_to_db(app)

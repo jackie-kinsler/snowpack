@@ -16,8 +16,42 @@
     <ul id="all-suggestions">All user suggested trails:</ul>
     
     <table id="trail-table">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Length (mi)</th>
+            <th>Ascent (ft)</th>
+            <th>Descent (ft)</th>
+            <th>Difficulty</th>
+            <th>Location</th>
+            <th>Link</th>
+            <th>GPS Data</th>
+            <th>ACTION</th>
+        </tr>
         {% for suggestion in suggestions %}
+        <tr>
+            <td>{{ suggestion.name }}</td>
+            <td>{{ suggestion.desc }}</td>
+            <td>{{ suggestion.lat }}</td>
+            <td>{{ suggestion.long }}</td>
+            <td>{{ suggestion.length }}</td>
+            <td>{{ suggestion.ascent }}</td>
+            <td>{{ suggestion.descent }}</td>
+            <td>{{ suggestion.difficulty }}</td>
+            <td>{{ suggestion.location }}</td>
+            <td>{{ suggestion.url }}
+                <a href="{{ suggestion.url }}">Visit</a>
+            </td>
+            <td>{{ suggestion.gps }}</td>
+            <td>
+                <button class="add-to-trail-db-button" id="{{ suggestion.suggestion_id }}">ADD</button>
+                <button class="edit-button" id="{{ suggestion.suggestion_id }}">EDIT</button>
+                <button class="delete-button" id="{{ suggestion.suggestion_id }}">DELETE</button>
+            </td>
 
+        </tr>
         {% endfor %}
 
     </table>

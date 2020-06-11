@@ -58,7 +58,7 @@ class Suggestion(db.Model):
     url = db.Column(db.String)
 
     def __repr__(self):
-        return f'<Trail suggestion_id={self.suggestion_id} name={self.name}>'
+        return f'<Suggestion suggestion_id={self.suggestion_id} name={self.name}>'
 
 
 class User(db.Model):
