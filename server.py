@@ -201,24 +201,32 @@ def moderator_page():
 def add_suggestion_to_trail_db():
     """Adds a selected Suggestion to the db."""
 
-    # suggestion_id = request.args.get('suggestion_id')
-    # print(suggestion_id)
+    suggestion_id = request.args.get('suggestion_id')
+    print(suggestion_id)
 
-    # suggestion = crud.get_suggestion_by_id(suggestion_id)
-    # print(suggestion)
-    # print(suggestion.name)
-    # print(suggestion.desc)
-    # print("****")
-    # print(type(suggestion.long))
-    # # crud.create_trail(name = suggestion.name,
-    # #                   desc = suggestion.desc, 
-    # #                   lat = suggestion.lat)
-    # # crud.create_trail(suggestion.name, suggestion.desc, suggestion.lat, suggestion.long,
-    # #     suggestion.gps, suggestion.length, suggestion.ascent, suggestion.descent,
-    # #     suggestion.difficulty, suggestion.location, suggestion.url, suggestion.img)
+    suggestion = crud.get_suggestion_by_id(suggestion_id)
+    print("****")
+    print(suggestion)
+    print(suggestion.name)
+    print(suggestion.desc)
+    print(type(suggestion.long))
     
-    # print(suggestion.name)
-    # return("hey")
+    crud.create_trail(suggestion.name, 
+                      suggestion.desc, 
+                      float(suggestion.lat), 
+                      float(suggestion.long),
+                      suggestion.gps, 
+                      suggestion.length, 
+                      suggestion.ascent, 
+                      suggestion.descent,
+                      suggestion.difficulty, 
+                      suggestion.location, 
+                      suggestion.url,
+                      None
+                    )
+    
+    print(suggestion.name)
+    return("hey")
 
 @app.route('/moderator/delete-suggestion')
 def delete_suggestion():
