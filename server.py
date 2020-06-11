@@ -36,14 +36,19 @@ def log_in():
     email = request.args.get('email')
     password = request.args.get('password')
 
-    if crud.get_password_by_email(email) == password: 
+    user = crud.get_user_by_email(email)
+
+    if user.password == password: 
         flash('Logged In!')
-        session['user_id'] = crud.get_user_id_by_email(email)
+        session['user_id'] = user.user_id
+        session['moderator'] = user.moderator
+        print(session)
 
         return redirect('/')
     else:
         flash('Log-in Failed')
         return redirect('/')
+    
     
 @app.route('/users', methods = ['POST'])
 def create_account():

@@ -89,7 +89,6 @@ def create_user(email, password, moderator = False):
 
     return user
 
-
 def get_user_by_id(user_id):
     return db.session.query(User).get(user_id)
 
