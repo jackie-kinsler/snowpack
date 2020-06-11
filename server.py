@@ -146,37 +146,36 @@ def add_a_trail():
     if request.method == 'POST':
         name = request.form.get('name')
         desc = request.form.get('description')
-        long = request.form.get('long')
-        lat = request.form.get('lat')
-        length = request.form.get('length')
+        long = float(request.form.get('long'))
+        lat = float(request.form.get('lat'))
+        length = float(request.form.get('length'))
         length_unit = request.form.get('length-unit')
         if length_unit == 'kilometers':
-            length = str(float(length)*0.621371)
+            length *= 0.621371
         ascent = request.form.get('ascent')
         ascent_unit = request.form.get('ascent-unit')
         if ascent_unit == 'meters':
-            ascent = str(float(ascent) * 3.28084) 
+            ascent *= 3.28084
         descent = request.form.get('descent')
         descent_unit = request.form.get('descent-unit')
         if descent_unit == 'meters':
-            descent = str(float(descent) * 3.28084)
+            descent *= 3.28084
         difficulty = request.form.get('difficulty')
         location = request.form.get('location')
         url = request.form.get('url')
+        gps = ""
 
-        print(name, desc, long, lat, length, length_unit, ascent, ascent_unit,
-                descent, descent_unit, difficulty, location, url)
 
         # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect('/add-a-trail')
+        # if 'file' not in request.files:
+        #     flash('No file part')
+        #     return redirect('/add-a-trail')
         file = request.files['file']
         # if user does not select file, browser also
         # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect('/add-a-trail')
+        # if file.filename == '':
+        #     flash('No selected file')
+        #     return redirect('/add-a-trail')
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -186,10 +185,10 @@ def add_a_trail():
 
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            crud.create_suggested_trail(name, desc, lat, long, gps, length, 
+        crud.create_suggested_trail(name, desc, lat, long, gps, length, 
                                     ascent, descent, difficulty, location, url)
-            flash('Your trail has been added to suggestions! Give us some time - you\'ll see it on the trailpage soon! :)')
-            return redirect('/add-a-trail')
+        flash('Your trail has been added to suggestions! Give us some time - you\'ll see it on the trailpage soon! :)')
+        return redirect('/add-a-trail')
 
 @app.route('/moderator')
 def moderator_page():
@@ -198,28 +197,28 @@ def moderator_page():
 
     return render_template('moderator.html', suggestions = suggestions)
 
-# @app.route('/moderator/add-suggestion-to-db')
-# def add_suggestion_to_trail_db():
-#     """Adds a selected Suggestion to the db."""
+@app.route('/moderator/add-suggestion-to-db')
+def add_suggestion_to_trail_db():
+    """Adds a selected Suggestion to the db."""
 
-#     suggestion_id = request.args.get('suggestion_id')
-#     print(suggestion_id)
+    # suggestion_id = request.args.get('suggestion_id')
+    # print(suggestion_id)
 
-#     suggestion = crud.get_suggestion_by_id(suggestion_id)
-#     print(suggestion)
-#     print(suggestion.name)
-#     print(suggestion.desc)
-#     print("****")
-#     print(type(suggestion.long))
-#     # crud.create_trail(name = suggestion.name,
-#     #                   desc = suggestion.desc, 
-#     #                   lat = suggestion.lat)
-#     # crud.create_trail(suggestion.name, suggestion.desc, suggestion.lat, suggestion.long,
-#     #     suggestion.gps, suggestion.length, suggestion.ascent, suggestion.descent,
-#     #     suggestion.difficulty, suggestion.location, suggestion.url, suggestion.img)
+    # suggestion = crud.get_suggestion_by_id(suggestion_id)
+    # print(suggestion)
+    # print(suggestion.name)
+    # print(suggestion.desc)
+    # print("****")
+    # print(type(suggestion.long))
+    # # crud.create_trail(name = suggestion.name,
+    # #                   desc = suggestion.desc, 
+    # #                   lat = suggestion.lat)
+    # # crud.create_trail(suggestion.name, suggestion.desc, suggestion.lat, suggestion.long,
+    # #     suggestion.gps, suggestion.length, suggestion.ascent, suggestion.descent,
+    # #     suggestion.difficulty, suggestion.location, suggestion.url, suggestion.img)
     
-#     print(suggestion.name)
-#     return("hey")
+    # print(suggestion.name)
+    # return("hey")
 
 @app.route('/moderator/delete-suggestion')
 def delete_suggestion():
@@ -230,8 +229,7 @@ def delete_suggestion():
 
     crud.delete_suggestion_by_id(suggestion_id)
 
-    return redirect('/moderator')
-
+    return render_template('/moderator')
 
 
 if __name__ == '__main__':

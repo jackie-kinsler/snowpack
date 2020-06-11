@@ -30,6 +30,8 @@ $( document ).ready(function() {
             };
     
             $.get('/moderator/delete-suggestion', formInputs);
+            
+            location.reload();
         }
     });
 });
