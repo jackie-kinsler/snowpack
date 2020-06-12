@@ -47,7 +47,6 @@ function calendarMap(day, month, year, url, thLat, thLong, initial_zoom = 7, cen
 
     var input = document.getElementById("search-box");
     var searchBox = new google.maps.places.SearchBox(input);
-    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     map.addListener('bounds_changed', function() {
         searchBox.setBounds(map.getBounds());
@@ -57,7 +56,6 @@ function calendarMap(day, month, year, url, thLat, thLong, initial_zoom = 7, cen
 
 
     searchBox.addListener('places_changed', function() {
-        console.log('search-bar code')
         var places = searchBox.getPlaces();
 
         if (places.length == 0) {

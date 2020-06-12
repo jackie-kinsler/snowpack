@@ -27,11 +27,8 @@ def allowed_file(filename):
 @app.route('/')
 def homepage():
     """Render root page of website"""
-    user = crud.get_user_by_id(session.get('user_id'))
-    if user:
-        return render_template('homepage.html', today = datetime.date(datetime.now()), user = user)
-    else:
-        return render_template('homepage.html', today = datetime.date(datetime.now()), user = None)
+    
+    return render_template('homepage.html', today = datetime.date(datetime.now()))
 
 
 @app.route('/log-in')

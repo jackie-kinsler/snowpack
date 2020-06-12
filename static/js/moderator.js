@@ -37,7 +37,7 @@ $( document ).ready(function() {
             $.post('/moderator/delete-suggestion', formInputs);
             
             // pass true to reload page from server instead of from cache 
-            setTimeout(() => {  location.reload(true); }, 500);
+            setTimeout(() => {  location.reload(true); }, 200);
         }
     });
 });

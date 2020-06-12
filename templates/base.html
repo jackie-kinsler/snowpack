@@ -16,10 +16,10 @@
 
 
     <!-- API KEY IS RESTRICED -->
-    <script 
+    <!-- <script 
         async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3so1-1VBMOPQRvXX6joKPeYN-3FmoedQ&libraries=places&callback=initMap">
-    </script>
+    </script> -->
     
     <script src="/static/js/base.js"></script>
     
@@ -39,11 +39,11 @@
         <li><a href="/trails">Trails</a></li>
         <li><a href="/favorite-trails">Favorite Trails</a></li>
         <li><a href="/add-a-trail">Add a Trail!</a></li>
-        {# {% if user %}
-          {% if user.moderator %} #}
+        {% if session.get('user_id') %}
+          {% if session.get('moderator') == True %}
             <li><a href="/moderator" id="moderator-link">Moderators Only!</a></li>
-        {# {% endif %}
-        {% endif %} #}
+          {% endif %}
+        {% endif %}
         
       </ul>
 
