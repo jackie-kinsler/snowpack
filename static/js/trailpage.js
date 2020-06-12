@@ -39,7 +39,7 @@ $( document ).ready(function() {
                                 <td>${trail['trail_distance']}</td>
                                 <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
                                 <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
-                                <td><button id=${trail['trail_gps']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display Trail on Map</button></td>
+                                <td><button id=${trail['trail_gps']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display GPS on map</button></td>
                             </tr>`
                         );
                     } else {
@@ -49,10 +49,12 @@ $( document ).ready(function() {
                                 <td>${trail['trail_distance']}</td>
                                 <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
                                 <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
+                                <td><button class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display trailhead on map</button></td>
                             </tr>`
                         );
                     }
                 }
+
                 $('.favorite-button').on('click', () => {
                     console.log('favorite-button clicked');
 

@@ -24,12 +24,15 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# Replace this with routes and view functions!
 @app.route('/')
 def homepage():
     """Render root page of website"""
+    user = crud.get_user_by_id(session.get('user_id'))
+    if user:
+        return render_template('homepage.html', today = datetime.date(datetime.now()), user = user)
+    else:
+        return render_template('homepage.html', today = datetime.date(datetime.now()), user = None)
 
-    return render_template('homepage.html', today = datetime.date(datetime.now()))
 
 @app.route('/log-in')
 def log_in():
@@ -172,17 +175,8 @@ def add_a_trail():
         user_id = session.get('user_id')
         user = crud.get_user_by_id(user_id)
 
-
-        # check if the post request has the file part
-        # if 'file' not in request.files:
-        #     flash('No file part')
-        #     return redirect('/add-a-trail')
         file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        # if file.filename == '':
-        #     flash('No selected file')
-        #     return redirect('/add-a-trail')
+
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)

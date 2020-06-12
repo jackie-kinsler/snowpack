@@ -16,10 +16,10 @@
 
 
     <!-- API KEY IS RESTRICED -->
-    <!-- <script 
+    <script 
         async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3so1-1VBMOPQRvXX6joKPeYN-3FmoedQ&callback=initMap">
-    </script> -->
+    </script>
     
     <script src="/static/js/base.js"></script>
     
@@ -34,12 +34,17 @@
   <body>
     <h1>Flake Map</h1>
     <h2>Navigation</h2>
-      <ul>
+      <ul id="navigation-links">
         <li><a href="/">Home</a></li>
         <li><a href="/trails">Trails</a></li>
         <li><a href="/favorite-trails">Favorite Trails</a></li>
         <li><a href="/add-a-trail">Add a Trail!</a></li>
-        <li><a href="/moderator">Moderators Only!</a></li>
+        {# {% if user %}
+          {% if user.moderator %} #}
+            <li><a href="/moderator" id="moderator-link">Moderators Only!</a></li>
+        {# {% endif %}
+        {% endif %} #}
+        
       </ul>
 
     {% for msg in get_flashed_messages() %}
