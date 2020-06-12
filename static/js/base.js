@@ -17,6 +17,16 @@ $( document ).ready(function() {
 
         calendarMap(day, month, year);
     });
+
+    $("#log-out").on('click', (evt) => {
+        evt.preventDefault();
+
+        
+        $.get("/log-out");
+
+        setTimeout(() => {  location.reload(true); }, 100);
+
+    });
 });
 
 

@@ -49,7 +49,17 @@ def log_in():
         flash('Log-in Failed')
         return redirect('/')
     
-    
+@app.route('/log-out')
+def log_out():
+
+    session.clear()
+
+    print(session)
+
+    flash("Logged out.")
+
+    return "Logged out."
+
 @app.route('/users', methods = ['POST'])
 def create_account():
     """Create a new user"""
@@ -62,7 +72,7 @@ def create_account():
 
     else: 
         crud.create_user(email = email, password = password)
-        flash('User successfully registered')
+        flash('User successfully registered.')
     
     return redirect('/')
 

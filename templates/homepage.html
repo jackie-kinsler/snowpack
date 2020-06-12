@@ -9,38 +9,41 @@
 {% block body %}
 
 {% if session.get('user_id') %}
+  <button id="log-out">LOG OUT</button>
+
+{% else %}
+  <h3>Log In:</h3>
+  <form action="/log-in">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+
+  <h3>Not on FlakeMap? Create an account!</h3>
+  <form action="/users" method="POST">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+
 {% endif %}
 
-
-<h3>Log In:</h3>
-<form action="/log-in">
-  <p>
-    Email <input type="text" name="email">
-  </p>
-
-  <p>
-    Password <input type="password" name="password">
-  </p>
-
-  <p>
-    <input type="submit">
-  </p>
-</form>
-
-<h3>Not on FlakeMap? Create an account!</h3>
-<form action="/users" method="POST">
-  <p>
-    Email <input type="text" name="email">
-  </p>
-
-  <p>
-    Password <input type="password" name="password">
-  </p>
-
-  <p>
-    <input type="submit">
-  </p>
-</form>
 
 <form id="date-form">
   <label for="date">Select a date to view historical snow information:</label>
