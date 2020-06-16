@@ -1,4 +1,3 @@
-"""Server for movie ratings app."""
 
 import os 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify, url_for)
@@ -37,6 +36,8 @@ def log_in():
     password = request.args.get('password')
 
     user = crud.get_user_by_email(email)
+    print('**********')
+    print(user)
 
     if user.password == password: 
         flash('Logged In!')
@@ -278,6 +279,16 @@ def add_edited_suggestion():
     flash("Trail has been added and suggestion has been deleted.")
     return redirect('/moderator')
 
+@app.route('/map-details', methods = ['POST'])
+def store_map_details():
+    """Store map details for use later."""
+
+    zoom = request.form.get('zoom')
+    center_lat = request.form.get('center_lat')
+    center_long = request.form.get('center_long')
+
+    print(zoom, center_lat, center_long)
+    return ('success')
 
 if __name__ == '__main__':
     connect_to_db(app)

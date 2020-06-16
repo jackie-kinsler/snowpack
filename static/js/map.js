@@ -45,6 +45,22 @@ function calendarMap(day, month, year, url, thLat, thLong, initial_zoom = 7, cen
             NOAAOverlay.setMap(map);
     };
 
+    map.addListener('bounds_changed', function() {
+      var center_lat = map.getCenter().lat(); 
+      var center_long = map.getCenter().lng();
+      var zoom = map.getZoom(); 
+      console.log(zoom);
+      console.log(center_lat, center_long);
+
+      formInputs = {
+        'zoom' : zoom, 
+        'center_lat' : center_lat, 
+        'center_long' : center_long, 
+      }
+
+      setTimeout(() => { $.post('/map-details', formInputs);}, 3000);
+    })
+
     var input = document.getElementById("search-box");
     var searchBox = new google.maps.places.SearchBox(input);
 
@@ -107,4 +123,3 @@ function initMap() {
 
     calendarMap(day, month, year);
 }
-
