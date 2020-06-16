@@ -15,7 +15,13 @@ $( document ).ready(function() {
     
         console.log('date:' + date.slice(8));
 
-        calendarMap(day, month, year);
+        $.get('/map-details', (res) => {
+            var center_lat = Number(res.center_lat);
+            var center_long = Number(res.center_long);
+            var zoom = Number(res.zoom);
+
+            calendarMapTWO(day, month, year, zoom, center_lat, center_long)            
+        });
     });
 
     $("#log-out").on('click', (evt) => {

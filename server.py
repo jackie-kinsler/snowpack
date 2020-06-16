@@ -279,16 +279,31 @@ def add_edited_suggestion():
     flash("Trail has been added and suggestion has been deleted.")
     return redirect('/moderator')
 
-@app.route('/map-details', methods = ['POST'])
+@app.route('/map-details', methods = ['GET','POST'])
 def store_map_details():
     """Store map details for use later."""
 
-    zoom = request.form.get('zoom')
-    center_lat = request.form.get('center_lat')
-    center_long = request.form.get('center_long')
+    if request.method == 'POST':
+        zoom = request.form.get('zoom')
+        center_lat = request.form.get('center_lat')
+        center_long = request.form.get('center_long')
 
-    print(zoom, center_lat, center_long)
-    return ('success')
+        session['zoom'] = zoom
+        session['center_lat'] = center_lat
+        session['center_long'] = center_long
+
+        print(zoom, center_lat, center_long)
+        print("****")
+        print(session)
+        return ('success')
+    
+    if request.method == 'GET':
+        map_params = {'zoom' : session.get('zoom'), 
+                      'center_lat' : session.get('center_lat'), 
+                      'center_long' : session.get('center_long')
+                     }
+        print(map_params)
+        return jsonify(map_params)
 
 if __name__ == '__main__':
     connect_to_db(app)
