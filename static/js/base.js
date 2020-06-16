@@ -20,7 +20,7 @@ $( document ).ready(function() {
             var center_long = Number(res.center_long);
             var zoom = Number(res.zoom);
 
-            calendarMapTWO(day, month, year, zoom, center_lat, center_long)            
+            calendarMap(day, month, year, zoom, center_lat, center_long)            
         });
     });
 

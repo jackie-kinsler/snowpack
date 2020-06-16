@@ -89,10 +89,22 @@ def trail_page():
 def filtered_trail(): 
     """Return a list of trails filtered on distance"""
     
+    trail_name = request.args.get('trail_name')
     min_dist = request.args.get('min_dist')
     max_dist = request.args.get('max_dist')
+
+    if trail_name == '' and min_dist == '' and max_dist == '':
+        return("Please enter at least one filtering parameter")
+
+    if min_dist == '':
+        min_dist = 0
+    if max_dist == '': 
+        max_dist = 99999
     
-    trails = crud.trails_by_distance(min_dist, max_dist)
+    if trail_name == None: 
+        trails = crud.trails_by_distance(min_dist, max_dist)
+    else:
+        trails = crud.trails_by_name_distance(min_dist, max_dist, trail_name)
 
     trail_list = []
 
@@ -179,11 +191,13 @@ def add_a_trail():
         difficulty = request.form.get('difficulty')
         location = request.form.get('location')
         url = request.form.get('url')
+        print("*****")
+        print(url)
         gps = ""
         user_id = session.get('user_id')
         user = crud.get_user_by_id(user_id)
 
-        file = request.files['file']
+        file = request.files.get('file')
 
 
         if file and allowed_file(file.filename):

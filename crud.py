@@ -27,9 +27,19 @@ def all_trails():
 
     return db.session.query(Trail).all()
 
+# ilike is a case insensitive SQL alchemy search
+def trails_by_name(name):
+    return db.session.query(Trail).filter(Trail.name.ilike(f"%{name}%")).all()
+
+
 def trails_by_distance(min_dist, max_dist):
     return db.session.query(Trail).filter(Trail.length<max_dist, 
                                           Trail.length>min_dist).all()
+
+def trails_by_name_distance(min_dist, max_dist, name):
+    return db.session.query(Trail).filter(Trail.length<max_dist, 
+                                          Trail.length>min_dist, 
+                                          Trail.name.ilike(f"%{name}%")).all()
 
 def get_trail_by_id(trail_id):
     return db.session.query(Trail).get(trail_id)

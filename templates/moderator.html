@@ -42,9 +42,13 @@
             <td>{{ suggestion.descent }}</td>
             <td>{{ suggestion.difficulty }}</td>
             <td>{{ suggestion.location }}</td>
-            <td>{{ suggestion.url }}
-                <a href="{{ suggestion.url }}">Visit</a>
+            {% if suggestion.url == '' %}
+                <td></td>
+            {% else %}
+            <td>
+                <a href="{{ suggestion.url }}">{{ suggestion.url }}</a>
             </td>
+            {% endif %}
             <td>{{ suggestion.gps }}</td>
             <td>{{ suggestion.user.email }}</td>
             <td>
