@@ -1,5 +1,5 @@
 
-console.log('base.js has been loaded')
+console.log('homepage.js has been loaded')
 
 
 $( document ).ready(function() {
