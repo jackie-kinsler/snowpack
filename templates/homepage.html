@@ -13,7 +13,7 @@
 
 {% else %}
   <h3>Log In:</h3>
-  <form action="/log-in">
+  <form action="/api/log-in">
     <p>
       Email <input type="text" name="email">
     </p>
@@ -28,7 +28,7 @@
   </form>
 
   <h3>Not on FlakeMap? Create an account!</h3>
-  <form action="/users" method="POST">
+  <form action="/create-user" method="POST">
     <p>
       Email <input type="text" name="email">
     </p>
