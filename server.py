@@ -107,12 +107,12 @@ def log_in():
         session['user_id'] = user.user_id
         session['moderator'] = user.moderator
 
-        return redirect('/')
+        return (True)
     else:
         flash('Log-in Failed')
-        return redirect('/')
+        return (False)
     
-@app.route('/log-out')
+@app.route('/api/log-out')
 def log_out():
     """Log out user and clear the session."""
 

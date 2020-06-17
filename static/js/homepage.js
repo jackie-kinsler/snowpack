@@ -23,16 +23,6 @@ $( document ).ready(function() {
             calendarMap(day, month, year, zoom, center_lat, center_long)            
         });
     });
-
-    $("#log-out").on('click', (evt) => {
-        evt.preventDefault();
-
-        
-        $.get("/log-out");
-
-        setTimeout(() => {  location.reload(true); }, 100);
-
-    });
 });
 
 

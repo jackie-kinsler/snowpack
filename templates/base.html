@@ -32,6 +32,13 @@
     {% block head %}{% endblock %}
   </head>
   <body>
+    
+    {% for msg in get_flashed_messages() %}
+    <p class="flash-msg">
+      {{ msg }}
+    </p>
+    {% endfor %}
+
     <h1>Flake Map</h1>
     <h2>Navigation</h2>
       <ul id="navigation-links">
@@ -44,17 +51,28 @@
             <li><a href="/moderator" id="moderator-link">Moderators Only!</a></li>
           {% endif %}
         {% endif %}
-        
       </ul>
 
-    {% for msg in get_flashed_messages() %}
-    <p class="flash-msg">
-      {{ msg }}
-    </p>
-    {% endfor %}
+    
+    {% if session.get('user_id') %}
+    <button id="log-out">LOG OUT</button>
+    {% else %}
+    <h3>Log In:</h3>
+    <form id='log-in-form'>
+        Email <input type="text" name="email">
+        Password <input type="password" name="password">
+        <input type="submit">
+    </form>
+    <h3>Not on FlakeMap? Create an account!</h3>
+    <form action="/api/create-user" method="POST">
+        Email <input type="text" name="email">
+        Password <input type="password" name="password">
+        <input type="submit">
+    </form>
+    {% endif %}
+
     
     {% block body %}{% endblock %}
-
     {% block after_body %}{% endblock %}
   </body>
 </html>

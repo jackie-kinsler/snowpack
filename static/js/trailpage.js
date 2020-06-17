@@ -1,4 +1,3 @@
-
 console.log('trailpage.js has been loaded')
 
 
@@ -6,14 +5,13 @@ $( document ).ready(function() {
     
     $("#distance-form").on('submit', (evt) => {
 
-        // evt.stopImmediatePropagation();
         evt.preventDefault();
 
         const trailName = $('#trail-name').val();
         const minDist = $('#min-dist').val();
         const maxDist = $('#max-dist').val();
 
-        if (!trailName && !minDist && !maxDist){
+        if (!trailName && !minDist && !maxDist) {
             alert("Please enter at least one filtering parameter");
             return;
         }
@@ -22,10 +20,10 @@ $( document ).ready(function() {
             'trail_name' : trailName,
             'min_dist' : minDist,
             'max_dist' : maxDist,
-        };        
+        }        
         
         $.get('/api/filtered-trails', formInputs, (res) => {
-            
+
             if (res.length) {
                 $("#filtered-trails").empty();
                 $("#filtered-trails").text("Trails filtered by distance:");
