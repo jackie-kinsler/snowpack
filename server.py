@@ -54,8 +54,7 @@ def favorite_trail():
         return render_template('favorite-trails.html', 
                                favorite_trails = favorite_trails)
     else: 
-        flash('Log In to see favorite trails')
-        return redirect('/')
+        return ('failure')
 
 
 @app.route('/add-a-trail', methods=['GET', 'POST'])
@@ -86,41 +85,57 @@ def moderator_page():
     return render_template('moderator.html', suggestions = suggestions)
 
 
+@app.route('/moderator/<suggestion_id>')
+def edit_suggestion(suggestion_id):
+
+    suggestion = crud.get_suggestion_by_id(suggestion_id)
+
+    return render_template('edit_suggestion.html', suggestion = suggestion)
+
+
 ##########################
 # API ROUTES 
 ##########################
 
-
 @app.route('/api/log-in')
 def log_in():
     """Check user input email/password against User table in db"""
-
+    
     email = request.args.get('email')
     password = request.args.get('password')
 
     user = crud.get_user_by_email(email)
-
+    
     # if credentials are in db, the user_id and moderator boolean
     # are added to session 
-    if user.password == password: 
-        flash('Logged In!')
-        session['user_id'] = user.user_id
-        session['moderator'] = user.moderator
-
-        return (True)
+    if user: 
+        if user.password == password: 
+            session['user_id'] = user.user_id
+            session['moderator'] = user.moderator
+            print(session)
+            return ('success')
     else:
-        flash('Log-in Failed')
-        return (False)
+        return('failure')
+        
     
 @app.route('/api/log-out')
 def log_out():
     """Log out user and clear the session."""
 
     session.clear()
+    print(session)
 
-    flash("Logged out.")
+    return "logged out"
 
-    return "Logged out."
+
+@app.route('/api/is-logged-in')
+def check_if_user():
+    print(session)
+    if session.get('user_id'):
+        return('true')
+    else:
+        return ('false')
+
 
 @app.route('/api/create-user', methods = ['POST'])
 def create_account():
@@ -231,12 +246,7 @@ def delete_suggestion():
 
     return redirect('/moderator')
 
-@app.route('/moderator/<suggestion_id>')
-def edit_suggestion(suggestion_id):
 
-    suggestion = crud.get_suggestion_by_id(suggestion_id)
-
-    return render_template('edit_suggestion.html', suggestion = suggestion)
 
 @app.route('/moderator/add-edited-suggestion', methods = ['POST'])
 def add_edited_suggestion():

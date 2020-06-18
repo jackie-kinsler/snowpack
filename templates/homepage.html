@@ -8,13 +8,10 @@
 
 {% block body %}
 
-
-
 <form id="date-form">
   <label for="date">Select a date to view historical snow information:</label>
   <input type="date" id="calendar" min="2012-03-01" max={{today}} required pattern="\d{4}-\d{2}-\d{2}">
   <input type="submit">
-  
 </form>
 
 <img src="/static/images/depth_key.png">
