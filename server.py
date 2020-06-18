@@ -62,12 +62,7 @@ def add_a_trail():
     """Render page where users can add a suggested trail (only if logged in)."""
     
     if request.method == 'GET':
-        user_id = session.get('user_id')
-        if user_id:
-            return render_template("add_a_trail.html")
-        else: 
-            flash('Log In to add a trail')
-            return redirect('/')
+        return render_template("add_a_trail.html")
     
     if request.method == 'POST':
         create_suggestion_from_user_inputs()
