@@ -1,11 +1,25 @@
 
+# standard libraryies 
 import os 
+from datetime import datetime 
+
+# third-party libraries 
 from flask import (Flask, render_template, request, flash, session, redirect, jsonify, url_for)
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
+from oauthlib.oauth2 import WebApplicationClient
+from jinja2 import StrictUndefined
+from werkzeug.utils import secure_filename
+import requests
+
+# Internal imports
 from model import connect_to_db
 import crud
-from jinja2 import StrictUndefined
-from datetime import datetime 
-from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
@@ -17,6 +31,10 @@ ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
+
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
+GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configuration")
 
 ##########################
 # This file contains three sections: 
@@ -107,7 +125,6 @@ def log_in():
         if user.password == password: 
             session['user_id'] = user.user_id
             session['moderator'] = user.moderator
-            print(session)
             return ('success')
     else:
         return('failure')
@@ -118,8 +135,6 @@ def log_out():
     """Log out user and clear the session."""
 
     session.clear()
-    print(session)
-
     return "logged out"
 
 
