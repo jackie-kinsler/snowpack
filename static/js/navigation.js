@@ -45,20 +45,11 @@ $( document ).ready(function() {
                         document.getElementById('log-in-form').reset();
                     }
                 });
+                
+                setTimeout(() => {  location.reload(true); }, 100);
             });
         } else {
             logOutElement();
         }
     });
-    
-    $('#favorite-trails-link').on('click', (evt) => {
-        evt.preventDefault();
-        
-        $.get('/api/is-logged-in', (res) => {
-            console.log(res);
-            if (res === 'false') {
-                alert("Log in to view favorite trails.")
-            }
-        });
-    })
 });

@@ -54,7 +54,7 @@ def favorite_trail():
         return render_template('favorite-trails.html', 
                                favorite_trails = favorite_trails)
     else: 
-        return ('failure')
+        return render_template('favorite-trails.html')
 
 
 @app.route('/add-a-trail', methods=['GET', 'POST'])

@@ -10,25 +10,26 @@
 
 <h3>Favorite Trails</h3>
 
-<div>
-    
-    <table id="favorite-trails">
-        <tr>
-            <th>Trail Name</th>
-            <th>Length</th>
-            <th>Location</th>
-        </tr>
+{% if session.get('user_id') %}
+    <div>
+        <table id="favorite-trails">
+            <tr>
+                <th>Trail Name</th>
+                <th>Length</th>
+                <th>Location</th>
+            </tr>
 
-        {% for favorite in favorite_trails %}
-        <tr>
-            <td><a href="{{ favorite.trail.url }}">{{ favorite.trail.name }}</a></td>
-            <td>{{ favorite.trail.length }}</td>
-            <td>{{ favorite.trail.location }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
-
-
+            {% for favorite in favorite_trails %}
+            <tr>
+                <td><a href="{{ favorite.trail.url }}">{{ favorite.trail.name }}</a></td>
+                <td>{{ favorite.trail.length }}</td>
+                <td>{{ favorite.trail.location }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    <p>Log-in to view favorite trails!</p>
+{% endif %}
 
 {% endblock %}
