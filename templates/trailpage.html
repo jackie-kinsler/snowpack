@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
-<!-- <script src="/static/js/trailpage.js"></script> -->
+    <script src="/static/js/img_coord.js"></script>
+    <script src="/static/js/map.js"></script>
+    <!-- API KEY IS RESTRICED -->
+    <script 
+        async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3so1-1VBMOPQRvXX6joKPeYN-3FmoedQ&libraries=places&callback=initMap">
+    </script>
 
 {% endblock %}
 
@@ -32,8 +37,7 @@
 
     </table>
 </div>
-
-   
-
-
 {% endblock %}
+
+
+
