@@ -7,6 +7,7 @@ from datetime import datetime
 # TRAIL CRUD FUNCTIONS:
 # *******************
 
+
 def create_trail(name, desc, lat, long, gps, length, ascent, descent, 
                  difficulty, location, url, img):
     """Create and return a new trail."""
@@ -27,6 +28,7 @@ def all_trails():
 
     return db.session.query(Trail).all()
 
+
 # ilike is a case insensitive SQL alchemy search
 def trails_by_name(name):
     return db.session.query(Trail).filter(Trail.name.ilike(f"%{name}%")).all()
@@ -36,18 +38,22 @@ def trails_by_distance(min_dist, max_dist):
     return db.session.query(Trail).filter(Trail.length<max_dist, 
                                           Trail.length>min_dist).all()
 
+
 def trails_by_name_distance(min_dist, max_dist, name):
     return db.session.query(Trail).filter(Trail.length<max_dist, 
                                           Trail.length>min_dist, 
                                           Trail.name.ilike(f"%{name}%")).all()
 
+
 def get_trail_by_id(trail_id):
     return db.session.query(Trail).get(trail_id)
+
 
 def add_gps_by_trail_id(trail_id, gps_path):
     trail = db.session.query(Trail).filter(Trail.trail_id == trail_id).first()
     trail.gps = gps_path
     db.session.commit()
+
 
 def get_gps_by_trail_id(trail_id):
     return (get_trail_by_id(trail_id)).gps
@@ -56,6 +62,7 @@ def get_gps_by_trail_id(trail_id):
 # *******************
 # SUGGESTION CRUD FUNCTIONS:
 # *******************
+
 
 def create_suggested_trail(name, desc, lat, long, gps, length, ascent, descent, 
                  difficulty, location, url, user):
@@ -71,11 +78,14 @@ def create_suggested_trail(name, desc, lat, long, gps, length, ascent, descent,
     
     return suggestion
 
+
 def get_all_suggested():
     return db.session.query(Suggestion).all()
 
+
 def get_suggestion_by_id(suggestion_id):
     return db.session.query(Suggestion).get(suggestion_id)    
+
 
 def delete_suggestion_by_id(suggestion_id):
     suggestion = get_suggestion_by_id(suggestion_id)
@@ -84,20 +94,11 @@ def delete_suggestion_by_id(suggestion_id):
 
     return "Delete successful."
 
+
 # *******************
 # USER CRUD FUNCTIONS:
 # *******************
 
-  
-# def create_user(email, password, moderator = False):
-#     """Create and return a new user."""
-
-#     user = User(email = email, password = password, moderator = moderator)
-
-#     db.session.add(user)
-#     db.session.commit()
-
-#     return user
 
 def create_user(email, moderator = False):
     """Create and return a new user."""
@@ -109,24 +110,34 @@ def create_user(email, moderator = False):
 
     return user
 
+
 def get_user_by_id(user_id):
     return db.session.query(User).get(user_id)
 
+
 def get_user_by_email(user_email):
     return db.session.query(User).filter(User.email == user_email).first()
+
 
 def get_password_by_email(user_email):
     if get_user_by_email(user_email):
         return (db.session.query(User.password).filter(User.email == user_email).first())[0]
     else:
-        return None
+        return 
+
 
 def get_user_id_by_email(user_email):
     return (db.session.query(User.id).filter(User.email == user_email).first())[0]
 
+def make_moderator_by_email(user_email):
+    get_user_by_email(user_email).moderator = True
+    db.session.commit()
+
+    return 
 # *******************
 # FAVORITE CRUD FUNCTIONS:
 # *******************
+
 
 def create_favorite(user, trail):
     """Create and return a favorited trail."""
@@ -137,11 +148,15 @@ def create_favorite(user, trail):
     db.session.commit()
 
     return favorite
+
+
 def check_favorite_exists(user, trail):
     return db.session.query(Favorite).filter(Favorite.user == user, Favorite.trail == trail).first()
 
+
 def get_favorites_by_user_id(user_id):
     return db.session.query(Favorite).filter(Favorite.id == user_id).all()
+
 
 if __name__ == '__main__':
     from server import app

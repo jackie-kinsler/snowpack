@@ -10,7 +10,6 @@
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
       crossorigin="anonymous">
     </script>
-    <script src="/static/js/navigation.js"></script>
     <script src="/static/js/trailpage.js"></script>
 
     
@@ -40,13 +39,14 @@
         <li><a href="/trails">Trails</a></li>
         <li><a href="/favorite-trails">Favorite Trails</a></li>
         <li><a href="/add-a-trail">Add a Trail!</a></li>
-        {% if session.get('user_id') %}
-          {% if session.get('moderator') == True %}
+        {% if current_user.is_authenticated %}
+          {% if current_user.moderator %}
             <li><a href="/moderator" id="moderator-link">Moderators Only!</a></li>
           {% endif %}
         {% endif %}
       </ul>
-    {% if session.get('_id') %}
+    {% if current_user.is_authenticated %}
+      <p>Youre logged in as {{ current_user.email }}</p>
       <a href="/logout"><button>Log Out</button></a>
     {% else %}
       <a href="/login"><button>Log In</button></a>

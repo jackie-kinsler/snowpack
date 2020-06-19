@@ -1,65 +1,73 @@
 
-# standard libraryies 
+# STANDARD LIBRARIES 
 import json
 import os 
 from datetime import datetime 
 
-# third-party libraries 
-from flask import (Flask, render_template, request, flash, session, redirect, jsonify, url_for)
+# THIRD-PARTY LIBRARIES  
+from flask import (
+    Flask, 
+    render_template, 
+    request, 
+    flash, 
+    session, 
+    redirect, 
+    jsonify, 
+    url_for)
 from flask_login import (
     LoginManager,
     current_user,
     login_required,
     login_user,
-    logout_user,
-)
+    logout_user,)
 from oauthlib.oauth2 import WebApplicationClient
 from jinja2 import StrictUndefined
 from werkzeug.utils import secure_filename
 import requests
 
-# Internal imports
+# INTERNAL IMPORTS
 from model import connect_to_db
 import crud
 
+##########################
+# This file contains four sections: 
+# 1. Configuration
+# 2. Routes that render pages
+# 3. API routes
+# 4. Helper functions 
+##########################
 
+
+##########################
+# CONFIGURATION 
+##########################
+
+# Configure flask app 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY")
+app.secret_key = os.environ.get("SECRET_KEY", None)
 app.jinja_env.undefined = StrictUndefined
 
-# Google OAuth 2.0 Configuration 
+# Google OAuth 2.0 Configuration (keys from Google OAuth 2.0 Client ID)
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
 GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configuration")
 
-
 # OAuth 2 client setup
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
-# Flask-Login helper to retrieve a user from our db
-# instantiate loginManager class 
+# instantiate loginManager class
+# https://flask-login.readthedocs.io/en/latest/ 
 login_manager = LoginManager()
-# configure login manager wo work with Flask app 
+# configure login manager to work with Flask app 
 login_manager.init_app(app)
 
-# Flask-Login helper to retrieve a user from our db
-@login_manager.user_loader
-def load_user(user_id):
-    return crud.get_user_by_id(user_id)
-
-# Upload configuration 
+# Upload configuration for flask
 UPLOAD_FOLDER = 'static/GPS/user_uploads'
 ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
 
-##########################
-# This file contains three sections: 
-# 1. Routes that render pages
-# 2. API routes
-# 3. Helper functions 
-##########################
 
 ##########################
 # ROUTES THAT RENDER PAGES 
@@ -68,16 +76,11 @@ app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
 @app.route('/')
 def homepage():
     """Render root of website"""
-    print(session)
-    authenticated = current_user.is_authenticated
-    if authenticated:
-        email = current_user.email
-        return render_template('homepage.html',
-                            today = datetime.date(datetime.now()), authenticated = authenticated, email = email)
-    else:  
-        return render_template('homepage.html', 
-                            today = datetime.date(datetime.now()), authenticated = authenticated)
-
+    
+    return render_template('homepage.html', 
+                                today = datetime.date(datetime.now()))
+    
+    
 @app.route('/trails')
 def trail_page():
     """Render page with map and trail filtering capability."""
@@ -212,60 +215,6 @@ def logout():
     logout_user()
     return redirect(url_for("homepage"))
     
-
-# @app.route('/api/log-in')
-# def log_in():
-#     """Check user input email/password against User table in db"""
-    
-#     email = request.args.get('email')
-#     password = request.args.get('password')
-
-#     user = crud.get_user_by_email(email)
-    
-#     # if credentials are in db, the user_id and moderator boolean
-#     # are added to session 
-#     if user: 
-#         if user.password == password: 
-#             session['user_id'] = user.user_id
-#             session['moderator'] = user.moderator
-#             return ('success')
-#     else:
-#         return('failure')
-        
-    
-# @app.route('/api/log-out')
-# def log_out():
-#     """Log out user and clear the session."""
-
-#     session.clear()
-#     return "logged out"
-
-
-@app.route('/api/is-logged-in')
-def check_if_user():
-    print(session)
-    if session.get('user_id'):
-        return('true')
-    else:
-        return ('false')
-
-
-@app.route('/api/create-user', methods = ['POST'])
-def create_account():
-    """Create a new user."""
-
-    email = request.form.get('email')
-    password = request.form.get('password')
-
-    if crud.get_user_by_email(email):
-        flash('That email is already assigned to a registered account.')
-
-    else: 
-        crud.create_user(email = email, password = password)
-        flash('User successfully registered.')
-    
-    return redirect('/')
-
 
 @app.route('/api/filtered-trails')
 def filtered_trail(): 
@@ -416,7 +365,10 @@ def store_map_details():
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
 
-
+# Flask-Login helper to retrieve a user from our db
+@login_manager.user_loader
+def load_user(user_id):
+    return crud.get_user_by_id(user_id)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -468,3 +420,34 @@ def create_suggestion_from_user_inputs():
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True, ssl_context = "adhoc")
+
+
+
+##########################
+# CODE MADE OBSOLETE BY OAUTH
+##########################
+
+# @app.route('/api/is-logged-in')
+# def check_if_user():
+#     print(session)
+#     if session.get('user_id'):
+#         return('true')
+#     else:
+#         return ('false')
+
+
+# @app.route('/api/create-user', methods = ['POST'])
+# def create_account():
+#     """Create a new user."""
+
+#     email = request.form.get('email')
+#     password = request.form.get('password')
+
+#     if crud.get_user_by_email(email):
+#         flash('That email is already assigned to a registered account.')
+
+#     else: 
+#         crud.create_user(email = email, password = password)
+#         flash('User successfully registered.')
+    
+#     return redirect('/')
