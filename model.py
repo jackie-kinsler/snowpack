@@ -1,6 +1,7 @@
 """Models for trail information."""
 
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
@@ -45,7 +46,7 @@ class Suggestion(db.Model):
     __tablename__ = 'suggestions'
     
     suggestion_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = False)
+    id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     name = db.Column(db.String, nullable = False)
     desc = db.Column(db.Text)
     long = db.Column(db.Float, nullable = False)
@@ -64,22 +65,22 @@ class Suggestion(db.Model):
         return f'<Suggestion suggestion_id={self.suggestion_id} name={self.name}>'
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     """A user."""
 
     __tablename__ = 'users'
 
-    user_id = db.Column(db.Integer,
+    id = db.Column(db.Integer,
                         autoincrement = True,
                         primary_key = True,
                         )
     email = db.Column(db.String, unique = True, nullable = False)
-    password = db.Column(db.String, nullable = False)
+    # password = db.Column(db.String, nullable = False)
     moderator = db.Column(db.Boolean, nullable = False)
     
     # favorites = a list of Favorite objects
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email}>'
+        return f'<User id={self.id} email={self.email}>'
 
 class Favorite(db.Model):
     """A favorited trail."""
@@ -87,14 +88,14 @@ class Favorite(db.Model):
     __tablename__ = 'favorites'
 
     favorite_id = db.Column(db.Integer, autoincrement = True, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable = False)
+    id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     trail_id = db.Column(db.Integer, db.ForeignKey('trails.trail_id'), nullable = False)
 
     trail = db.relationship('Trail', backref = 'favorites')
     user = db.relationship('User', backref = 'favorites')
 
     def __repr__(self):
-        return f'<Favorite favorite_id={self.favorite_id} user_id={self.user_id} trail_id={self.trail_id}>'
+        return f'<Favorite favorite_id={self.favorite_id} id={self.id} trail_id={self.trail_id}>'
 
 
 # _________
@@ -123,8 +124,10 @@ def example_data():
                    img = "https://cdn-assets.alltrails.com/uploads/photo/image/16547628/extra_large_d8480e26df4f62016e928acba537d525.jpg",
                   )
 
-    user = User(email = 'user0@test.com', 
-                password = 'test')
+    # user = User(email = 'user0@test.com', 
+    #             password = 'test')
+    user = User(email = 'user0@test.com')
+    
     favorite = Favorite(trail = middle, user = user)
 
     db.session.add_all([middle, user, favorite])

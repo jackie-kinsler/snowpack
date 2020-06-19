@@ -54,8 +54,9 @@ for trail in trail_data['trails']:
  
 for n in range(10):
     email = f'user{n}@test.com'
-    password = 'test'
-    user = crud.create_user(email = email, password = password)
+    # password = 'test'
+    # user = crud.create_user(email = email, password = password)
+    user = crud.create_user(email = email)
     
 
     for _ in range(10):
@@ -84,4 +85,4 @@ crud.create_trail("Middle Sister via Pole Creek Trail",
                   "https://cdn-assets.alltrails.com/uploads/photo/image/16547628/extra_large_d8480e26df4f62016e928acba537d525.jpg",
                   )
 
-crud.create_user(email = 'moderator@test.com', password = 'test', moderator = True)
+# crud.create_user(email = 'moderator@test.com', password = 'test', moderator = True)

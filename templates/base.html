@@ -6,7 +6,7 @@
     
     <link rel="icon" type="image/png" href="/static/favicon.png"/>
     <script
-      src="http://code.jquery.com/jquery-3.5.1.js"
+      src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
       crossorigin="anonymous">
     </script>
@@ -46,9 +46,11 @@
           {% endif %}
         {% endif %}
       </ul>
-
-    <div id="user-credentials"></div>
-
+    {% if session.get('_id') %}
+      <a href="/logout"><button>Log Out</button></a>
+    {% else %}
+      <a href="/login"><button>Log In</button></a>
+    {% endif %}
     
     {% block body %}{% endblock %}
     {% block after_body %}{% endblock %}

@@ -1,5 +1,6 @@
 
 # standard libraryies 
+import json
 import os 
 from datetime import datetime 
 
@@ -23,18 +24,35 @@ import crud
 
 
 app = Flask(__name__)
-app.secret_key = 'dev'
+app.secret_key = os.environ.get("SECRET_KEY")
 app.jinja_env.undefined = StrictUndefined
 
+# Google OAuth 2.0 Configuration 
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
+GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configuration")
+
+
+# OAuth 2 client setup
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
+
+# Flask-Login helper to retrieve a user from our db
+# instantiate loginManager class 
+login_manager = LoginManager()
+# configure login manager wo work with Flask app 
+login_manager.init_app(app)
+
+# Flask-Login helper to retrieve a user from our db
+@login_manager.user_loader
+def load_user(user_id):
+    return crud.get_user_by_id(user_id)
+
+# Upload configuration 
 UPLOAD_FOLDER = 'static/GPS/user_uploads'
 ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
-
-GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
-GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
-GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configuration")
 
 ##########################
 # This file contains three sections: 
@@ -50,10 +68,15 @@ GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configur
 @app.route('/')
 def homepage():
     """Render root of website"""
-    
-    return render_template('homepage.html', 
-                           today = datetime.date(datetime.now()))
-
+    print(session)
+    authenticated = current_user.is_authenticated
+    if authenticated:
+        email = current_user.email
+        return render_template('homepage.html',
+                            today = datetime.date(datetime.now()), authenticated = authenticated, email = email)
+    else:  
+        return render_template('homepage.html', 
+                            today = datetime.date(datetime.now()), authenticated = authenticated)
 
 @app.route('/trails')
 def trail_page():
@@ -110,32 +133,112 @@ def edit_suggestion(suggestion_id):
 # API ROUTES 
 ##########################
 
-@app.route('/api/log-in')
-def log_in():
-    """Check user input email/password against User table in db"""
-    
-    email = request.args.get('email')
-    password = request.args.get('password')
+@app.route("/login")
+def login():
+    # Find out what URL to hit for Google login
+    google_provider_cfg = get_google_provider_cfg()
+    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
 
-    user = crud.get_user_by_email(email)
-    
-    # if credentials are in db, the user_id and moderator boolean
-    # are added to session 
-    if user: 
-        if user.password == password: 
-            session['user_id'] = user.user_id
-            session['moderator'] = user.moderator
-            return ('success')
+    # Use library to construct the request for Google login and provide
+    # scopes that let you retrieve user's profile from Google
+    request_uri = client.prepare_request_uri(
+        authorization_endpoint,
+        redirect_uri=request.base_url + "/callback",
+        scope=["openid", "email"],
+    )
+    return redirect(request_uri)
+
+# Handle the google login callback endpoint 
+@app.route("/login/callback")
+def callback():
+    # Get authorization code Google sent back to you
+    code = request.args.get("code")
+    # Find out what URL to hit to get tokens that allow you to ask for
+    # things on behalf of a user
+    google_provider_cfg = get_google_provider_cfg()
+    token_endpoint = google_provider_cfg["token_endpoint"]
+
+    token_url, headers, body = client.prepare_token_request(
+        token_endpoint,
+        authorization_response=request.url,
+        redirect_url=request.base_url,
+        code=code
+    )
+    token_response = requests.post(
+        token_url,
+        headers=headers,
+        data=body,
+        auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
+    )
+
+    # Parse the tokens!
+    client.parse_request_body_response(json.dumps(token_response.json()))
+    # Now that you have tokens (yay) let's find and hit the URL
+    # from Google that gives you the user's profile information,
+    # including their Google profile image and email
+    userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
+    uri, headers, body = client.add_token(userinfo_endpoint)
+    userinfo_response = requests.get(uri, headers=headers, data=body)
+
+    # You want to make sure their email is verified.
+    # The user authenticated with Google, authorized your
+    # app, and now you've verified their email through Google!
+    if userinfo_response.json().get("email_verified"):
+        unique_id = userinfo_response.json()["sub"]
+        users_email = userinfo_response.json()["email"]
     else:
-        return('failure')
+        return "User email not available or not verified by Google.", 400
+    # Create a user in your db with the information provided
+    # by Google
+    user = crud.get_user_by_email(users_email)
+    print("user", user)
+    # user = User(
+    #     id_=unique_id, name=users_name, email=users_email, profile_pic=picture
+    # )
+
+    # Doesn't exist? Add it to the database.
+    if not user:
+        user = crud.create_user(users_email)
+
+    # Begin user session by logging the user in
+    login_user(user)
+
+    # Send user back to homepage
+    return redirect(url_for("homepage"))
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("homepage"))
+    
+
+# @app.route('/api/log-in')
+# def log_in():
+#     """Check user input email/password against User table in db"""
+    
+#     email = request.args.get('email')
+#     password = request.args.get('password')
+
+#     user = crud.get_user_by_email(email)
+    
+#     # if credentials are in db, the user_id and moderator boolean
+#     # are added to session 
+#     if user: 
+#         if user.password == password: 
+#             session['user_id'] = user.user_id
+#             session['moderator'] = user.moderator
+#             return ('success')
+#     else:
+#         return('failure')
         
     
-@app.route('/api/log-out')
-def log_out():
-    """Log out user and clear the session."""
+# @app.route('/api/log-out')
+# def log_out():
+#     """Log out user and clear the session."""
 
-    session.clear()
-    return "logged out"
+#     session.clear()
+#     return "logged out"
 
 
 @app.route('/api/is-logged-in')
@@ -310,6 +413,11 @@ def store_map_details():
 # HELPER FUNCTIONS 
 ##########################
 
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
+
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -359,4 +467,4 @@ def create_suggestion_from_user_inputs():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, ssl_context = "adhoc")

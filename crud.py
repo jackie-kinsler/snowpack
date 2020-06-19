@@ -89,10 +89,20 @@ def delete_suggestion_by_id(suggestion_id):
 # *******************
 
   
-def create_user(email, password, moderator = False):
+# def create_user(email, password, moderator = False):
+#     """Create and return a new user."""
+
+#     user = User(email = email, password = password, moderator = moderator)
+
+#     db.session.add(user)
+#     db.session.commit()
+
+#     return user
+
+def create_user(email, moderator = False):
     """Create and return a new user."""
 
-    user = User(email = email, password = password, moderator = moderator)
+    user = User(email = email, moderator = moderator)
 
     db.session.add(user)
     db.session.commit()
@@ -112,7 +122,7 @@ def get_password_by_email(user_email):
         return None
 
 def get_user_id_by_email(user_email):
-    return (db.session.query(User.user_id).filter(User.email == user_email).first())[0]
+    return (db.session.query(User.id).filter(User.email == user_email).first())[0]
 
 # *******************
 # FAVORITE CRUD FUNCTIONS:
@@ -131,7 +141,7 @@ def check_favorite_exists(user, trail):
     return db.session.query(Favorite).filter(Favorite.user == user, Favorite.trail == trail).first()
 
 def get_favorites_by_user_id(user_id):
-    return db.session.query(Favorite).filter(Favorite.user_id == user_id).all()
+    return db.session.query(Favorite).filter(Favorite.id == user_id).all()
 
 if __name__ == '__main__':
     from server import app
