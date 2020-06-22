@@ -390,10 +390,11 @@ def send_email():
     receiver_email = os.environ.get("EMAIL")
     password = os.environ.get("EMAILPASSWORD")
     
-    print(receiver_email)
-    print(sender_email)
-    print(password)
-    message = MIMEMultipart("alternative")
+    # MIME is a type of email (Multipurpose Internet Mail Extensions)
+    # the multipart means it can contain both HTML and text... 
+    # here, only text is defineed, but this method was chosen incase
+    # HTML was desired to be added in the future 
+    message = MIMEMultipart("suggestion_alert")
 
     message["Subject"] = "New Suggestion!"
     message["From"] = sender_email
@@ -406,12 +407,19 @@ def send_email():
     There is a new suggestion!
     Log into flakemap.com/moderator to handle the suggestion."""
 
-    body = MIMEText(text, "plain")
+    part1 = MIMEText(text, "plain")
 
-    message.attach(body)
+    # Only attaching part1, if HTML were added in the future, it could be attached
+    # as part2 (for example). The HTML would attempt to render, if it failed, 
+    # then the part1 (plain text) would render 
+    message.attach(part1)
 
-    # 
+    # ssl module provides access to transport layer security ("Secure Sockets Layer")
+    # create_default_context() runs a new context with secure default settings
     context = ssl.create_default_context()
+
+    # SMTP_SSL() sets up a secure connection, which is set as email_server 
+    # then pass the server, port, and default security context 
     with smtplib.SMTP_SSL(smtp_server, port, context = context) as email_server:
         email_server.login(sender_email, password)
         email_server.sendmail(sender_email, receiver_email, message.as_string())
