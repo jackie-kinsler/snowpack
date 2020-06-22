@@ -2,7 +2,11 @@
 # STANDARD LIBRARIES 
 import json
 import os 
+import smtplib
+import ssl
 from datetime import datetime 
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # THIRD-PARTY LIBRARIES  
 from flask import (
@@ -373,6 +377,33 @@ def load_user(user_id):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def send_email():
+    port = 465 # for SSL
+    smtp_server = "smtp.gmail.com"
+    sender_email = os.environ.get("EMAIL")
+    receiver_email = os.environ.get("EMAIL")
+    password = os.environ.get("PASSWORD")
+    message = MIMEMultipart("alternative")
+
+    message["Subject"] = "New Suggestion!"
+    message["From"] = sender_email
+    message["To"] = receiver_email
+
+    # As this is an internal email, only sending plain text... 
+    # Doesn't need to look fancy 
+        
+    text = """\
+    There is a new suggestion!
+    Log into flakemap.com/moderator to handle the suggestion."""
+
+    message.attach(MIMEText(text, "plain"))
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL(smtp_server, port, context = context) as email_server:
+        email_server.login(sender_email, password)
+        email_server.sendmail(sender_email, receiver_email, message.as_string())
+
 
 def create_suggestion_from_user_inputs():
     """Parses the form from /add-a-trail"""
