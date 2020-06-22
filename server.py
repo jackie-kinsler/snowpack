@@ -114,6 +114,10 @@ def add_a_trail():
     
     if request.method == 'POST':
         create_suggestion_from_user_inputs()
+
+        # Sends an email to the moderators notifying that there is a 
+        # new suggestion to handle 
+        send_email()
         
         flash('Your trail has been added to suggestions!' +
               ' Give us some time - you\'ll see it on the trailpage soon! :)')
@@ -379,11 +383,16 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def send_email():
-    port = 465 # for SSL
-    smtp_server = "smtp.gmail.com"
+    # smtp = simple mail transfer protocol
+    port = 465  # gmail requires port 465 for SSL 
+    smtp_server = "smtp.gmail.com"  # outward facing server for gmail 
     sender_email = os.environ.get("EMAIL")
     receiver_email = os.environ.get("EMAIL")
-    password = os.environ.get("PASSWORD")
+    password = os.environ.get("EMAILPASSWORD")
+    
+    print(receiver_email)
+    print(sender_email)
+    print(password)
     message = MIMEMultipart("alternative")
 
     message["Subject"] = "New Suggestion!"
@@ -397,8 +406,11 @@ def send_email():
     There is a new suggestion!
     Log into flakemap.com/moderator to handle the suggestion."""
 
-    message.attach(MIMEText(text, "plain"))
+    body = MIMEText(text, "plain")
 
+    message.attach(body)
+
+    # 
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL(smtp_server, port, context = context) as email_server:
         email_server.login(sender_email, password)
