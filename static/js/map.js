@@ -5,13 +5,17 @@ console.log('map.js has been loaded');
 function initMap() {
     // default date for map load is today's date (sometimes, snow data will
     // not load if it hasn't been uploaded yet for the day)
-    var today = new Date();
-    var day = String(today.getDate()).padStart(2, '0');
-    var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var year = today.getFullYear();
-    
+    $.get('/api/latest-date', (res) => {
+      // response is a string of format yyyy-mm-dd
+      var year = String(res.slice(0, 4));
+      var month = String(res.slice(5, 7));
+      var day = String(res.slice(8));
+      
+      calendarMap(day, month, year);
 
-    calendarMap(day, month, year);
+      $("#date-notice-box").text(`Viewing most recently available data (from ${month}-${day}-${year})`); 
+
+    });
 }
 
 function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7, center_lat = 45.373, center_long = -121.686) {
@@ -138,7 +142,9 @@ function calendarMap(day, month, year, initial_zoom = 7, center_lat = 45.373, ce
   var overlayOpts = {
       opacity : 0.5
   };
-  
+  // if img for today doesn't exist
+  // check yesterday for image
+  // if yesterday exists 
   for (var [img_key, coords] of Object.entries(img_coord)) {
       
       var imageBounds = {
@@ -156,6 +162,7 @@ function calendarMap(day, month, year, initial_zoom = 7, center_lat = 45.373, ce
 
           NOAAOverlay.setMap(map);
   };
+  
 
   // when a user stops moving the map, the map details will be collected so
   // they can be used to re-render the map in the same condition at a later time 

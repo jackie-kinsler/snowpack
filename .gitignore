@@ -5,3 +5,8 @@ __pycache__
 env
 static/GPS/all_gps/
 static/GPS/user_uploads/
+node_modules/
+package-lock.json
+package.json
+scraper.py
+static/js/scraper.js

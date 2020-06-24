@@ -4,7 +4,7 @@ import json
 import os 
 import smtplib
 import ssl
-from datetime import datetime 
+from datetime import datetime, timedelta 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -217,12 +217,32 @@ def callback():
     # Send user back to homepage
     return redirect(url_for("homepage"))
 
+
+@app.route("/api/latest-date")
+def latest_date():
+    """Returns the latest date with usable information from NOAA"""
+    
+    try_date = datetime.date(datetime.now())
+    
+    date = find_usable_date(try_date)
+    date = str(date)
+    print(date)
+    return jsonify(date)
+
+
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("homepage"))
+
+
+@app.route('/api/most-recent-data')
+def most_recent_date():
+    try_date = datetime.date(datetime.now())
+    return find_usable_date(try_date)
     
+
 
 @app.route('/api/filtered-trails')
 def filtered_trail(): 
@@ -378,6 +398,23 @@ def get_google_provider_cfg():
 def load_user(user_id):
     return crud.get_user_by_id(user_id)
 
+
+def find_usable_date(try_date):
+    str_date = str(try_date).replace("-", "")
+
+    url = f'https://www.nohrsc.noaa.gov/snow_model/GE/{str_date}/'
+    page = requests.get(url)
+
+    # If the resource for the requested date is not found, try 
+    # requesting for the day before. 
+    # Will recursively call function until a viable date is determined.
+    if b"Not Found" in page.content:
+        try_date = try_date - timedelta(days = 1)
+        return find_usable_date(try_date)
+    else: 
+        return(try_date)
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -414,12 +451,16 @@ def send_email():
     # then the part1 (plain text) would render 
     message.attach(part1)
 
+    # used to encrypt the SMTP connection 
     # ssl module provides access to transport layer security ("Secure Sockets Layer")
     # create_default_context() runs a new context with secure default settings
+    # default settings validate hostname and certificates and optimizes 
+    # security of the connection
     context = ssl.create_default_context()
 
     # SMTP_SSL() sets up a secure connection, which is set as email_server 
     # then pass the server, port, and default security context 
+    # Note: message.as_string() returns entire message flattened as a string 
     with smtplib.SMTP_SSL(smtp_server, port, context = context) as email_server:
         email_server.login(sender_email, password)
         email_server.sendmail(sender_email, receiver_email, message.as_string())

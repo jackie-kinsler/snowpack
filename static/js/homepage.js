@@ -12,9 +12,6 @@ $( document ).ready(function() {
         const month = date.slice(5,7);
         const day = date.slice(8);
 
-    
-        console.log('date:' + date.slice(8));
-
         $.get('/map-details', (res) => {
             var center_lat = Number(res.center_lat);
             var center_long = Number(res.center_long);
