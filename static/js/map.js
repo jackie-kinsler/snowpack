@@ -13,12 +13,14 @@ function initMap() {
       
       calendarMap(day, month, year);
 
-      $("#date-notice-box").text(`Viewing most recently available data (from ${month}-${day}-${year})`); 
+      $("#date-notice-box").text(`Viewing most recently available data 
+      (from ${month}-${day}-${year})`); 
 
     });
 }
 
-function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7, center_lat = 45.373, center_long = -121.686) {
+function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7, 
+                  center_lat = 45.373, center_long = -121.686) {
     
   var map = new google.maps.Map(document.getElementById('map'), {
       zoom: initial_zoom,
@@ -53,7 +55,8 @@ function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7, center
           };
   
           NOAAOverlay = new google.maps.GroundOverlay(
-          `https://www.nohrsc.noaa.gov/snow_model/GE/${year}${month}${day}/nsm_depth/nsm_depth_${year}${month}${day}05_${img_key}_us.png`, 
+          `https://www.nohrsc.noaa.gov/snow_model/GE/${year}${month}${day}` +
+          `/nsm_depth/nsm_depth_${year}${month}${day}05_${img_key}_us.png`, 
               imageBounds, 
               overlayOpts
           );
@@ -126,7 +129,8 @@ function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7, center
     });
 }
 
-function calendarMap(day, month, year, initial_zoom = 7, center_lat = 45.373, center_long = -121.686) {
+function calendarMap(day, month, year, initial_zoom = 7, 
+                     center_lat = 45.373, center_long = -121.686) {
     
   var map = new google.maps.Map(document.getElementById('map'), {
       zoom: initial_zoom,
@@ -153,7 +157,8 @@ function calendarMap(day, month, year, initial_zoom = 7, center_lat = 45.373, ce
           };
   
           NOAAOverlay = new google.maps.GroundOverlay(
-          `https://www.nohrsc.noaa.gov/snow_model/GE/${year}${month}${day}/nsm_depth/nsm_depth_${year}${month}${day}05_${img_key}_us.png`, 
+          `https://www.nohrsc.noaa.gov/snow_model/GE/${year}${month}${day}` +
+          `/nsm_depth/nsm_depth_${year}${month}${day}05_${img_key}_us.png`, 
               imageBounds, 
               overlayOpts
           );

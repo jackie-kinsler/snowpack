@@ -21,7 +21,9 @@
 
             {% for favorite in favorite_trails %}
             <tr>
-                <td><a href="{{ favorite.trail.url }}">{{ favorite.trail.name }}</a></td>
+                <td>
+                    <a href="{{ favorite.trail.url }}">{{ favorite.trail.name }}</a>
+                </td>
                 <td>{{ favorite.trail.length }}</td>
                 <td>{{ favorite.trail.location }}</td>
             </tr>

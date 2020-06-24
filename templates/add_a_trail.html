@@ -14,34 +14,60 @@
 
     <form method=post action="/add-a-trail" enctype=multipart/form-data>
         <div>
-            Trail name: <input type="text" name="name" placeholder="required" required>
+            Trail name: <input type="text" 
+                               name="name" 
+                               placeholder="required" 
+                               required>
         </div>
         <div>
             Trail description: <input type="text" name="description">
         </div>
         <div>
-            Trailhead latitude: <input value='12'  type="number" name="lat" step="any" placeholder="required" required>
+            Trailhead latitude: <input type="number" 
+                                       name="lat" 
+                                       step="any" 
+                                       placeholder="required" 
+                                       required>
         </div>
         <div>
-            Trailhead longitude: <input value='12'  type="number" name="long" step="any" placeholder="required" required>
+            Trailhead longitude: <input type="number" 
+                                        name="long" 
+                                        step="any" 
+                                        placeholder="required" 
+                                        required>
         </div>
         
         <div>
-            Length (mi/km): <input value='12'  type="number" step="any" min="0" name="length" placeholder="required" required>
+            Length (mi/km): <input type="number" 
+                                   step="any" 
+                                   min="0" 
+                                   name="length" 
+                                   placeholder="required"
+                                   required>
             <select name="length-unit" id="length-unit">
                 <option value="miles">mi</option>
                 <option value="kilometers">km</option>
             </select>
         </div>
         <div>
-            Ascent (ft/m): <input value='12'  type="number" step="any" min="0" name="ascent" placeholder="required" required>
+            Ascent (ft/m): <input type="number" 
+                                  step="any" 
+                                  min="0" 
+                                  name="ascent" 
+                                  placeholder="required" 
+                                  required>
             <select name="ascent-unit" id="ascent-unit">
                 <option value="feet">ft</option>
                 <option value="meters">m</option>
             </select>
         </div>
         <div>
-            Descent (ft/m): <input value='12'  type="number" step="any" min="0" name="descent" placeholder="required" required>
+            Descent (ft/m): <input type="number" 
+                                   step="any" 
+                                   min="0" 
+                                   name="descent" 
+                                   placeholder="required" 
+                                   required>
             <select name="descent-unit" id="descent-unit">
                 <option value="feet">ft</option>
                 <option value="meters">m</option>
@@ -56,13 +82,19 @@
             </select>
         </div>
         <div>
-            Nearest Town: <input type="text" name="location" placeholder="(City, State)">
+            Nearest Town: <input type="text" 
+                                 name="location" 
+                                 placeholder="(City, State)">
         </div>
         <div>
-            Want to add a link to an existing trail data page? <input type="url" name="url" placeholder="Trail description site">
+            Want to add a link to an existing trail data page? 
+            <input type="url" name="url" placeholder="Trail description site">
         </div>
         <div>
-            Upload GPS file (.kml or GeoJSON) <input type=file name=file accept=".kml,.json,.geojson,application/json,.js">
+            Upload GPS file (.kml or GeoJSON) 
+            <input type=file 
+                   name=file 
+                   accept=".kml,.json,.geojson,application/json,.js">
         </div>
         <input type=submit>
     </form>

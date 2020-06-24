@@ -37,7 +37,10 @@ $( document ).ready(function() {
                         <th>Show On Map (only available for certain trails)</th>
                     </tr>`
                 );
-                
+                // for each trail that matches the filtering criterion, 
+                // create a data row in the table 
+                // if the trail has gps data, a button to show the GPS data on the map will appear
+                // otherwise, a button to show the trailhead on the map will appear
                 for (var trail of res) {
                     if (trail['trail_gps']) {
                         $("#trail-table").append(`
@@ -91,11 +94,13 @@ $( document ).ready(function() {
                         var month = String(res.slice(5, 7));
                         var day = String(res.slice(8));
 
-                        trailMap(day, month, year, url, Number(latLong[0]), Number(latLong[1]), initial_zoom, Number(latLong[0]), Number(latLong[1]));
+                        trailMap(day, month, year, url, 
+                                 Number(latLong[0]), Number(latLong[1]), 
+                                 initial_zoom, Number(latLong[0]), Number(latLong[1]));
                         
-                        $("#date-notice-box").text(`Viewing most recently available data (from ${month}-${day}-${year})`); 
+                        $("#date-notice-box").text(`Viewing most recently` + 
+                                    `available data (from ${month}-${day}-${year})`); 
                     });
-
                 });
             } else {
                 alert("No trails found with that filtering criteria.");

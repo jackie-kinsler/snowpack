@@ -221,8 +221,10 @@ def callback():
 def latest_date():
     """Returns the latest date with usable information from NOAA"""
     
+    # start by trying today's date
     try_date = datetime.date(datetime.now())
     
+    # the function will iterate until it finds a date with information 
     date = find_usable_date(try_date)
 
     return jsonify(str(date))
@@ -231,15 +233,10 @@ def latest_date():
 @app.route("/logout")
 @login_required
 def logout():
+    """Logs user out of application."""
+
     logout_user()
     return redirect(url_for("homepage"))
-
-
-@app.route('/api/most-recent-data')
-def most_recent_date():
-    try_date = datetime.date(datetime.now())
-    return find_usable_date(try_date)
-    
 
 
 @app.route('/api/filtered-trails')
@@ -398,6 +395,9 @@ def load_user(user_id):
 
 
 def find_usable_date(try_date):
+    """Takes a datetime object. Returns a datetime object of the latest
+    date with usable data."""
+
     str_date = str(try_date).replace("-", "")
 
     url = f'https://www.nohrsc.noaa.gov/snow_model/GE/{str_date}/'
@@ -418,6 +418,8 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def send_email():
+    """Uses google server to send email to moderator."""
+
     # smtp = simple mail transfer protocol
     port = 465  # gmail requires port 465 for SSL 
     smtp_server = "smtp.gmail.com"  # outward facing server for gmail 
@@ -466,6 +468,7 @@ def send_email():
 
 def create_suggestion_from_user_inputs():
     """Parses the form from /add-a-trail"""
+
     name = request.form.get('name')
     desc = request.form.get('description')
     long = float(request.form.get('long'))
@@ -490,7 +493,6 @@ def create_suggestion_from_user_inputs():
     user = crud.get_user_by_id(user_id)
     file = request.files.get('file')
 
-
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         # gps is the name of the file path to the gps information
@@ -504,11 +506,9 @@ def create_suggestion_from_user_inputs():
     return 
 
 
-
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True, ssl_context = "adhoc")
-
 
 
 ##########################
