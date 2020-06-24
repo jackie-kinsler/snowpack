@@ -63,7 +63,6 @@ $( document ).ready(function() {
                 }
 
                 $('.favorite-button').on('click', () => {
-                    console.log('favorite-button clicked');
 
                     var trailId = $(event.target).attr("id");
                     
@@ -77,7 +76,6 @@ $( document ).ready(function() {
                 });
 
                 $('.display-button').on('click', () => {
-                    console.log('you clicked?');
 
                     var url = $(event.target).attr("id");
 

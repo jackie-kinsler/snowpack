@@ -12,7 +12,7 @@ $( document ).ready(function() {
         const month = date.slice(5,7);
         const day = date.slice(8);
 
-        $("#date-notice-box").text(`Viewing historical data from ${month}-${day}-${year}`)
+        $("#date-notice-box").text(`Viewing data from ${month}-${day}-${year}`)
 
         $.get('/map-details', (res) => {
             var center_lat = Number(res.center_lat);
@@ -23,8 +23,6 @@ $( document ).ready(function() {
         });
     });
 });
-
-
 
 
 

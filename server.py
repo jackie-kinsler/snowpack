@@ -202,7 +202,6 @@ def callback():
     # Create a user in your db with the information provided
     # by Google
     user = crud.get_user_by_email(users_email)
-    print("user", user)
     # user = User(
     #     id_=unique_id, name=users_name, email=users_email, profile_pic=picture
     # )
@@ -225,9 +224,8 @@ def latest_date():
     try_date = datetime.date(datetime.now())
     
     date = find_usable_date(try_date)
-    date = str(date)
-    print(date)
-    return jsonify(date)
+
+    return jsonify(str(date))
 
 
 @app.route("/logout")
@@ -487,8 +485,6 @@ def create_suggestion_from_user_inputs():
     difficulty = request.form.get('difficulty')
     location = request.form.get('location')
     url = request.form.get('url')
-    print("*****")
-    print(url)
     gps = ""
     user_id = session.get('user_id')
     user = crud.get_user_by_id(user_id)

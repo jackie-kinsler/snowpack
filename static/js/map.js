@@ -67,8 +67,6 @@ function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7, center
     var center_lat = map.getCenter().lat(); 
     var center_long = map.getCenter().lng();
     var zoom = map.getZoom(); 
-    console.log(zoom);
-    console.log(center_lat, center_long);
 
     formInputs = {
       'zoom' : zoom, 
@@ -170,8 +168,6 @@ function calendarMap(day, month, year, initial_zoom = 7, center_lat = 45.373, ce
     var center_lat = map.getCenter().lat(); 
     var center_long = map.getCenter().lng();
     var zoom = map.getZoom(); 
-    console.log(zoom);
-    console.log(center_lat, center_long);
 
     formInputs = {
       'zoom' : zoom, 
