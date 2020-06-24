@@ -69,52 +69,70 @@ function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7,
 
 
 function addSearchbox(map) {
+  // locates the id="search-box" element on DOM and turns it into a searchbox
+  // adding a searchbox requires the places library when calling googlemaps api  
+
   var input = document.getElementById("search-box");
   var searchBox = new google.maps.places.SearchBox(input);
 
+  // set the search box bounds to the map bounds so results will be biased 
+  // to the map's current viewpoint 
   map.addListener('bounds_changed', function() {
       searchBox.setBounds(map.getBounds());
   });
 
   var markers = [];
 
+  // places_changed is an event fired when a user selects an item from 
+  // the predictions attached to the searchbox 
   searchBox.addListener('places_changed', function() {
-      var places = searchBox.getPlaces();
+    // places is a list of PlaceResult objects
+    var places = searchBox.getPlaces();
 
-      if (places.length == 0) {
+    if (places.length == 0) {
+      return;
+    }
+
+    // forEach() calls a function once for each element in an arary 
+    // in this case, it removes any markers that were on the map by 
+    // setting the marker's map to null
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      // geometry contains information like lat/long of the place
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
         return;
       }
 
-      // Clear out the old markers.
-      markers.forEach(function(marker) {
-        marker.setMap(null);
-      });
-      markers = [];
+      // Create a marker for each place.
+      // place.geometry.location is lat/long for marker 
+      markers.push(new google.maps.Marker({
+        map: map,
+        title: place.name,
+        position: place.geometry.location
+      }));
 
-      // For each place, get the icon, name and location.
-      var bounds = new google.maps.LatLngBounds();
-      places.forEach(function(place) {
-        if (!place.geometry) {
-          console.log("Returned place contains no geometry");
-          return;
-        }
-
-        // Create a marker for each place.
-        markers.push(new google.maps.Marker({
-          map: map,
-          title: place.name,
-          position: place.geometry.location
-        }));
-
-        if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
-      });
-      map.fitBounds(bounds);
+      // place.geometry.viewport defined the preferred viewport on the map 
+      // when viewing that place 
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        // union will increase bounds to include existing bounds plus viewport 
+        bounds.union(place.geometry.viewport);
+      } else {
+        // will extend map bounds to include existing bounds and given point 
+        bounds.extend(place.geometry.location);
+      }
     });
+    // sets bounds so that viewport contains all markers (or is centered on a 
+    // single marker in the case that only one place returned)
+    map.fitBounds(bounds);
+  });
 }
 
 
@@ -124,9 +142,7 @@ function addSnowOverlay(day, month, year, map) {
   var overlayOpts = {
       opacity : 0.5
   };
-  // if img for today doesn't exist
-  // check yesterday for image
-  // if yesterday exists 
+
   for (var [img_key, coords] of Object.entries(img_coord)) {
       
       var imageBounds = {
@@ -149,8 +165,8 @@ function addSnowOverlay(day, month, year, map) {
 
 
 function listenForMovement(map) {
-  // when a user stops moving the map, the map details will be collected so
-  // they can be used to re-render the map in the same condition at a later time 
+  // when a user stops moving the map, the map details will be collected 
+  // details used to re-render the map in the same condition at a later time 
   map.addListener('idle', function() {
     var center_lat = map.getCenter().lat(); 
     var center_long = map.getCenter().lng();
