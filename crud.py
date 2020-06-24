@@ -68,8 +68,8 @@ def create_suggested_trail(name, desc, lat, long, gps, length, ascent, descent,
                  difficulty, location, url, user):
     """Create and return a new suggested trail."""
 
-    suggestion = Suggestion(name = name, desc = desc, long = long, lat = lat, gps = gps, 
-                  length = length, ascent = ascent, descent = descent, 
+    suggestion = Suggestion(name = name, desc = desc, long = long, lat = lat, 
+                  gps = gps, length = length, ascent = ascent, descent = descent, 
                   difficulty = difficulty, location = location, 
                   url = url, user = user)
 

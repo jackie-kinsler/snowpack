@@ -95,8 +95,7 @@ class Favorite(db.Model):
     user = db.relationship('User', backref = 'favorites')
 
     def __repr__(self):
-        return f'<Favorite favorite_id={self.favorite_id} id={self.id}' +
-                    f'trail_id={self.trail_id}>'
+        return f'<Favorite favorite_id={self.favorite_id} id={self.id} trail_id={self.trail_id}>'
 
 
 # _________
