@@ -84,15 +84,19 @@ $( document ).ready(function() {
                     // this gets the latLong of the trailhead, then splits it
                     // into an array of the format latLong = [latitude, longitude]
                     var latLong = $(event.target).attr("title").split(":");
-
-                    var today = new Date();
-                    var day = String(today.getDate()).padStart(2, '0');
-                    var month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                    var year = today.getFullYear();
                     
                     var initial_zoom = 10;
 
-                    trailMap(day, month, year, url, Number(latLong[0]), Number(latLong[1]), initial_zoom, Number(latLong[0]), Number(latLong[1]));
+                    $.get('/api/latest-date', (res) => {
+                        // response is a string of format yyyy-mm-dd
+                        var year = String(res.slice(0, 4));
+                        var month = String(res.slice(5, 7));
+                        var day = String(res.slice(8));
+
+                        trailMap(day, month, year, url, Number(latLong[0]), Number(latLong[1]), initial_zoom, Number(latLong[0]), Number(latLong[1]));
+                        
+                        $("#date-notice-box").text(`Viewing most recently available data (from ${month}-${day}-${year})`); 
+                    });
 
                 });
             } else {

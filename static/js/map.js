@@ -15,7 +15,6 @@ function initMap() {
 
       $("#date-notice-box").text(`Viewing most recently available data (from ${month}-${day}-${year})`); 
 
-      
     });
 }
 
