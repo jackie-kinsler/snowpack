@@ -4,21 +4,42 @@
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
-}
-/* .container {
-  height: 100vh;
-} */
+  background-image: linear-gradient(to top, rgba(233, 228, 240, 0.2), rgba(212, 206, 228, 0.274)), url(/static/images/millard_hood.jpg);
+  background-size: cover;
 
- #map {
+}
+.rounded-input {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 30px;
+}
+.container {
+  margin-top: 8px;
+  
+}
+li {
+  list-style-type: none;
+}
+
+/* MAP */
+#map {
   height: 500px;
   width: 100%;
   border-radius: 25px;
 }
 
+/* FLASH MESSAGES */
 .flash-msg{
   background-color: red;
 }
 
-li {
-  list-style-type: none;
+#search-box {
+    border: 2px solid rgb(0,55,110);
+    border-radius: 4px;
+}
+
+#depth-key {
+  position: absolute;
+  bottom: 0px;
+  z-index: 1;
 }

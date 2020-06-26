@@ -139,6 +139,10 @@ def edit_suggestion(suggestion_id):
 
     return render_template('edit_suggestion.html', suggestion = suggestion)
 
+@app.route('/about')
+def about():
+
+    return render_template('about.html')
 
 ##########################
 # API ROUTES 

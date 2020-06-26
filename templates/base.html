@@ -45,9 +45,9 @@
     </p>
     {% endfor %}
 
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark shadow-sm">
       <a class="navbar-brand" href="/">
-        <img src="/static/images/logo.svg" width="auto" height="30" alt="">
+        <img src="/static/images/logo_light.svg" width="auto" height="30" alt="">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,13 +63,17 @@
               <a class="nav-item nav-link" href="/moderator" id="moderator-link">Moderators Only!</a>
             {% endif %}
           {% endif %}
+            <a class="nav-item nav-link" href="/about">About</a>
+
           {% if current_user.is_authenticated %}
-            <p>Youre logged in as {{ current_user.email }}</p>
+            <p class="nav-item nav-link">{{ current_user.email }}</p>
             <a href="/logout">
               <button class="btn">Log Out</button>
             </a>
           {% else %}
-            <a href="/login"><button>Log In</button></a>
+            <a href="/login">
+              <button class="btn">Log In</button>
+            </a>
           {% endif %}
         </div>
       </div>
