@@ -80,9 +80,12 @@ app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
 @app.route('/')
 def homepage():
     """Render root of website"""
+
+    try_date = datetime.date(datetime.now())
+
+    latest_date = find_usable_date(try_date)
     
-    return render_template('homepage.html', 
-                                today = datetime.date(datetime.now()))
+    return render_template('homepage.html', latest_date = latest_date)
     
     
 @app.route('/trails')
@@ -230,7 +233,7 @@ def latest_date():
     
     # the function will iterate until it finds a date with information 
     date = find_usable_date(try_date)
-
+    
     return jsonify(str(date))
 
 
