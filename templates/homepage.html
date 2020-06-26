@@ -14,19 +14,17 @@
 
 {% block body %}
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <img id="magnifying-glass" src="/static/images/search.svg"><input id="search-box" class="search-box" type="text" placeholder="Explore...">
-    </div>
-    <div class="col-md-6">
-      
+  <div class="row search-row">
+    <div class="col-md-6 offset-md-3">
+      <img id="magnifying-glass" src="/static/images/search.svg">
+      <input id="search-box" class="search-box" type="text" placeholder="Explore...">
     </div>
   </div>
   <div class="row">
     <div class="col-md-3">
       <form id="date-form">
         <div>
-          <label for="date">Historical data:</label>
+          <!-- <label for="date">Historical data:</label> -->
           <input type="date" id="calendar" min="2012-03-01" max={{latest_date}} required pattern="\d{4}-\d{2}-\d{2}" value={{latest_date}}>
           <input type="submit" value="Go!">
         </div>

@@ -16,7 +16,7 @@
     
     <script src="/static/js/homepage.js"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS from getbootstrap.com -->
     <link rel="stylesheet" 
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
@@ -68,11 +68,11 @@
           {% if current_user.is_authenticated %}
             <p class="nav-item nav-link">{{ current_user.email }}</p>
             <a href="/logout">
-              <button class="btn">Log Out</button>
+              <button class="btn credential-button">Log Out</button>
             </a>
           {% else %}
             <a href="/login">
-              <button class="btn">Log In</button>
+              <button class="btn credential-button">Log In</button>
             </a>
           {% endif %}
         </div>
