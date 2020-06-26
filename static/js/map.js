@@ -12,8 +12,6 @@ function initMap() {
       
       calendarMap(day, month, year);
 
-      $("#date-notice-box").text(`(data from ${month}-${day}-${year})`); 
-
     });
 }
 

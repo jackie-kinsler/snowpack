@@ -98,8 +98,6 @@ $( document ).ready(function() {
                                  Number(latLong[0]), Number(latLong[1]), 
                                  initial_zoom, Number(latLong[0]), Number(latLong[1]));
                         
-                        $("#date-notice-box").text(`(data from ` + 
-                                    `${month}-${day}-${year})`); 
                     });
                 });
             } else {
