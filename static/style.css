@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
-  background-image: linear-gradient(to top,rgba(197, 213, 255, 0.5), rgba(241, 241, 241, 0.966)), url(/static/images/shuksan.jpg);
+  background-image: linear-gradient(to top,rgba(235, 240, 253, 0.5), rgba(241, 241, 241, 0.966)), url(/static/images/shuksan.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -95,4 +95,40 @@ tr:hover {
 
 .input-with-unit {
   padding-left: 0px;
+}
+
+.form-control-file{
+  padding-left: 0px;
+}
+
+input[type=submit] {
+	background-color:#575366;
+	border-radius:10px;
+	border:2px solid #32292f;
+	display:inline-block;
+	cursor:pointer;
+	color:#e2e2e2;
+	font-family:Arial;
+	font-size:17px;
+	padding:5px 20px;
+  text-decoration:none;
+  margin-bottom: 100px;
+  margin-left: 30px;
+}
+input[type=submit]:hover {
+  background-color:#6e7dab;
+  
+}
+input[type=submit]:active {
+	position:relative;
+	top:1px;
+}
+
+.form-group {
+  margin-bottom: 4px;
+}
+
+.form-control {
+  margin-left: 5px;
+  margin-right: 5px;
 }

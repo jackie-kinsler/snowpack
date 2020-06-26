@@ -9,33 +9,33 @@
 
 {% block body %}
 <div class="container">
-    <h3>Add a Trail!</h3>
+    <h3>Add a trail:</h3>
 
     {% if session.get('user_id') %}
 
         <form method=post action="/add-a-trail" enctype=multipart/form-data>
             <div class="form-group row" >
                 <label class="col-sm-2">Trail name: </label>
-                <input type="text" class="form-control col-sm-6" name="name" 
+                <input type="text" class="form-control col-sm-5" name="name" 
                     placeholder="required" required>
             </div class="form-group row">
             <div class="form-group row">
                 <label class="col-sm-2">Trail description: </label>
-                <input type="text" class="form-control col-sm-6" name="description">
+                <input type="text" class="form-control col-sm-5" name="description">
             </div>
             <div class="form-group row">
                 <label class="col-sm-2">Trail latitude: </label>
-                <input type="number" name="lat" step="any" class="form-control col-sm-6"
+                <input type="number" name="lat" step="any" class="form-control col-sm-5"
                        placeholder="required" required>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2">Trailhead longitude: </label>
-                <input type="number" name="long" step="any" class="form-control col-sm-6"
+                <input type="number" name="long" step="any" class="form-control col-sm-5"
                        placeholder="required" required>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2">Length (mi/km):</label>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="row">
                         <div class="col-auto input-with-unit">
                             <input type="number" step="any" min="0" name="length" 
@@ -52,7 +52,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-2">Ascent (ft/m): </label>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="row">
                         <div class="col-auto input-with-unit">
                             <input type="number" step="any" min="0" class="form-control"
@@ -69,7 +69,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-2">Descent (ft/m): </label>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="row">
                         <div class="col-auto input-with-unit">
                             <input type="number" step="any" min="0" class="form-control
@@ -86,28 +86,28 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-2">Difficulty: </label>
-                <select name="difficulty" class="col-sm-6 form-control" id="difficulty">
+                <select name="difficulty" class="col-sm-5 form-control" id="difficulty">
                     <option value="easy">Easy</option>
                     <option value="moderate">Moderate</option>
                     <option value="hard">Hard</option>
                 </select>
             </div>
             <div class="form-group row">
-                Nearest Town: <input type="text" 
-                                    name="location" 
-                                    placeholder="(City, State)">
+                <label class="col-sm-2">Nearest Town: </label>
+                <input type="text" name="location" class="col-sm-5 form-control"
+                       placeholder="(City, State)">
             </div>
             <div class="form-group row">
-                Want to add a link to an existing trail data page? 
-                <input type="url" name="url" placeholder="Trail description site">
+                <label class="col-sm-2">Link to a trail page: </label>
+                <input type="url" name="url" class="col-sm-5 form-control"
+                       placeholder="Trail description site">
             </div>
             <div class="form-group row">
-                Upload GPS file (.kml or GeoJSON) 
-                <input type=file 
-                    name=file 
-                    accept=".kml,.json,.geojson,application/json,.js">
+                <label class="col-sm-2">Upload GPS file (.kml or GeoJSON): </label>
+                <input type="file"" class="col-sm-5 form-control-file"
+                    name="file" accept=".kml,.json,.geojson,application/json,.js">
             </div>
-            <input type=submit>
+            <input id="submit-button" type="submit">
         </form>
     {% else %}
         <p>Log-in to add a trail!</p>
