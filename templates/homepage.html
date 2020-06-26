@@ -10,20 +10,31 @@
     </script>
 {% endblock %}
 
-{% block title %}FlakeMap{% endblock %}
+{% block title %}SNOW PACK{% endblock %}
 
 {% block body %}
-
-<form id="date-form">
-  <label for="date">Select a date to view historical snow information:</label>
-  <input type="date" id="calendar" min="2012-03-01" max={{today}} required pattern="\d{4}-\d{2}-\d{2}">
-  <input type="submit">
-</form>
-
-<div id="date-notice-box"></div>
-<img src="/static/images/depth_key.png">
-<input id="search-box" class="search-box" type="text" placeholder="Search Box">
-<div id="map"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      Go anywhere: <input id="search-box" class="search-box" type="text" placeholder="Search">
+      <form id="date-form">
+        <label for="date">Historical snow:</label>
+        <div>
+          <input type="date" id="calendar" min="2012-03-01" max={{today}} required pattern="\d{4}-\d{2}-\d{2}">
+          <input type="submit" value="Go!">
+        </div>
+        
+      </form>
+      <div id="date-notice-box"></div>
+    </div>
+    <div class="col-md-9">
+      <img src="/static/images/depth_key.png" 
+          class="img-fluid" 
+          alt="Snow depth key responsive image">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}

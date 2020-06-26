@@ -5,12 +5,12 @@
 
 {% endblock %}
 
-{% block title %}FlakeMap - Add a Trail{% endblock %}
+{% block title %}SNOW PACK - Add a Trail{% endblock %}
 
 {% block body %}
+<h3>Add a Trail!</h3>
 
 {% if session.get('user_id') %}
-    <h3>Add a trail:</h3>
 
     <form method=post action="/add-a-trail" enctype=multipart/form-data>
         <div>

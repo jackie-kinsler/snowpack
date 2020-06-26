@@ -12,15 +12,14 @@ function initMap() {
       
       calendarMap(day, month, year);
 
-      $("#date-notice-box").text(`Viewing most recently available data 
-      (from ${month}-${day}-${year})`); 
+      $("#date-notice-box").text(`(data from ${month}-${day}-${year})`); 
 
     });
 }
 
 
-function calendarMap(day, month, year, initial_zoom = 7, 
-                     center_lat = 45.373, center_long = -121.686) {
+function calendarMap(day, month, year, initial_zoom = 5, 
+                     center_lat = 39.50, center_long = -121.686) {
   
   var map = new google.maps.Map(document.getElementById('map'), {
       zoom: initial_zoom,
@@ -38,7 +37,7 @@ function calendarMap(day, month, year, initial_zoom = 7,
 }
 
 
-function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 7, 
+function trailMap(day, month, year, url, thLat, thLong, initial_zoom = 5, 
                   center_lat = 45.373, center_long = -121.686) {
     
   var map = new google.maps.Map(document.getElementById('map'), {

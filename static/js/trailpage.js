@@ -48,8 +48,8 @@ $( document ).ready(function() {
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
                                 <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
-                                <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
-                                <td><button id=${trail['trail_gps']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display GPS on map</button></td>
+                                <td><button id=${trail['trail_id']} class="favorite-button">Add to favorites</button></td>
+                                <td><button id=${trail['trail_gps']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">View GPS</button></td>
                             </tr>`
                         );
                     } else {
@@ -58,8 +58,8 @@ $( document ).ready(function() {
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
                                 <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
-                                <td><button id=${trail['trail_id']} class="favorite-button">Add Trail to Favorites</button></td>
-                                <td><button class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">Display trailhead on map</button></td>
+                                <td><button id=${trail['trail_id']} class="favorite-button">Add to favorites</button></td>
+                                <td><button class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">View trailhead</button></td>
                             </tr>`
                         );
                     }
@@ -98,8 +98,8 @@ $( document ).ready(function() {
                                  Number(latLong[0]), Number(latLong[1]), 
                                  initial_zoom, Number(latLong[0]), Number(latLong[1]));
                         
-                        $("#date-notice-box").text(`Viewing most recently` + 
-                                    `available data (from ${month}-${day}-${year})`); 
+                        $("#date-notice-box").text(`(data from ` + 
+                                    `${month}-${day}-${year})`); 
                     });
                 });
             } else {

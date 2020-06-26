@@ -442,7 +442,7 @@ def send_email():
         
     text = """\
     There is a new suggestion!
-    Log into flakemap.com/moderator to handle the suggestion."""
+    Log into snowpackmap.com/moderator to handle the suggestion."""
 
     part1 = MIMEText(text, "plain")
 
