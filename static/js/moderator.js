@@ -19,7 +19,7 @@ $( document ).ready(function() {
 
         $.post('/moderator/delete-suggestion', formInputs);
 
-        location.reload(true);
+        setTimeout(() => {  location.reload(true); }, 300);
     });
 
     $(".delete-button").on('click', (evt) => {

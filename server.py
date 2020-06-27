@@ -362,7 +362,7 @@ def add_edited_suggestion():
     suggestion_id = request.form.get('suggestion-id')
     crud.delete_suggestion_by_id(suggestion_id)
 
-    flash("Trail has been added and suggestion has been deleted.")
+    flash("Trail has been added and the suggestion has been deleted.")
     return redirect('/moderator')
 
 @app.route('/map-details', methods = ['GET','POST'])

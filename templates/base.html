@@ -39,13 +39,9 @@
   </head>
   <body>
     
-    {% for msg in get_flashed_messages() %}
-    <p class="flash-msg">
-      {{ msg }}
-    </p>
-    {% endfor %}
-
-    <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark shadow-sm">
+    
+<!-- READD sticky-top CLASS TO NAVBAR!!!!! -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <a class="navbar-brand" href="/">
         <img src="/static/images/logo_light.svg" width="auto" height="30" alt="">
       </a>
@@ -66,7 +62,7 @@
             <a class="nav-item nav-link" href="/about">About</a>
 
           {% if current_user.is_authenticated %}
-            <p class="nav-item nav-link">{{ current_user.email }}</p>
+            <p class="nav-item nav-link disabled">{{ current_user.email }}</p>
             <a href="/logout">
               <button class="btn credential-button">Log Out</button>
             </a>
@@ -78,6 +74,12 @@
         </div>
       </div>
   </nav>
+  {% for msg in get_flashed_messages() %}
+    <p class="flash-msg alert">
+      {{ msg }}
+    </p>
+  {% endfor %}
+
     {% block body %}{% endblock %}
     {% block after_body %}{% endblock %}
   </body>

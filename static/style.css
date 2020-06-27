@@ -31,11 +31,6 @@ li {
   border-radius: 25px;
 }
 
-/* FLASH MESSAGES */
-.flash-msg{
-  background-color: red;
-}
-
 #search-box {
   border: 1px solid rgb(46, 46, 51);
   border-radius: 4px;
@@ -96,7 +91,7 @@ tr:hover {
 }
 
 .submit {
-	background-color:#575366;
+	background-color:rgb(122, 122, 124);
 	border-radius:10px;
 	border:2px solid #32292f;
 	display:inline-block;
@@ -129,16 +124,32 @@ tr:hover {
 
 .delete-button:hover {
   background-color: rgba(199, 81, 81, 0.8);
+  color:rgb(242, 244, 217);
 }
 
 .add-to-trail-db-button:hover {
   background-color: rgba(65, 116, 65, 0.8);
+  color:rgb(242, 244, 217);
 }
 
 .edit-button:hover {
   background-color: rgba(110, 125, 171, 0.8);
+  color:rgb(242, 244, 217);
 }
 
 .mod-action{
   width: 10px;
+}
+
+.limit-height {
+  max-height: 700px;
+}
+
+.credential-button{
+  background-color: rgb(242, 244, 217);
+}
+
+/* FLASH MESSAGES */
+.flash-msg{
+  background-color: rgba(110, 125, 171, 0.507);
 }

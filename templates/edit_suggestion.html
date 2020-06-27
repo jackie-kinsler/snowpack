@@ -9,66 +9,66 @@
 {% block title %}SNOW PACK - Edit Suggestion{% endblock %}
 
 {% block body %}
+<div class="container">
+    <h3>Edit Suggestion:</h3>
 
-<h3>Edit Suggestion:</h3>
-
-<form method=post action="/moderator/add-edited-suggestion" enctype=multipart/form-data>
-    <div>
-        Suggestion ID: {{ suggestion.suggestion_id }}
-        <input type="hidden" name="suggestion-id" value="{{ suggestion.suggestion_id }}">
-    </div>
-    <div>
-        Trail name: 
-        <input type=text name="name" value="{{ suggestion.name }}">
-    </div>
-    <div>
-        Trail description: 
-        <input type="text" name="description" value="{{ suggestion.desc }}">
-    </div>
-    <div>
-        Trailhead latitude: 
-        <input type="number" name="lat" step="any" value="{{ suggestion.lat }}">
-    </div>
-    <div>
-        Trailhead longitude: 
-        <input type="number" name="long" step="any" value="{{ suggestion.long }}">
-    </div>
-    
-    <div>
-        Length (MILES): 
-        <input type="number" step="any" min="0" name="length" value="{{ suggestion.length }}">
-    </div>
-    <div>
-        Ascent (FEET): 
-        <input type="number" step="any" min="0" name="ascent" value="{{ suggestion.ascent }}">
-    </div>
-    <div>
-        Descent (FEET): 
-        <input type="number" step="any" min="0" name="descent" value="{{ suggestion.descent }}">
-    </div>
-    <div>
-        Difficulty: 
-        <select name="difficulty" id="difficulty" value="{{ suggestion.difficulty }}">
-            <option value="easy">Easy</option>
-            <option value="moderate">Moderate</option>
-            <option value="hard">Hard</option>
-        </select>
-    </div>
-    <div>
-        Nearest Town: 
-        <input type="text" name="location" value="{{ suggestion.location }}">
-    </div>
-    <div>
-        Want to add a link to an existing trail data page? 
-        <input type="url" name="url" value="{{ suggestion.url }}">
-    </div>
-    <div>
-        GPS File Path: 
-        <input type="text" name="gps" value="{{ suggestion.gps }}">
-    </div>
-    <input type=submit>
-</form>
-   
-
-
+    <form method=post action="/moderator/add-edited-suggestion" enctype=multipart/form-data>
+        <div class="form-group row">
+            <label class="col-sm-2">Suggestion ID: {{ suggestion.suggestion_id }}</label>
+            <input type="hidden" class="form-control col-sm-5" name="suggestion-id" 
+                   value="{{ suggestion.suggestion_id }}">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Trail name: </label>
+            <input type=text class="form-control col-sm-5"
+                   name="name" value="{{ suggestion.name }}">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Trail description: </label>
+            <input type="text" name="description" value="{{ suggestion.desc }}" class="form-control col-sm-5">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Trail latitude: </label>
+            <input type="number" name="lat" step="any" value="{{ suggestion.lat }}"class="form-control col-sm-5" >
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Trailhead longitude: </label>
+            <input type="number" name="long" step="any" value="{{ suggestion.long }}" class="form-control col-sm-5">
+        </div>
+        
+        <div class="form-group row">
+            <label class="col-sm-2">Length (MILES): </label>
+            <input type="number" step="any" min="0" name="length" value="{{ suggestion.length }}" class="form-control col-sm-5">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Ascent (FEET):</label>
+            <input type="number" step="any" min="0" name="ascent" value="{{ suggestion.ascent }}" class="form-control col-sm-5">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Descent (FEET):</label>
+            <input type="number" step="any" min="0" name="descent" value="{{ suggestion.descent }}" class="form-control col-sm-5">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Difficulty: </label>
+            <select name="difficulty" id="difficulty" value="{{ suggestion.difficulty }}" class="form-control col-sm-5">
+                <option value="easy">Easy</option>
+                <option value="moderate">Moderate</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Nearest Town: </label>
+            <input type="text" name="location" value="{{ suggestion.location }}" class="form-control col-sm-5">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">Trail page link: </label>
+            <input type="url" name="url" value="{{ suggestion.url }}" class="form-control col-sm-5">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2">GPS File Path: </label>
+            <input type="text" name="gps" value="{{ suggestion.gps }}" class="form-control col-sm-5">
+        </div>
+        <input class="submit" type=submit>
+    </form>
+</div>
 {% endblock %}

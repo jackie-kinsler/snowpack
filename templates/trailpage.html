@@ -14,29 +14,33 @@
 {% block title %}SNOW PACK - Trails{% endblock %}
 
 {% block body %}
-
-<img src="/static/images/depth_key.png" 
-     class="img-fluid" 
-     alt="Snow depth key responsive image">
-<div>
-    <input id="search-box" class="search-box" type="text" placeholder="Search Box">
-</div>
-<div id="map"></div>
-
-<form id="distance-form">
-    Name: <input type="text" name="trail-name" id="trail-name" ></input>
-    Min length: <input name="min-dist" id="min-dist" type="number" step="any">
-    Max length: <input name="max-dist" id="max-dist" type="number" step="any">
-
-    <input type="submit">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img id="depth-key" src="/static/images/depth_key.svg" 
+                 class="img-fluid" alt="Snow depth key responsive image"> 
+            <div>
+                <input id="search-box" class="search-box" type="text" placeholder="Search Box">
+            </div>
+            <div class="limit-height" id="map"></div>
+        </div>
+        <div class="col-md-6">
+            <form id="distance-form">
+                Name: <input type="text" name="trail-name" id="trail-name" ></input>
+                Min length: <input name="min-dist" id="min-dist" type="number" step="any">
+                Max length: <input name="max-dist" id="max-dist" type="number" step="any">
     
-</form>
-<div>
-    <ul id="filtered-trails">Use filters (above) to populate trail list.</ul>
-    
-    <table id="trail-table">
-
-    </table>
+                <input type="submit">
+                
+            </form>
+            <div>
+                <ul id="filtered-trails">Use filters (above) to populate trail list.</ul>
+                <table class="table" id="trail-table">
+                </table>
+            </div>
+        </div>
+        
+    </div>
 </div>
 {% endblock %}
 

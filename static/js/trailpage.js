@@ -34,7 +34,7 @@ $( document ).ready(function() {
                         <th>Length</th>
                         <th>Location</th>
                         <th>Favorite Trail</th>
-                        <th>Show On Map (only available for certain trails)</th>
+                        <th>View on Map</th>
                     </tr>`
                 );
                 // for each trail that matches the filtering criterion, 
