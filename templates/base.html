@@ -57,10 +57,10 @@
             <a class="nav-item nav-link" href="/">Home</a>
             <a class="nav-item nav-link" href="/trails">Trails</a>
             <a class="nav-item nav-link" href="/favorite-trails">Favorites</a>
-            <a class="nav-item nav-link" href="/add-a-trail">Add a Trail!</a>
+            <a class="nav-item nav-link" href="/add-a-trail">Add a Trail</a>
           {% if current_user.is_authenticated %}
             {% if current_user.moderator %}
-              <a class="nav-item nav-link" href="/moderator" id="moderator-link">Moderators Only!</a>
+              <a class="nav-item nav-link" href="/moderator" id="moderator-link">Moderators</a>
             {% endif %}
           {% endif %}
             <a class="nav-item nav-link" href="/about">About</a>

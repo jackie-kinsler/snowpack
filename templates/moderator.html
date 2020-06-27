@@ -10,59 +10,61 @@
 
 {% block body %}
 
-<h3>Moderator Page</h3>
+<div class="container">
 
-<div>
-    <ul id="all-suggestions">All user suggested trails:</ul>
-    
-    <table id="trail-table">
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th>Length (mi)</th>
-            <th>Ascent (ft)</th>
-            <th>Descent (ft)</th>
-            <th>Difficulty</th>
-            <th>Location</th>
-            <th>Link</th>
-            <th>GPS Data</th>
-            <th>User</th>
-            <th>ACTION</th>
-        </tr>
-        {% for suggestion in suggestions %}
-        <tr>
-            <td>{{ suggestion.name }}</td>
-            <td>{{ suggestion.desc }}</td>
-            <td>{{ suggestion.lat }}</td>
-            <td>{{ suggestion.long }}</td>
-            <td>{{ suggestion.length }}</td>
-            <td>{{ suggestion.ascent }}</td>
-            <td>{{ suggestion.descent }}</td>
-            <td>{{ suggestion.difficulty }}</td>
-            <td>{{ suggestion.location }}</td>
-            {% if suggestion.url == '' %}
-                <td></td>
-            {% else %}
-            <td>
-                <a href="{{ suggestion.url }}">{{ suggestion.url }}</a>
-            </td>
-            {% endif %}
-            <td>{{ suggestion.gps }}</td>
-            <td>{{ suggestion.user.email }}</td>
-            <td>
-                <button class="add-to-trail-db-button" id="{{ suggestion.suggestion_id }}">ADD</button>
-                <form action="/moderator/{{ suggestion.suggestion_id }}">
-                    <button class="edit-button" id="{{ suggestion.suggestion_id }}">EDIT</button>
-                </form>
-                <button class="delete-button" id="{{ suggestion.suggestion_id }}">DELETE</button>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
+    <h3>Moderator Page</h3>
+
+    <div>
+        <ul id="all-suggestions">All user suggested trails:</ul>
+        
+        <table class="table moderator" id="trail-table">
+            <tr>
+                <th>Name</th>
+                <th>Desc.</th>
+                <!-- <th>Latitude</th> -->
+                <!-- <th>Longitude</th> -->
+                <th>Length [mi]</th>
+                <th>Ascent [ft]</th>
+                <!-- <th>Descent (ft)</th> -->
+                <!-- <th>Difficulty</th> -->
+                <th>Location</th>
+                <th>Link</th>
+                <!-- <th>GPS Data</th> -->
+                <th>User</th>
+                <th class="mod-action">ACTION</th>
+            </tr>
+            {% for suggestion in suggestions %}
+            <tr class='tr-mod'>
+                <td>{{ suggestion.name }}</td>
+                <td>{{ suggestion.desc }}</td>
+                <!-- <td>{{ suggestion.lat }}</td> -->
+                <!-- <td>{{ suggestion.long }}</td> -->
+                <td>{{ suggestion.length }}</td>
+                <td>{{ suggestion.ascent }}</td>
+                <!-- <td>{{ suggestion.descent }}</td> -->
+                <!-- <td>{{ suggestion.difficulty }}</td> -->
+                <td>{{ suggestion.location }}</td>
+                {% if suggestion.url == '' %}
+                    <td></td>
+                {% else %}
+                <td>
+                    <a href="{{ suggestion.url }}">{{ suggestion.url }}</a>
+                </td>
+                {% endif %}
+                <!-- <td>{{ suggestion.gps }}</td> -->
+                <td>{{ suggestion.user.email }}</td>
+                <td class="mod-action">
+                    <button class="btn add-to-trail-db-button" id="{{ suggestion.suggestion_id }}">ADD</button>
+                    <form action="/moderator/{{ suggestion.suggestion_id }}">
+                        <button class="btn edit-button" id="{{ suggestion.suggestion_id }}">EDIT</button>
+                    </form>
+                    <button class="btn delete-button" id="{{ suggestion.suggestion_id }}">DELETE</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
-<p>END</p>
 
 
 {% endblock %}
