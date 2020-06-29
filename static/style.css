@@ -152,7 +152,7 @@ tr:hover {
   background-color: rgba(110, 125, 171, 0.507);
 }
 
-.search-column{
+.search-col{
   padding: 20px;
   border: 1px solid white;
   border-radius: 10px;
@@ -171,6 +171,7 @@ tr:hover {
 .date-row{
   text-align: center;
   margin-top: 10px;
+  padding: 10px;
 }
 
 #depth-key {
@@ -178,6 +179,10 @@ tr:hover {
   height: 350px;
   position: relative;
   z-index: 1;
-  left: 535px;
-  bottom: 550px;
+  left: 46%;
+  bottom: 600px;
+}
+
+.map-col{
+
 }
