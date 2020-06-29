@@ -14,14 +14,21 @@
 
 {% block body %}
 <div class="container">
-  <div class="row search-row">
-    <div class="col-md-6 offset-md-3">
-      <img id="magnifying-glass" src="/static/images/search.svg">
-      <input id="search-box" class="search-box" type="text" placeholder="Explore...">
+  <div class="row">
+    <div class="col header-col">
+      <div>
+        Explore current and historical snow depth
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-6 offset-md-3 search-column">
+      <img id="magnifying-glass" src="/static/images/search.svg">
+      <input id="search-box" class="search-box" type="text" placeholder="Search cities, trails, etc. to see snow data... ">
+    </div>
+  </div>
+  <div class="row date-row">
+    <div class="col">
       <form id="date-form">
         <div>
           <!-- <label for="date">Historical data:</label> -->
@@ -30,14 +37,12 @@
         </div>
       </form>
     </div>
-    <div class="col-md-9">
-      <img id="depth-key" src="/static/images/depth_key.svg" 
-      class="img-fluid" 
-      alt="Snow depth key responsive image">
-    </div>
   </div>
   <div class="row" id="map-row">
     <div id="map"></div>
+    <img id="depth-key" src="/static/images/vert_key.svg" 
+      class="img-fluid" 
+      alt="Snow depth key responsive image">
   </div>
 </div>
 
