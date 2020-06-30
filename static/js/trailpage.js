@@ -25,8 +25,7 @@ $( document ).ready(function() {
         $.get('/api/filtered-trails', formInputs, (res) => {
 
             if (res.length) {
-                $("#filtered-trails").empty();
-                $("#filtered-trails").text("Trails filtered by distance:");
+                $("#filtered-trails").remove();
                 $("#trail-table").empty();
                 $("#trail-table").append(`
                     <tr>

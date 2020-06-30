@@ -4,10 +4,10 @@
     <script src="/static/js/img_coord.js"></script>
     <script src="/static/js/map.js"></script>
     <!-- API KEY IS RESTRICED -->
-    <!-- <script 
+    <script 
         async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3so1-1VBMOPQRvXX6joKPeYN-3FmoedQ&libraries=places&callback=initMap">
-    </script> -->
+    </script>
 
 {% endblock %}
 
@@ -33,7 +33,7 @@
                 <input type="submit" class="submit" id="trail-filter-subimt" value="Go!">
                 
             </form>
-            <div>
+            <div id="trail-results">
                 <ul id="filtered-trails">Use filters (above) to populate trail list.</ul>
                 <table class="table" id="trail-table">
                 </table>

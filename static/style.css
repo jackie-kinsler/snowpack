@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Quicksand', sans-serif;
-  background-image: linear-gradient(to top,rgba(235, 240, 253, 0.5), rgba(241, 241, 241, 0.966)), url(/static/images/shuksan.jpg);
+  background-image: linear-gradient(to top,rgba(255, 255, 255, 0.808), rgba(255, 255, 255, 0.945)), url(/static/images/shuksan.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -252,4 +252,13 @@ h3 {
 
 .display-button:hover {
   transform: scale(1.2);
+}
+
+#trail-table{
+  margin-top: 10px;
+}
+
+#trail-results {
+  height: 695px;
+  overflow: auto;
 }
