@@ -32,9 +32,9 @@ $( document ).ready(function() {
                     <tr>
                         <th>Trail Name</th>
                         <th>Length</th>
-                        <th>Location</th>
-                        <th>Favorite Trail</th>
-                        <th>View on Map</th>
+                        <th>Directions</th>
+                        <th>Favorite</th>
+                        <th>View</th>
                     </tr>`
                 );
                 // for each trail that matches the filtering criterion, 
