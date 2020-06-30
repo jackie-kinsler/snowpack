@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-15.442 35.326 676.745 27.75" xmlns="http://www.w3.org/2000/svg">
+  <rect stroke="#dfdedc" id="svg_13" height="25.124994" width="55" y="35" x="7.515625" stroke-width="1.5" fill="#dfdedc" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#dffcfb" id="svg_22" height="25.187492" width="55" y="35" x="64.123235" stroke-width="1.5" fill="#dffcfb" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#97fcfc" id="svg_23" height="25.187492" width="55" y="35" x="120.705534" stroke-width="1.5" fill="#97fcfc" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#90dbfb" id="svg_26" height="25.124994" width="55" y="35" x="177.239732" stroke-width="1.5" fill="#90dbfb" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#6991fa" id="svg_27" height="25.187492" width="55" y="35" x="233.90003" stroke-width="1.5" fill="#6991fa" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#6e49f3" id="svg_28" height="25.249991" width="55" y="35" x="346.8957" stroke-width="1.5" fill="#6e49f3" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#8400f2" id="svg_29" height="25.205354" width="55" y="35" x="290.397867" stroke-width="1.5" fill="#8400f2" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#ae00db" id="svg_30" height="25.268412" width="55" y="35" x="403.226892" stroke-width="1.5" fill="#ae00db" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#e000c7" id="svg_31" height="25.377558" width="55" y="35" x="459.724726" stroke-width="1.5" fill="#e000c7" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#b03864" id="svg_32" height="25.418842" width="55" y="35" x="572.697606" stroke-width="1.5" fill="#b03864" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#99584e" id="svg_33" height="25.374986" width="55" y="35" x="629.260104" stroke-width="1.5" fill="#99584e" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <rect stroke="#ca008c" id="svg_36" height="25.37756" width="55" y="35" x="516.222559" stroke-width="1.5" fill="#ca008c" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)"/>
+  <text id="svg_24" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="141.873" y="55.037" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">2</text>
+  <text id="svg_25" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="197.866" y="55.342" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">4</text>
+  <text id="svg_21" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="75.144" y="55.745" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">0.5</text>
+  <text id="svg_37" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="248.044" y="56.107" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">10</text>
+  <text id="svg_38" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="305.88" y="56.226" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">20</text>
+  <text id="svg_39" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="361.145" y="55.978" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">40</text>
+  <text id="svg_40" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="417.888" y="55.748" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">60</text>
+  <text id="svg_41" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="467.881" y="55.9" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">100</text>
+  <text id="svg_42" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="524.896" y="55.939" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">200</text>
+  <text id="svg_44" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="580.896" y="55.991" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">400</text>
+  <text id="svg_45" style="font-family: Helvetica, Arial, sans-serif; font-size: 23px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="638.056" y="55.994" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">800</text>
+  <text id="svg_61" style="font-family: Helvetica, Arial, sans-serif; font-size: 18px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="8.915" y="53.649" transform="matrix(1, 0, 0, 1, -22.957308, 1.560795)">inches</text>
+</svg>
