@@ -33,7 +33,7 @@ $( document ).ready(function() {
                         <th>Length</th>
                         <th>Directions</th>
                         <th>Favorite</th>
-                        <th>View</th>
+                        <th>View Trailhead</th>
                     </tr>`
                 );
                 // for each trail that matches the filtering criterion, 
