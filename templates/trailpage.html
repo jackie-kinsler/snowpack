@@ -25,12 +25,12 @@
             <div class="limit-height" id="map"></div>
         </div>
         <div class="col-md-6">
-            <form id="distance-form">
-                Name: <input type="text" name="trail-name" id="trail-name" ></input>
-                Min length: <input name="min-dist" id="min-dist" type="number" step="any">
-                Max length: <input name="max-dist" id="max-dist" type="number" step="any">
+            <form class="form" id="distance-form">
+                <input type="text" class="filter-box" name="trail-name" id="trail-name" placeholder="Trail name..."></input>
+                <input name="min-dist" class="filter-box" id="min-dist" type="number" step="any" placeholder="Min length (mi)">
+                <input name="max-dist" class="filter-box" id="max-dist" type="number" step="any" placeholder="Max length (mi)">
     
-                <input type="submit">
+                <input type="submit" class="submit" id="trail-filter-subimt" value="Go!">
                 
             </form>
             <div>

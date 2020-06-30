@@ -13,7 +13,7 @@
 
     {% if session.get('user_id') %}
 
-        <form method=post action="/add-a-trail" enctype=multipart/form-data>
+        <form method=post class="add-a-trail" action="/add-a-trail" enctype=multipart/form-data>
             <div class="form-group row" >
                 <label class="col-sm-2">Trail name: </label>
                 <input type="text" class="form-control col-sm-5" name="name" 
@@ -72,7 +72,7 @@
                 <div class="col-sm-5">
                     <div class="row">
                         <div class="col-auto input-with-unit">
-                            <input type="number" step="any" min="0" class="form-control
+                            <input type="number" step="any" min="0" class="form-control"
                             name="descent" placeholder="required" required>
                         </div>
                         <div class="col-auto input-with-unit">
