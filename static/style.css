@@ -240,3 +240,16 @@ h3 {
 .favorite-button:hover {
   transform: scale(1.2);
 }
+
+.display-button{ 
+  background-image: url("/static/images/eye.svg");
+  background-size: cover; 
+  background-color: #00ffff00;
+  border: none;
+  width: 43px;
+  height: 27px;
+}
+
+.display-button:hover {
+  transform: scale(1.2);
+}
