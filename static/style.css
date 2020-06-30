@@ -223,3 +223,20 @@ h3 {
 .add-a-trail {
   margin-bottom: 80px; 
 }
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: rgba(246, 245, 220, 0.8);
+}
+
+.favorite-button {
+  background-image: url("/static/images/full_heart.svg");
+  background-size: cover; 
+  background-color: #00ffff00;
+  border: none;
+  width: 30px;
+  height: 27px;
+}
+
+.favorite-button:hover {
+  transform: scale(1.2);
+}

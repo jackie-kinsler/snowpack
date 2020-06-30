@@ -58,7 +58,7 @@ $( document ).ready(function() {
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
                                 <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
-                                <td><button id=${trail['trail_id']} class="favorite-button">Add to favorites</button></td>
+                                <td><button id=${trail['trail_id']} class="favorite-button"></button></td>
                                 <td><button class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}">View trailhead</button></td>
                             </tr>`
                         );
