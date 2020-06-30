@@ -42,7 +42,7 @@ li {
 }
 
 #search-box:focus{
-  border: 2px solid rgb(146, 146, 182);
+  border: 2px solid rgba(133, 97, 243, 1);
   outline: none;
 }
 
@@ -89,21 +89,21 @@ tr:hover {
 }
 
 .submit {
-	background-color:rgb(122, 122, 124);
-	border-radius:10px;
-	border:2px solid #32292f;
-	display:inline-block;
-	cursor:pointer;
-	color:#e2e2e2;
-	font-family:Arial;
-	font-size:17px;
-	padding:5px 20px;
-  text-decoration:none;
+	background-color: rgb(90, 90, 90);
+  border-radius: 10px;
+  border: 2px solid #353335;
+  display: inline-block;
+  cursor: pointer;
+  color: #e2e2e2;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 5px 20px;
+  text-decoration: none;
   margin-bottom: 100px;
   margin-left: 30px;
 }
 .submit:hover {
-  background-color:#6e7dab;
+  background-color:rgba(133, 97, 243, 1);
   
 }
 .submit:active {
@@ -144,7 +144,8 @@ tr:hover {
 }
 
 .credential-button{
-  background-color: rgb(242, 244, 217);
+  background-color: rgba(133, 97, 243, 1);
+  color: rgb(230, 230, 230);
 }
 
 /* FLASH MESSAGES */
@@ -166,12 +167,13 @@ tr:hover {
   font-weight: 400;
   color: rgb(56, 59, 65);
   padding: 5px;
+  margin-bottom: 10px;
 }
 
 .date-row{
   text-align: center;
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: -60px;
 }
 
 #vert-depth-key {
@@ -184,4 +186,20 @@ tr:hover {
 
 #horiz-depth-key {
  width: 100%; 
+ padding: 5px;
+}
+
+#calendar {
+  padding: 5px;
+  background-color: rgba(255, 255, 255, .35);
+  color: #383b41;
+  font-family: Quicksand;
+  border: 2px solid white;
+  border-radius: 10px;
+  font-weight: 450;
+}
+
+#calendar:focus {
+  border: 2px solid rgba(133, 97, 243, 1);
+  outline: none;
 }
