@@ -19,7 +19,7 @@
                 SnowPack Map pulls data from the <a href="https://www.nohrsc.noaa.gov/earth/">
                 NOAA NOHRSC </a>snow data page. 
                 By default, the map shows the latest available data from NOAA. 
-                Users can also choose look at historical snow data (going back to 2012)! 
+                Users can also look at historical snow data (going back to 2012)! 
                 Have fun finding snow… or avoiding it.
             </div>
         </div>
@@ -29,20 +29,24 @@
             <div class="col-sm-10">
                 More details… <br>
                 SnowPack Map was created by Jackie Kinsler as her Hackbright Academy 
-                capstone project. 
+                capstone project. <br> <br>
+                <strong>Backend:</strong> Python, Flask, SQL <br>
                 The backend is written in Python and uses Flask as a web framework. 
                 The data is housed in a SQL database. SQLAlchemy is used to access 
                 and modify the tables. Tables include trail data, user favorites, 
                 and user suggestions. Moderators have the ability to modify the database 
-                from the front end on the snowpackmap.com/moderator page (you may not 
+                from the front end on the moderator page (you may not 
                 be able to see this… sorry, we can’t all be moderators 
                 <img class="smile" src="/static/images/smile.svg">).
+                Log-in is handled using OAuth2.0 with Google credentials.
+                <br><br>
+                <strong>Frontend:</strong> JavaScript, jQuery, AJAX, Google Maps JavaScript API, HTML, Bootstrap, CSS
+                <br>
                 The Google Maps JavaScript API is used for mapping. Snow data is pulled 
                 from the NOAA NOHRSC snow data page and overlaid on the map. 
                 On the snowpackmap.com/trails page, trailheads and GPS data 
                 (if available) can also be overlaid on the map. Logged in users can 
-                favorite trails or make trail suggestions. Log-in is handled using 
-                OAuth2.0 with Google credentials. Most interactivity on the site is 
+                favorite trails or make trail suggestions.  Most interactivity on the site is 
                 handled using JS and AJAX requests. 
             </div>
         </div>

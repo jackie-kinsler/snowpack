@@ -55,6 +55,7 @@ app.jinja_env.undefined = StrictUndefined
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
 GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configuration")
+GOOGLE_MAP_API = os.environ.get("GOOGLE_MAP_API")
 
 # OAuth 2 client setup
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
@@ -85,14 +86,14 @@ def homepage():
 
     latest_date = find_usable_date(try_date)
     
-    return render_template('homepage.html', latest_date = latest_date)
+    return render_template('homepage.html', latest_date = latest_date, GOOGLE_MAP_API=GOOGLE_MAP_API)
     
     
 @app.route('/trails')
 def trail_page():
     """Render page with map and trail filtering capability."""
 
-    return render_template('trailpage.html')
+    return render_template('trailpage.html', GOOGLE_MAP_API=GOOGLE_MAP_API)
 
 
 @app.route('/favorite-trails')
@@ -130,9 +131,13 @@ def add_a_trail():
 @app.route('/moderator')
 def moderator_page():
     """Render moderator page. Here, suggestions can be added, edited, or deleted."""
-    suggestions = crud.get_all_suggested()
 
-    return render_template('moderator.html', suggestions = suggestions)
+    if current_user.is_authenticated and crud.is_moderator(current_user.email):
+        suggestions = crud.get_all_suggested()
+
+        return render_template('moderator.html', suggestions = suggestions)
+    else: 
+        return redirect('/')
 
 
 @app.route('/moderator/<suggestion_id>')
@@ -141,6 +146,13 @@ def edit_suggestion(suggestion_id):
     suggestion = crud.get_suggestion_by_id(suggestion_id)
 
     return render_template('edit_suggestion.html', suggestion = suggestion)
+
+# @app.route('/moderator/<date>')
+# def populate_forms(date, location):
+
+#     suggestion = crud.get_suggestion_by_id(suggestion_id)
+
+#     return render_template('edit_suggestion.html', suggestion = suggestion)
 
 @app.route('/about')
 def about():

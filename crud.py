@@ -134,6 +134,9 @@ def make_moderator_by_email(user_email):
     db.session.commit()
 
     return 
+
+def is_moderator(user_email):
+    return db.session.query(User.moderator).filter(User.email == user_email).first()[0]
 # *******************
 # FAVORITE CRUD FUNCTIONS:
 # *******************
