@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    
+<script src="/static/js/about.js"></script>
 {% endblock %}
 
 {% block title %}SNOW PACK - About{% endblock %}
@@ -9,8 +9,45 @@
 {% block body %}
 
 <div class="container">
-    <h3>About SnowPack Map:</h3>
-    <p>Mt. Shuksan by Matt Millard insta: thecircle.of.rice</p>
+    <p><strong id="show-background">Background photo:</strong> Mt. Shuksan by Matt Millard <a href="https://www.instagram.com/thecircle.of.rice/?hl=en"><img class="insta-logo" src="/static/images/instagram.svg"></a></p>
+
+    <div id="hide">
+        <h3>About SnowPack Map:</h3>
+        <div class="row">
+            <div class="col">
+                SnowPack Map was created to make adventure planning easier! 
+                SnowPack Map pulls data from the <a href="https://www.nohrsc.noaa.gov/earth/">
+                NOAA NOHRSC </a>snow data page. 
+                By default, the map shows the latest available data from NOAA. 
+                Users can also choose look at historical snow data (going back to 2012)! 
+                Have fun finding snow… or avoiding it.
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <img class="col-sm-2 author-img" src="/static/images/author.png">
+            <div class="col-sm-10">
+                More details… <br>
+                SnowPack Map was created by Jackie Kinsler as her Hackbright Academy 
+                capstone project. 
+                The backend is written in Python and uses Flask as a web framework. 
+                The data is housed in a SQL database. SQLAlchemy is used to access 
+                and modify the tables. Tables include trail data, user favorites, 
+                and user suggestions. Moderators have the ability to modify the database 
+                from the front end on the snowpackmap.com/moderator page (you may not 
+                be able to see this… sorry, we can’t all be moderators 
+                <img class="smile" src="/static/images/smile.svg">).
+                The Google Maps JavaScript API is used for mapping. Snow data is pulled 
+                from the NOAA NOHRSC snow data page and overlaid on the map. 
+                On the snowpackmap.com/trails page, trailheads and GPS data 
+                (if available) can also be overlaid on the map. Logged in users can 
+                favorite trails or make trail suggestions. Log-in is handled using 
+                OAuth2.0 with Google credentials. Most interactivity on the site is 
+                handled using JS and AJAX requests. 
+            </div>
+        </div>
+        <br>
+    </div>
 </div>
 
 {% endblock %}

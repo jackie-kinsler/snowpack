@@ -144,7 +144,7 @@ tr:hover {
 .credential-button{
   background-color: rgba(133, 97, 243, 1);
   border: 1px solid rgba(133, 97, 243, 1);
-
+  color: #efefef;
 }
 
 .credential-button:hover {
@@ -265,4 +265,18 @@ h3 {
 #trail-results {
   height: 695px;
   overflow: auto;
+}
+
+.author-img{
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.insta-logo{
+  height: 30px;
+}
+
+.smile {
+  height: 1em; 
 }
