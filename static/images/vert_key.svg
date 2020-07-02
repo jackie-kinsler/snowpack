@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg viewBox="23.832 10.641 20.922 170.049" xmlns="http://www.w3.org/2000/svg">
-  <rect id="svg_33" height="12.619" width="20" y="10.641" x="24.153" stroke-width="1.5" style="fill-rule: evenodd; paint-order: stroke; fill: rgb(223, 222, 220); stroke: rgb(223, 222, 220);"/>
-  <rect id="rect-1" height="12.619" width="20" y="24.859" x="24.15" stroke-width="1.5" style="stroke: rgb(223, 252, 251); fill: rgb(223, 252, 251);"/>
-  <rect id="rect-2" height="12.619" width="20" y="39.072" x="24.148" stroke-width="1.5" style="stroke: rgb(151, 252, 252); fill: rgb(151, 252, 252);"/>
-  <rect id="rect-3" height="12.619" width="19.986" y="53.325" x="24.142" stroke-width="1.5" style="fill: rgb(144, 219, 251); stroke: rgb(144, 219, 251);"/>
-  <rect id="rect-4" height="12.619" width="20" y="67.578" x="24.131" stroke-width="1.5" style="stroke: rgb(105, 145, 250); fill: rgb(105, 145, 250);"/>
-  <rect id="rect-5" height="12.619" width="20" y="81.843" x="24.134" stroke-width="1.5" style="fill: rgb(132, 0, 242); stroke: rgb(132, 0, 242);"/>
-  <rect id="rect-6" height="12.619" width="20" y="96.118" x="24.131" stroke-width="1.5" style="stroke: rgb(110, 73, 243); fill: rgb(110, 73, 243);"/>
-  <rect id="rect-7" height="12.619" width="20" y="110.362" x="24.126" stroke-width="1.5" style="fill: rgb(174, 0, 219); stroke: rgb(174, 0, 219);"/>
-  <rect id="rect-8" height="12.619" width="20" y="124.594" x="24.129" stroke-width="1.5" style="stroke: rgb(224, 0, 199); fill: rgb(224, 0, 199);"/>
-  <rect id="rect-9" height="12.619" width="20" y="138.838" x="24.127" stroke-width="1.5" style="fill: rgb(202, 0, 140); stroke: rgb(202, 0, 140);"/>
-  <rect id="rect-10" height="12.619" width="20" y="153.089" x="24.123" stroke-width="1.5" style="stroke: rgb(176, 56, 100); fill: rgb(176, 56, 100);"/>
-  <rect stroke="#99584e" id="rect-11" height="12.619" width="20" y="167.347" x="24.123" stroke-width="1.5" fill="#99584e" style=""/>
-  <text id="text-1" transform="matrix(1, 0, 0, 1.105678, -0.371018, -2.306821)" style="font-family: Helvetica, Arial, sans-serif; font-size: 7.23538px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.204" y="19.853">inches</text>
-  <text id="text-2" transform="matrix(1, 0, 0, 1.105678, 0.740748, -0.976743)" style="font-family: Helvetica, Arial, sans-serif; font-size: 9.94865px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="26.615" y="32.933">0.5</text>
-  <text id="text-3" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="31.412" y="46.05" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">2</text>
-  <text id="text-4" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="31.288" y="58.6" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">4</text>
-  <text id="text-5" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="28.251" y="71.696" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">10</text>
-  <text id="text-6" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="28.269" y="84.515" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">20</text>
-  <text id="text-7" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="27.99" y="97.284" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">40</text>
-  <text id="text-8" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="28.13" y="110.159" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">60</text>
-  <text id="text-9" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.685" y="123.061">100</text>
-  <text id="text-10" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.886" y="136.038" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">200</text>
-  <text id="text-11" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.895" y="148.748" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">400</text>
-  <text id="text-12" style="font-family: Helvetica, Arial, sans-serif; font-size: 11px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.801" y="161.866" transform="matrix(1, 0, 0, 1.105678, 0, -1.038472)">800</text>
+<svg viewBox="240.942 33.301 20.922 169.325" xmlns="http://www.w3.org/2000/svg">
+  <rect id="svg_33" height="12.619" width="20" y="10.641" x="24.153" stroke-width="1.5" style="fill-rule: evenodd; paint-order: stroke; fill: rgb(223, 222, 220); stroke: rgb(223, 222, 220);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-1" height="12.619" width="20" y="24.859" x="24.15" stroke-width="1.5" style="stroke: rgb(223, 252, 251); fill: rgb(223, 252, 251);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-2" height="12.619" width="20" y="39.072" x="24.148" stroke-width="1.5" style="stroke: rgb(151, 252, 252); fill: rgb(151, 252, 252);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-3" height="12.619" width="19.986" y="53.325" x="24.142" stroke-width="1.5" style="fill: rgb(144, 219, 251); stroke: rgb(144, 219, 251);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-4" height="12.619" width="20" y="67.578" x="24.131" stroke-width="1.5" style="stroke: rgb(105, 145, 250); fill: rgb(105, 145, 250);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-5" height="12.619" width="20" y="81.843" x="24.134" stroke-width="1.5" style="fill: rgb(132, 0, 242); stroke: rgb(132, 0, 242);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-6" height="12.619" width="20" y="96.118" x="24.131" stroke-width="1.5" style="stroke: rgb(110, 73, 243); fill: rgb(110, 73, 243);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-7" height="12.619" width="20" y="110.362" x="24.126" stroke-width="1.5" style="fill: rgb(174, 0, 219); stroke: rgb(174, 0, 219);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-8" height="12.619" width="20" y="124.594" x="24.129" stroke-width="1.5" style="stroke: rgb(224, 0, 199); fill: rgb(224, 0, 199);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-9" height="12.619" width="20" y="138.838" x="24.127" stroke-width="1.5" style="fill: rgb(202, 0, 140); stroke: rgb(202, 0, 140);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect id="rect-10" height="12.619" width="20" y="153.089" x="24.123" stroke-width="1.5" style="stroke: rgb(176, 56, 100); fill: rgb(176, 56, 100);" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <rect stroke="#99584e" id="rect-11" height="12.619" width="20" y="167.347" x="24.123" stroke-width="1.5" fill="#99584e" style="" transform="matrix(1, 0, 0, 1, 217.109526, 22.660259)"/>
+  <text id="text-1" transform="matrix(1, 0, 0, 1.105678, 216.738508, 20.353438)" style="font-family: Helvetica, Arial, sans-serif; font-size: 7.23538px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.204" y="19.853">inches</text>
+  <text id="text-2" transform="matrix(1, 0, 0, 1.105678, 218.80966, 20.588398)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="26.615" y="32.933">0.5</text>
+  <text id="text-3" transform="matrix(1, 0, 0, 1.105678, 217.526594, 20.438984)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="31.412" y="46.05">2</text>
+  <text id="text-4" transform="matrix(1, 0, 0, 1.105678, 217.552992, 21.013607)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="31.288" y="58.6">4</text>
+  <text id="text-5" transform="matrix(1, 0, 0, 1.105678, 218.003065, 20.703276)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="28.251" y="71.696">10</text>
+  <text id="text-6" transform="matrix(1, 0, 0, 1.105678, 218.204252, 20.928314)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="28.269" y="84.515">20</text>
+  <text id="text-7" transform="matrix(1, 0, 0, 1.105678, 218.201307, 21.125086)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="27.99" y="97.284">40</text>
+  <text id="text-8" transform="matrix(1, 0, 0, 1.105678, 218.314405, 20.811207)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="28.13" y="110.159">60</text>
+  <text id="text-9" transform="matrix(1, 0, 0, 1.105678, 219.557676, 20.861502)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.685" y="123.061">100</text>
+  <text id="text-10" transform="matrix(1, 0, 0, 1.105678, 219.282408, 20.745495)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.886" y="136.038">200</text>
+  <text id="text-11" transform="matrix(1, 0, 0, 1.105678, 219.34535, 21.144369)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.895" y="148.748">400</text>
+  <text id="text-12" transform="matrix(1, 0, 0, 1.105678, 219.591993, 20.685837)" style="font-family: Helvetica, Arial, sans-serif; font-size: 8.1398px; stroke: rgb(223, 222, 220); stroke-width: 0px; white-space: pre;" x="24.801" y="161.866">800</text>
 </svg>

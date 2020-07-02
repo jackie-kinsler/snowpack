@@ -22,7 +22,9 @@
                 {% for favorite in favorite_trails %}
                 <tr>
                     <td>
-                        <a class="favorite-trail-name" href="{{ favorite.trail.url }}">{{ favorite.trail.name }}</a>
+                        <a class="favorite-trail-name" href="{{ favorite.trail.url }}">
+                            {{ favorite.trail.name }}
+                        </a>
                     </td>
                     <td>{{ favorite.trail.length }}</td>
                     <td>{{ favorite.trail.location }}</td>

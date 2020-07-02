@@ -129,14 +129,18 @@ def get_password_by_email(user_email):
 def get_user_id_by_email(user_email):
     return (db.session.query(User.id).filter(User.email == user_email).first())[0]
 
+
 def make_moderator_by_email(user_email):
     get_user_by_email(user_email).moderator = True
     db.session.commit()
-
     return 
 
+
 def is_moderator(user_email):
+    """Returns a boolean"""
     return db.session.query(User.moderator).filter(User.email == user_email).first()[0]
+
+
 # *******************
 # FAVORITE CRUD FUNCTIONS:
 # *******************

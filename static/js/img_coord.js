@@ -1,4 +1,3 @@
-console.log('img_coord.js has been loaded')
 // The keys of this dictionary represent the region key used for a NOHRSC picture. 
 // The values are a list of 2 tuples. Each tuple is a (lat,long) pair. 
 // The first tuple is the bottom left corner of where the image should be mounted on the map. 

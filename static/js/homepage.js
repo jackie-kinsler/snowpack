@@ -1,7 +1,3 @@
-
-console.log('homepage.js has been loaded')
-
-
 $( document ).ready(function() {
     
     $('#date-form').on('submit', (evt) => {

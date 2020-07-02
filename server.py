@@ -55,6 +55,8 @@ app.jinja_env.undefined = StrictUndefined
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
 GOOGLE_DISCOVERY_URL = ("https://accounts.google.com/.well-known/openid-configuration")
+
+# Google Maps JS API Key
 GOOGLE_MAP_API = os.environ.get("GOOGLE_MAP_API")
 
 # OAuth 2 client setup
@@ -407,6 +409,7 @@ def store_map_details():
 def get_google_provider_cfg():
     return requests.get(GOOGLE_DISCOVERY_URL).json()
 
+
 # Flask-Login helper to retrieve a user from our db
 @login_manager.user_loader
 def load_user(user_id):
@@ -435,6 +438,7 @@ def find_usable_date(try_date):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 def send_email():
     """Uses google server to send email to moderator."""
@@ -528,33 +532,3 @@ def create_suggestion_from_user_inputs():
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(host='0.0.0.0', debug=True, ssl_context = "adhoc")
-
-
-##########################
-# CODE MADE OBSOLETE BY OAUTH
-##########################
-
-# @app.route('/api/is-logged-in')
-# def check_if_user():
-#     print(session)
-#     if session.get('user_id'):
-#         return('true')
-#     else:
-#         return ('false')
-
-
-# @app.route('/api/create-user', methods = ['POST'])
-# def create_account():
-#     """Create a new user."""
-
-#     email = request.form.get('email')
-#     password = request.form.get('password')
-
-#     if crud.get_user_by_email(email):
-#         flash('That email is already assigned to a registered account.')
-
-#     else: 
-#         crud.create_user(email = email, password = password)
-#         flash('User successfully registered.')
-    
-#     return redirect('/')

@@ -52,11 +52,20 @@
                 <!-- <td>{{ suggestion.gps }}</td> -->
                 <td>{{ suggestion.user.email }}</td>
                 <td class="mod-action">
-                    <button class="btn add-to-trail-db-button" id="{{ suggestion.suggestion_id }}">ADD</button>
+                    <button class="btn add-to-trail-db-button" 
+                            id="{{ suggestion.suggestion_id }}">
+                            ADD
+                    </button>
                     <form action="/moderator/{{ suggestion.suggestion_id }}">
-                        <button class="btn edit-button" id="{{ suggestion.suggestion_id }}">EDIT</button>
+                        <button class="btn edit-button" 
+                                id="{{ suggestion.suggestion_id }}">
+                                EDIT
+                        </button>
                     </form>
-                    <button class="btn delete-button" id="{{ suggestion.suggestion_id }}">DELETE</button>
+                    <button class="btn delete-button" 
+                            id="{{ suggestion.suggestion_id }}">
+                            DELETE
+                    </button>
                 </td>
             </tr>
             {% endfor %}

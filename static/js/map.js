@@ -1,5 +1,3 @@
-console.log('map.js has been loaded');
-
 function initMap() {
   // get the lastest date for which snow data has been uploaded
   // then, populate a map with that data 

@@ -1,7 +1,3 @@
-
-console.log('moderator.js has been loaded')
-
-
 $( document ).ready(function() {
     
     $(".add-to-trail-db-button").on('click', (evt) => {
