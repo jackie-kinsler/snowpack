@@ -1,13 +1,12 @@
-<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/logo.png" width="200" height="auto" />
+<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/logo.png" width="250" height="auto" />
 
 # SnowPack Map
 
-![alt text](https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/main.png "Logo Title Text 1")
+SnowPack Map was created to make finding snow… or avoiding snow easier. The app was created with hikers and skiiers in mind, and therefore combines features like terrain maps, snow data, and trail information. SnowPack Map was created with hikers and skiers in mind. 
 
 
+<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/main.png" width="400" height="auto" />
 
-
-Foobar is a Python library for dealing with word pluralization.
 
 ## Installation
 
