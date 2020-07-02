@@ -2,19 +2,62 @@
 
 # SnowPack Map
 
-SnowPack Map was created to make finding snow… or avoiding snow easier. The app was created with hikers and skiiers in mind, and therefore combines features like terrain maps, snow data, and trail information. SnowPack Map was created with hikers and skiers in mind. 
+SnowPack Map features a searchable map with curernt snow depth overlaid. The app was created with hikers and skiiers in mind, therefore combines mapping, snow-depth information, and trail information. 
 
 
-<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/main.png" width="400" height="auto" />
+<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/home.png" width="400" height="auto" />
+
+## Deployment
+
+https://snowpackmap.com/
 
 
-## Installation
+## Contents
+* [Tech Stack](#tech-stack)
+* [Features](#features)
+* [Future State](#future)
+* [Installation](#installation)
+* [License](#license)
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+## <a name="tech-stack"></a>Technologies
+* Python
+* Flask
+* Jinja2
+* SQL
+* SQLAlchemy ORM
+* HTML
+* CSS
+* Bootstrap
+* jQuery
+* Google Maps JavaScript API (and Places Library)
+* OAuth2.0
 
+## <a name="features"></a>Features
+
+## <a name="instillation"></a>Installation 
+
+To run SnowPack Map on your own machine: 
+
+Install Python 
+Install PostgreSQL (MAC OXS)
+
+Clone or fork this repo: 
 ```bash
-pip install foobar
+https://github.com/jackie-kinsler/snowpack
 ```
+
+Create and activate a virtual environment inside the SnowPack directory: 
+```bash
+virtualenv env
+source env/bin/activate
+```
+
+Install dependencies: 
+```bash
+pip install -r requirements.txt
+```
+
+Sign up to use the <a href= "https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps API /> and <a href= "https://developers.google.com/maps/documentation/javascript/get-api-key"> request an API key />.
 
 ## Usage
 
