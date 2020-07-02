@@ -57,7 +57,24 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Sign up to use the <a href= "https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps API /> and <a href= "https://developers.google.com/maps/documentation/javascript/get-api-key"> request an API key />.
+Sign up to use the <a href= "https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps API </a> and <a href= "https://developers.google.com/maps/documentation/javascript/get-api-key"> request an API key </a>.
+
+NOTE: Once you have an API key, you will also need to <a href= "https://developers.google.com/maps/documentation/javascript/places">turn on the Google Maps Places library </a>. This is needed for the searchbar to work. 
+
+Save your api keys into a file called `secrets.sh` using this format:  
+
+```bash
+export GOOGLE_MAP_API="YOUR_KEY_HERE"
+```
+Set up and download your Google OAuth 2.0 client IDs, and save them in the same secrets.sh file. 
+
+It should now look like this: 
+```bash
+export GOOGLE_MAP_API="YOUR_KEY_HERE"
+export GOOGLE_CLIENT_ID="YOUR_ID_HERE"
+export GOOGLE_CLIENT_SECRET="YOUR_SECRET_HERE"
+```
+
 
 ## Usage
 
