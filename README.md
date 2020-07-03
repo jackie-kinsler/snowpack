@@ -87,16 +87,17 @@ Save the API keys into a file called `secrets.sh` using this format:
 ```bash
 export GOOGLE_MAP_API="YOUR_KEY_HERE"
 ```
-Set up and download your Google OAuth 2.0 client IDs, and save them in the same secrets.sh file. 
+Set up and retreive your Google OAuth 2.0 client IDs, and save them in the same secrets.sh file. 
+Ensure that the approved URIs include your localhost and port. 
 
-It should now look like this: 
+`secrets.sh` should now look like this: 
 ```bash
 export GOOGLE_MAP_API="YOUR_KEY_HERE"
 export GOOGLE_CLIENT_ID="YOUR_ID_HERE"
 export GOOGLE_CLIENT_SECRET="YOUR_SECRET_HERE"
 ```
 
-Source the API keys from the `secrets.sh` file into the environment. 
+Copy the API keys from the `secrets.sh` file into the environment. 
 
 ```bash
 source secrests.sh
