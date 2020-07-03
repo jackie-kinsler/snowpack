@@ -3,9 +3,8 @@
 # SnowPack Map
 
 SnowPack Map was developed for skiers and hikers. When planning for an adventure, its often desired to overlay trail data, snow depth information, and terrain maps... SnowPack Map finally makes that possible! 
-
 <br>
-SnowPack Map features a searchable map with a snow depth overlay. Users can overlay GPS data on the map to get a detailed view of the snow depth they can plan to encounter on their next outdoor endeavor. 
+SnowPack Map enables users to look at curent or historical snow depth data. Users can overlay GPS data on the map to get a detailed view of the snow depth they can plan to encounter on their next outdoor endeavor. 
 
 
 <img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/home.png" width="700" height="auto" />
