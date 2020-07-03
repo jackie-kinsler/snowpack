@@ -15,8 +15,8 @@ https://snowpackmap.com/
 ## Contents
 * [Tech Stack](#tech-stack)
 * [Features](#features)
-* [Future](#future)
 * [Installation](#installation)
+* [Next Steps](#future)
 * [License](#license)
 
 ## <a name="tech-stack"></a>Tech Stack
@@ -113,7 +113,7 @@ Run the app!
 python servery.py
 ```
 
-## <a name="future"></a>Future
+## <a name="future"></a>Next Steps
 The project roadmap for SnowPack Map has several features planned: 
 * Improve search algorithm when filtering for trails
 * Incldue an option to only search trails inside of the map bounds 
