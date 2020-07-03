@@ -34,7 +34,24 @@ https://snowpackmap.com/
 
 ## <a name="features"></a>Features
 
+SnowPack Map's main feature is a searchable map onto which current and historical snow data can be overlaid. 
 
+<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/main-feature.gif" width="400" height="auto" />
+
+On the /trails page, users can query for trails, and view trail information on the map. 
+
+<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/search.gif" width="400" height="auto" />
+
+Users can also add trails to their favorites. 
+
+<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/favorite.gif" width="400" height="auto" />
+
+
+Users can suggest new trails. 
+
+<img src="https://raw.githubusercontent.com/jackie-kinsler/snowpack/master/static/images/readme/add-trail.png" width="400" height="auto" />
+
+Moderators can approve, edit, or delete suggestions. Then, the suggested trail will be findable on the trails page. 
 
 ## <a name="instillation"></a>Installation 
 
