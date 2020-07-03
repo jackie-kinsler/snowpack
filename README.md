@@ -87,7 +87,7 @@ Save the API keys into a file called `secrets.sh` using this format:
 ```bash
 export GOOGLE_MAP_API="YOUR_KEY_HERE"
 ```
-Set up and retreive your Google OAuth 2.0 client IDs, and save them in the same secrets.sh file. 
+Set up and retreive your Google OAuth 2.0 client IDs, and save them in the same `secrets.sh` file. 
 Ensure that the approved URIs include your localhost and port. 
 
 `secrets.sh` should now look like this: 
@@ -119,7 +119,7 @@ python servery.py
 ## <a name="future"></a>Next Steps
 The project roadmap for SnowPack Map has several features planned: 
 * Improve search algorithm when filtering for trails
-* Incldue an option to only search trails inside of the map bounds 
+* Include an option to only search trails inside of the map bounds 
 * Email users when their suggestions have been approved
 * Push search parameters into the URL so queries can easily be shared
 
