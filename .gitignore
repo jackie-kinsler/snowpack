@@ -12,3 +12,4 @@ scraper.py
 static/js/scraper.js
 /Video
 *.sql
+ssl-bundle.crt
