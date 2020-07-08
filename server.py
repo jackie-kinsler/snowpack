@@ -170,10 +170,7 @@ def login():
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]
-    print("*****")
-    print(request.base_url)
-    print("*****")
-    base_url = "http://snowpackmap.com/login"
+    base_url = "https://snowpackmap.com/login"
 
     # Use library to construct the request for Google login and provide
     # scopes that let you retrieve user's profile from Google
