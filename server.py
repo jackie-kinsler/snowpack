@@ -75,6 +75,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
 
+base_url = "https://snowpackmap.com/login"
+
 
 ##########################
 # ROUTES THAT RENDER PAGES 
@@ -170,7 +172,6 @@ def login():
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]
-    base_url = "https://snowpackmap.com/login"
 
     # Use library to construct the request for Google login and provide
     # scopes that let you retrieve user's profile from Google
@@ -192,19 +193,33 @@ def callback():
     # things on behalf of a user
     google_provider_cfg = get_google_provider_cfg()
     token_endpoint = google_provider_cfg["token_endpoint"]
+    print("token_endpoint")
+    print(token_endpoint)
+    
 
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
         authorization_response=request.url,
-        redirect_url=request.base_url,
+        redirect_url=base_url,
         code=code
     )
+    print("token_url")
+    print(token_url)
+    print("headers")
+    print(headers)
+    print("body")
+    print(body)
     token_response = requests.post(
         token_url,
         headers=headers,
         data=body,
         auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
     )
+    print("****")
+    print("token_url")
+    print(token_url)
+    print("token_response")
+    print(token_response)
 
     # Parse the tokens!
     client.parse_request_body_response(json.dumps(token_response.json()))
@@ -534,4 +549,4 @@ def create_suggestion_from_user_inputs():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', ssl_context = "adhoc")
