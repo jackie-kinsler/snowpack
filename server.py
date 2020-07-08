@@ -1,4 +1,3 @@
-
 # STANDARD LIBRARIES 
 import json
 import os 
@@ -74,8 +73,6 @@ ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
-
-base_url = "https://snowpackmap.com/login"
 
 
 ##########################
@@ -177,11 +174,9 @@ def login():
     # scopes that let you retrieve user's profile from Google
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri=base_url + "/callback",
+        redirect_uri=request.base_url + "/callback",
         scope=["openid", "email"],
     )
-    print("reqquest_uri:")
-    print(request_uri)
     return redirect(request_uri)
 
 # Handle the google login callback endpoint 
@@ -193,37 +188,23 @@ def callback():
     # things on behalf of a user
     google_provider_cfg = get_google_provider_cfg()
     token_endpoint = google_provider_cfg["token_endpoint"]
-    print("token_endpoint")
-    print(token_endpoint)
-    
 
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
         authorization_response=request.url,
-        redirect_url=base_url,
+        redirect_url=request.base_url,
         code=code
     )
-    print("token_url")
-    print(token_url)
-    print("headers")
-    print(headers)
-    print("body")
-    print(body)
     token_response = requests.post(
         token_url,
         headers=headers,
         data=body,
         auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
     )
-    print("****")
-    print("token_url")
-    print(token_url)
-    print("token_response")
-    print(token_response)
 
     # Parse the tokens!
     client.parse_request_body_response(json.dumps(token_response.json()))
-    # Now that you have tokens find and hit the URL
+    # Now that you have tokens (yay) let's find and hit the URL
     # from Google that gives you the user's profile information,
     # including their Google profile image and email
     userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
@@ -549,4 +530,4 @@ def create_suggestion_from_user_inputs():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0', ssl_context = "adhoc")
+    app.run(host='0.0.0.0')
