@@ -170,14 +170,20 @@ def login():
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+    print("*****")
+    print(request.base_url)
+    print("*****")
+    base_url = "http://snowpackmap.com/login"
 
     # Use library to construct the request for Google login and provide
     # scopes that let you retrieve user's profile from Google
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri=request.base_url + "/callback",
+        redirect_uri=base_url + "/callback",
         scope=["openid", "email"],
     )
+    print("reqquest_uri:")
+    print(request_uri)
     return redirect(request_uri)
 
 # Handle the google login callback endpoint 
@@ -205,7 +211,7 @@ def callback():
 
     # Parse the tokens!
     client.parse_request_body_response(json.dumps(token_response.json()))
-    # Now that you have tokens (yay) let's find and hit the URL
+    # Now that you have tokens find and hit the URL
     # from Google that gives you the user's profile information,
     # including their Google profile image and email
     userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
