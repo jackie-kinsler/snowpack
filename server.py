@@ -74,7 +74,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
 
-base_url = "https://snowpackmap.com/login"
+# base_url = "https://snowpackmap.com/login"
 
 ##########################
 # ROUTES THAT RENDER PAGES 
@@ -175,7 +175,7 @@ def login():
     # scopes that let you retrieve user's profile from Google
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri=base_url + "/callback",
+        redirect_uri= request.base_url + "/callback",
         scope=["openid", "email"],
     )
     return redirect(request_uri)
@@ -193,7 +193,7 @@ def callback():
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
         authorization_response=request.url,
-        redirect_url=base_url,
+        redirect_url= request.base_url,
         code=code
     )
     token_response = requests.post(
@@ -531,4 +531,4 @@ def create_suggestion_from_user_inputs():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', ssl_context = "adhoc")
