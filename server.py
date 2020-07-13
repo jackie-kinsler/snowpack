@@ -75,8 +75,9 @@ ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
+app.config['SERVER_NAME'] = "snowpackmap.com"
 
-base_url = "https://snowpackmap.com"
+# base_url = "https://snowpackmap.com"
 
 ##########################
 # ROUTES THAT RENDER PAGES 
@@ -177,7 +178,7 @@ def login():
     # scopes that let you retrieve user's profile from Google
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri= base_url + "/login/callback",
+        redirect_uri= request.base_url + "/login/callback",
         scope=["openid", "email"],
     )
     
@@ -203,8 +204,8 @@ def callback():
 
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
-        authorization_response = base_url + request.full_path,
-        redirect_url= base_url + "/login",
+        authorization_response = request.url,
+        redirect_url= request.base_url + "/login",
         code=code
     )
     app.logger.error("**token.url**")
