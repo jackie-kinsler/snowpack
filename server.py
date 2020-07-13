@@ -180,6 +180,10 @@ def login():
         redirect_uri= base_url + "/login/callback",
         scope=["openid", "email"],
     )
+    
+    print("***request_uri***")
+    print(request_uri)
+
     return redirect(request_uri)
 
 # Handle the google login callback endpoint 
@@ -196,13 +200,15 @@ def callback():
 
     print("**request.url***")
     print(request.url)
-    
+
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
         authorization_response = request.url,
         redirect_url= base_url + "/login",
         code=code
     )
+    print("**token.url**")
+    print(token_url)
     token_response = requests.post(
         token_url,
         headers=headers,
