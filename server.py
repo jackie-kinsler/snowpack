@@ -181,8 +181,8 @@ def login():
         scope=["openid", "email"],
     )
     
-    print("***request_uri***")
-    print(request_uri)
+    app.logger.info("***request_uri***")
+    app.logger.info(request_uri)
 
     return redirect(request_uri)
 
@@ -191,15 +191,15 @@ def login():
 def callback():
     # Get authorization code Google sent back to you
     code = request.args.get("code")
-    print("code:")
-    print(code)
+    app.logger.info("code:")
+    app.logger.info(code)
     # Find out what URL to hit to get tokens that allow you to ask for
     # things on behalf of a user
     google_provider_cfg = get_google_provider_cfg()
     token_endpoint = google_provider_cfg["token_endpoint"]
 
-    print("**request.url***")
-    print(request.url)
+    app.logger.info("**request.url***")
+    app.logger.info(request.url)
 
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
@@ -207,8 +207,8 @@ def callback():
         redirect_url= base_url + "/login",
         code=code
     )
-    print("**token.url**")
-    print(token_url)
+    app.logger.info("**token.url**")
+    app.logger.info(token_url)
     token_response = requests.post(
         token_url,
         headers=headers,
