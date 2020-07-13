@@ -75,7 +75,7 @@ ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
-app.config['SERVER_NAME'] = "snowpackmap.com"
+app.config['SERVER_NAME'] = "snowpackmap.com:5000"
 
 # base_url = "https://snowpackmap.com"
 
