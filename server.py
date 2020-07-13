@@ -181,8 +181,8 @@ def login():
         scope=["openid", "email"],
     )
     
-    app.logger.info("***request_uri***")
-    app.logger.info(request_uri)
+    app.logger.error("***request_uri***")
+    app.logger.error(request_uri)
 
     return redirect(request_uri)
 
@@ -198,8 +198,8 @@ def callback():
     google_provider_cfg = get_google_provider_cfg()
     token_endpoint = google_provider_cfg["token_endpoint"]
 
-    app.logger.info("**request.url***")
-    app.logger.info(request.url)
+    app.logger.error("**request.url***")
+    app.logger.error(request.url)
 
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
@@ -207,8 +207,8 @@ def callback():
         redirect_url= base_url + "/login",
         code=code
     )
-    app.logger.info("**token.url**")
-    app.logger.info(token_url)
+    app.logger.error("**token.url**")
+    app.logger.error(token_url)
     token_response = requests.post(
         token_url,
         headers=headers,
