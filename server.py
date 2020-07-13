@@ -203,7 +203,7 @@ def callback():
 
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
-        authorization_response = request.url,
+        authorization_response = base_url + request.full_path,
         redirect_url= base_url + "/login",
         code=code
     )
