@@ -75,7 +75,7 @@ ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
-app.config['SERVER_NAME'] = "snowpackmap.com:5000"
+# app.config['SERVER_NAME'] = "snowpackmap.com"
 
 # base_url = "https://snowpackmap.com"
 
@@ -545,4 +545,5 @@ def create_suggestion_from_user_inputs():
 
 if __name__ == '__main__':
     connect_to_db(app)
-    app.run()
+    app.run(port = 5000)
+    
