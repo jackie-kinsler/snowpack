@@ -55,6 +55,12 @@ li {
   height: 29px;
 }
 
+@media only screen and (max-width: 370px) {
+  #fadeshow1 {
+      display: none;
+  }
+}
+
 th,
 td {
 	background-color: rgba(204, 204, 204, 0.2);
