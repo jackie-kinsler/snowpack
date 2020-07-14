@@ -50,7 +50,7 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", None)
 app.jinja_env.undefined = StrictUndefined
 
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+# os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
 # Google OAuth 2.0 Configuration (keys from Google OAuth 2.0 Client ID)
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
