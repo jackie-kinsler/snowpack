@@ -178,7 +178,7 @@ def login():
     # scopes that let you retrieve user's profile from Google
     request_uri = client.prepare_request_uri(
         authorization_endpoint,
-        redirect_uri= request.base_url + "/login/callback",
+        redirect_uri= request.base_url + "/callback",
         scope=["openid", "email"],
     )
     
@@ -546,4 +546,3 @@ def create_suggestion_from_user_inputs():
 if __name__ == '__main__':
     connect_to_db(app)
     app.run(port = 5000)
-    
