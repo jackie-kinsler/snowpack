@@ -50,8 +50,6 @@ app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", None)
 app.jinja_env.undefined = StrictUndefined
 
-# os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-
 # Google OAuth 2.0 Configuration (keys from Google OAuth 2.0 Client ID)
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
@@ -75,7 +73,6 @@ ALLOWED_EXTENSIONS = {'kml','json','geojson','application/json','js'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # limit file upload size to 20MB
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
-# app.config['SERVER_NAME'] = "snowpackmap.com"
 
 base_url = "https://snowpackmap.com"
 
@@ -182,9 +179,6 @@ def login():
         scope=["openid", "email"],
     )
     
-    app.logger.error("***request_uri***")
-    app.logger.error(request_uri)
-
     return redirect(request_uri)
 
 # Handle the google login callback endpoint 
@@ -192,15 +186,10 @@ def login():
 def callback():
     # Get authorization code Google sent back to you
     code = request.args.get("code")
-    app.logger.info("code:")
-    app.logger.info(code)
     # Find out what URL to hit to get tokens that allow you to ask for
     # things on behalf of a user
     google_provider_cfg = get_google_provider_cfg()
     token_endpoint = google_provider_cfg["token_endpoint"]
-
-    app.logger.error("**request.url***")
-    app.logger.error(request.url)
 
     token_url, headers, body = client.prepare_token_request(
         token_endpoint,
@@ -208,8 +197,6 @@ def callback():
         redirect_url= base_url + "/login/callback",
         code=code
     )
-    app.logger.error("**token.url**")
-    app.logger.error(token_url)
     token_response = requests.post(
         token_url,
         headers=headers,
