@@ -28,9 +28,9 @@ $( document ).ready(function() {
                     <tr>
                         <th>Trail Name</th>
                         <th>Length</th>
+                        <th>View Trailhead</th>
                         <th>Directions</th>
                         <th>Favorite</th>
-                        <th>View Trailhead</th>
                     </tr>`
                 );
                 // for each trail that matches the filtering criterion, 
@@ -43,9 +43,9 @@ $( document ).ready(function() {
                             <tr>
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
+                                <td><button id=${trail['trail_gps']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}"><br>GPS</button></td>
                                 <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
                                 <td><button id=${trail['trail_id']} class="favorite-button"></button></td>
-                                <td><button id=${trail['trail_gps']} class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}"><br>GPS</button></td>
                             </tr>`
                         );
                     } else {
@@ -53,9 +53,9 @@ $( document ).ready(function() {
                             <tr>
                                 <td><a href=${trail['trail_url']}>${trail['trail_name']}</a></td>
                                 <td>${trail['trail_distance']}</td>
+                                <td><button class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}"></button></td>
                                 <td><a href=https://www.google.com/maps/dir/Current+Location/${trail['trail_lat']},${trail['trail_long']}>${trail['trail_location']}</a></td>
                                 <td><button id=${trail['trail_id']} class="favorite-button"></button></td>
-                                <td><button class="display-button" title="${trail['trail_lat']}:${trail['trail_long']}"></button></td>
                             </tr>`
                         );
                     }
