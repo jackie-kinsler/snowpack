@@ -1,3 +1,8 @@
+@media only screen and (max-width: 370px) {
+  .hide-small {
+      display: none;
+  }
+}
 
  html, body {
   /* height: 100vh; */
@@ -53,12 +58,6 @@ li {
 
 #magnifying-glass {
   height: 29px;
-}
-
-@media only screen and (max-width: 370px) {
-  #fadeshow1 {
-      display: none;
-  }
 }
 
 th,
