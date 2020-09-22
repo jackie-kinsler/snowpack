@@ -11,7 +11,7 @@ SnowPack Map enables users to look at curent or historical snow depth data. User
 
 ## Deployment
 
-www.snowpackmap.com
+snowpackmap.com
 
 
 ## Contents
